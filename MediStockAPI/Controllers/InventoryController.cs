@@ -12,6 +12,7 @@ namespace MediStockAPI.Controllers
     {
 
         // FRANCO API TEST 
+        // Recoding as well
 
         MediStockTestEntities db = new MediStockTestEntities();
 
