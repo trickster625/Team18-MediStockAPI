@@ -11,6 +11,8 @@ namespace MediStockAPI.Controllers
     public class InventoryController : ApiController
     {
 
+        // FRANCO API TEST 
+
         MediStockTestEntities db = new MediStockTestEntities();
 
         public IHttpActionResult GetAllItems()
