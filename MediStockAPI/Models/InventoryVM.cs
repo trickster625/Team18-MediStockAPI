@@ -5,10 +5,11 @@ using System.Web;
 
 namespace MediStockAPI.Models
 {
-    public class InventoryViewModel
+    public class InventoryVM
     {
-        public int InventoryId { get; set; }
+        public int InventoryID { get; set; }
         public string InventoryName { get; set; }
-        public decimal InventoryPrice { get; set; }
+        public int InventoryTypeID { get; set; }
+        public string InventoryType { get; set; }
     }
 }
