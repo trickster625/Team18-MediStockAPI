@@ -230,21 +230,6 @@
     <Compile Include="Models\InventoryCategory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InventoryTestDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InventoryTestDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InventoryTestDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InventoryTestDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InventoryTestDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InventoryTestDB.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\InventoryType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -339,16 +324,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\InventoryTestDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InventoryTestDB.edmx</DependentUpon>
-      <LastGenOutput>InventoryTestDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\InventoryTestDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InventoryTestDB.edmx</DependentUpon>
-      <LastGenOutput>InventoryTestDB.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\MediStockDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MediStockDB.edmx</DependentUpon>
@@ -380,13 +355,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\InventoryTestDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InventoryTestDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\InventoryTestDB.edmx.diagram">
-      <DependentUpon>InventoryTestDB.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\MediStockDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MediStockDB.Designer.cs</LastGenOutput>
