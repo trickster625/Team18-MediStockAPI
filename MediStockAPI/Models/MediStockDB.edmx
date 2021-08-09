@@ -24,6 +24,8 @@
           <Property Name="Call_Date" Type="date" />
           <Property Name="Call_StartTime" Type="time" Precision="7" />
           <Property Name="Call_EndTime" Type="time" Precision="7" />
+          <Property Name="DOA_Number" Type="int" />
+          <Property Name="PRF_Number" Type="int" />
         </EntityType>
         <EntityType Name="Call_ItemsUsed">
           <Key>
@@ -1177,6 +1179,8 @@
           <Property Name="Call_Date" Type="DateTime" Precision="0" />
           <Property Name="Call_StartTime" Type="Time" Precision="7" />
           <Property Name="Call_EndTime" Type="Time" Precision="7" />
+          <Property Name="DOA_Number" Type="Int32" />
+          <Property Name="PRF_Number" Type="Int32" />
           <NavigationProperty Name="CallCancelReason" Relationship="Self.FK_Call_CallCancelReason" FromRole="Call" ToRole="CallCancelReason" />
           <NavigationProperty Name="CallStatu" Relationship="Self.FK_Call_CallStatus" FromRole="Call" ToRole="CallStatus" />
           <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Call" FromRole="Call" ToRole="Call_ItemsUsed" />
@@ -2349,6 +2353,8 @@
                 <ScalarProperty Name="Call_Date" ColumnName="Call_Date" />
                 <ScalarProperty Name="Call_StartTime" ColumnName="Call_StartTime" />
                 <ScalarProperty Name="Call_EndTime" ColumnName="Call_EndTime" />
+                <ScalarProperty Name="DOA_Number" ColumnName="DOA_Number" />
+                <ScalarProperty Name="PRF_Number" ColumnName="PRF_Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

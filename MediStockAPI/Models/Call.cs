@@ -27,6 +27,8 @@ namespace MediStockAPI.Models
         public Nullable<System.DateTime> Call_Date { get; set; }
         public Nullable<System.TimeSpan> Call_StartTime { get; set; }
         public Nullable<System.TimeSpan> Call_EndTime { get; set; }
+        public Nullable<int> DOA_Number { get; set; }
+        public Nullable<int> PRF_Number { get; set; }
     
         public virtual CallCancelReason CallCancelReason { get; set; }
         public virtual CallStatu CallStatu { get; set; }

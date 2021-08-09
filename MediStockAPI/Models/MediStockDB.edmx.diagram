@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ed78ed156b7e4cb3b906f3a735040c61" Name="Diagram1">
+      <Diagram DiagramId="500a88a7bf974b9987c14ff91283560b" Name="Diagram1">
         <EntityTypeShape EntityType="MediStock_DBModel.Barcode" Width="1.5" PointX="8.25" PointY="24.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Call" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Call_ItemsUsed" Width="1.5" PointX="12.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Call" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Call_ItemsUsed" Width="1.5" PointX="12.25" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.CallCancelReason" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.CallStatu" Width="1.5" PointX="0.75" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Candidate" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />

@@ -176,6 +176,7 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryTypeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\WriteOffReasonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
