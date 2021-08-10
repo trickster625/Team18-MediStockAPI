@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Barcode_ID" />
           </Key>
-          <Property Name="Barcode_ID" Type="int" Nullable="false" />
+          <Property Name="Barcode_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Inventory_ID" Type="int" Nullable="false" />
           <Property Name="Barcode_Number" Type="varchar" MaxLength="12" />
           <Property Name="Barcode_Date" Type="date" />
@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="Call_ID" />
           </Key>
-          <Property Name="Call_ID" Type="int" Nullable="false" />
+          <Property Name="Call_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CallStatus_ID" Type="int" Nullable="false" />
           <Property Name="Reason_ID" Type="int" Nullable="false" />
           <Property Name="Call_Date" Type="date" />
@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="ItemsUsed_ID" />
           </Key>
-          <Property Name="ItemsUsed_ID" Type="int" Nullable="false" />
+          <Property Name="ItemsUsed_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Call_ID" Type="int" Nullable="false" />
           <Property Name="Inventory_ID" Type="int" Nullable="false" />
           <Property Name="ItemsUsed_Qty" Type="int" />
@@ -40,21 +40,21 @@
           <Key>
             <PropertyRef Name="Reason_ID" />
           </Key>
-          <Property Name="Reason_ID" Type="int" Nullable="false" />
+          <Property Name="Reason_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Reason_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CallStatus">
           <Key>
             <PropertyRef Name="CallStatus_ID" />
           </Key>
-          <Property Name="CallStatus_ID" Type="int" Nullable="false" />
+          <Property Name="CallStatus_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CallStatus_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Candidate">
           <Key>
             <PropertyRef Name="Candidate_ID" />
           </Key>
-          <Property Name="Candidate_ID" Type="int" Nullable="false" />
+          <Property Name="Candidate_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Candidate_Name" Type="varchar" MaxLength="50" />
           <Property Name="Candidate_Surname" Type="varchar" MaxLength="50" />
           <Property Name="Candidate_Email" Type="varchar" MaxLength="50" />
@@ -65,15 +65,15 @@
           <Key>
             <PropertyRef Name="Checklist_ID" />
           </Key>
-          <Property Name="Checklist_ID" Type="int" Nullable="false" />
-          <Property Name="Checklist_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Checklist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Checklist_Name" Type="varbinary" MaxLength="50" />
         </EntityType>
         <EntityType Name="ChecklistItem">
           <Key>
             <PropertyRef Name="ChecklistItem_ID" />
           </Key>
+          <Property Name="ChecklistItem_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ChecklistItemType_ID" Type="int" Nullable="false" />
-          <Property Name="ChecklistItem_ID" Type="int" Nullable="false" />
           <Property Name="ChecklistItem_Description" Type="varchar" MaxLength="50" />
           <Property Name="ChecklistItem_ComplianceValue" Type="bit" />
         </EntityType>
@@ -81,14 +81,14 @@
           <Key>
             <PropertyRef Name="ChecklistItemType_ID" />
           </Key>
-          <Property Name="ChecklistItemType_ID" Type="int" Nullable="false" />
+          <Property Name="ChecklistItemType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ChecklistItemType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Employee_ID" />
           </Key>
-          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Employee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeTitle_ID" Type="int" Nullable="false" />
           <Property Name="SecurityQuestion_ID" Type="int" Nullable="false" />
           <Property Name="Employee_Name" Type="varchar" MaxLength="50" />
@@ -121,7 +121,7 @@
           <Key>
             <PropertyRef Name="EmployeeTitle_ID" />
           </Key>
-          <Property Name="EmployeeTitle_ID" Type="int" Nullable="false" />
+          <Property Name="EmployeeTitle_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeTitle_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="InspectionChecklist">
@@ -139,18 +139,18 @@
           <Key>
             <PropertyRef Name="InspectionType_ID" />
           </Key>
-          <Property Name="InspectionType_ID" Type="int" Nullable="false" />
+          <Property Name="InspectionType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InspectionType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Interview">
           <Key>
             <PropertyRef Name="Interview_ID" />
           </Key>
-          <Property Name="Interview_ID" Type="int" Nullable="false" />
+          <Property Name="Interview_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Candidate_ID" Type="int" Nullable="false" />
           <Property Name="InterviewType_ID" Type="int" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="ScheduledDate&amp;TIme" Type="datetime" />
+          <Property Name="SheduleDate&amp;Time" Type="datetime" />
           <Property Name="InterviewMethod" Type="varchar" MaxLength="25" />
           <Property Name="Address" Type="varchar" MaxLength="25" />
         </EntityType>
@@ -158,14 +158,14 @@
           <Key>
             <PropertyRef Name="InterviewType_ID" />
           </Key>
-          <Property Name="InterviewType_ID" Type="int" Nullable="false" />
+          <Property Name="InterviewType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InterviewType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="Inventory_ID" />
           </Key>
-          <Property Name="Inventory_ID" Type="int" Nullable="false" />
+          <Property Name="Inventory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InventoryType_ID" Type="int" Nullable="false" />
           <Property Name="Inventory_Name" Type="varchar" MaxLength="50" />
           <Property Name="Inventory_LatestPrice" Type="money" />
@@ -177,7 +177,7 @@
           <Key>
             <PropertyRef Name="InventoryCategory_ID" />
           </Key>
-          <Property Name="InventoryCategory_ID" Type="int" Nullable="false" />
+          <Property Name="InventoryCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InventoryType_ID" Type="int" Nullable="false" />
           <Property Name="InventoryCategory_Description" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -185,7 +185,7 @@
           <Key>
             <PropertyRef Name="InventoryType_ID" />
           </Key>
-          <Property Name="InventoryType_ID" Type="int" Nullable="false" />
+          <Property Name="InventoryType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InventoryType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
@@ -210,7 +210,7 @@
           <Key>
             <PropertyRef Name="Position_ID" />
           </Key>
-          <Property Name="Position_ID" Type="int" Nullable="false" />
+          <Property Name="Position_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleType_ID" Type="int" Nullable="false" />
           <Property Name="Position_Description" Type="varchar" MaxLength="50" />
           <Property Name="Position_Compensation" Type="money" />
@@ -220,7 +220,7 @@
           <Key>
             <PropertyRef Name="Order_ID" />
           </Key>
-          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Supplier_ID" Type="int" Nullable="false" />
           <Property Name="OrderStatus_ID" Type="int" Nullable="false" />
           <Property Name="Order_Date" Type="date" />
@@ -233,20 +233,20 @@
           </Key>
           <Property Name="Order_ID" Type="int" Nullable="false" />
           <Property Name="Inventory_ID" Type="int" Nullable="false" />
-          <Property Name="OrderLine_Quantity" Type="int" Nullable="false" />
+          <Property Name="OrderLine_Quantity" Type="int" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
             <PropertyRef Name="OrderStatus_ID" />
           </Key>
-          <Property Name="OrderStatus_ID" Type="int" Nullable="false" />
+          <Property Name="OrderStatus_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderStatus_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PriceHistory">
           <Key>
             <PropertyRef Name="PriceHistory_ID" />
           </Key>
-          <Property Name="PriceHistory_ID" Type="int" Nullable="false" />
+          <Property Name="PriceHistory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Inventory_ID" Type="int" Nullable="false" />
           <Property Name="PriceHistory_Date" Type="date" />
           <Property Name="PriceHistory_Price" Type="money" />
@@ -255,28 +255,28 @@
           <Key>
             <PropertyRef Name="QualificationType_ID" />
           </Key>
-          <Property Name="QualificationType_ID" Type="int" Nullable="false" />
+          <Property Name="QualificationType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QualificationType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="RoleType">
           <Key>
             <PropertyRef Name="RoleType_ID" />
           </Key>
-          <Property Name="RoleType_ID" Type="int" Nullable="false" />
+          <Property Name="RoleType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SecurityQuestions">
           <Key>
             <PropertyRef Name="SecurityQuestion_ID" />
           </Key>
-          <Property Name="SecurityQuestion_ID" Type="int" Nullable="false" />
+          <Property Name="SecurityQuestion_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SecurityQuestion_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
             <PropertyRef Name="Shift_ID" />
           </Key>
-          <Property Name="Shift_ID" Type="int" Nullable="false" />
+          <Property Name="Shift_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
           <Property Name="ShiftDate" Type="date" />
           <Property Name="ShiftStartTime" Type="time" Precision="7" />
@@ -286,7 +286,7 @@
           <Key>
             <PropertyRef Name="StockTake_ID" />
           </Key>
-          <Property Name="StockTake_ID" Type="int" Nullable="false" />
+          <Property Name="StockTake_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
           <Property Name="StockTake_Date&amp;Time" Type="datetime" />
         </EntityType>
@@ -303,7 +303,7 @@
           <Key>
             <PropertyRef Name="Supplier_ID" />
           </Key>
-          <Property Name="Supplier_ID" Type="int" Nullable="false" />
+          <Property Name="Supplier_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Supplier_Name" Type="varchar" MaxLength="50" />
           <Property Name="Supplier_ContactPersonName" Type="varchar" MaxLength="50" />
           <Property Name="Supplier_ContactNumber" Type="varchar" MaxLength="14" />
@@ -323,7 +323,7 @@
           <Key>
             <PropertyRef Name="Vehicle_ID" />
           </Key>
-          <Property Name="Vehicle_ID" Type="int" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleType_ID" Type="int" Nullable="false" />
           <Property Name="Vehicle_Name" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -341,7 +341,7 @@
           <Key>
             <PropertyRef Name="Inspection_ID" />
           </Key>
-          <Property Name="Inspection_ID" Type="int" Nullable="false" />
+          <Property Name="Inspection_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Vehicle_ID" Type="int" Nullable="false" />
           <Property Name="InspectionType_ID" Type="int" Nullable="false" />
           <Property Name="Inspection_Date" Type="date" />
@@ -366,27 +366,27 @@
           <Key>
             <PropertyRef Name="VehicleType_ID" />
           </Key>
-          <Property Name="VehicleType_ID" Type="int" Nullable="false" />
+          <Property Name="VehicleType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Checklist_ID" Type="int" Nullable="false" />
-          <Property Name="VehicleType_Description" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Write-OffInventory">
-          <Key>
-            <PropertyRef Name="Write-Off_ID" />
-          </Key>
-          <Property Name="Write-Off_ID" Type="int" Nullable="false" />
-          <Property Name="Inventory_ID" Type="int" Nullable="false" />
-          <Property Name="Write-OffReason_ID" Type="int" Nullable="false" />
-          <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="Write-Off_Date" Type="date" />
-          <Property Name="Write-Off_Qty" Type="int" />
+          <Property Name="VehicleType_Description" Type="varbinary" MaxLength="50" />
         </EntityType>
         <EntityType Name="Write-OffReason">
           <Key>
             <PropertyRef Name="Write-OffReason_ID" />
           </Key>
-          <Property Name="Write-OffReason_ID" Type="int" Nullable="false" />
+          <Property Name="Write-OffReason_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Write-OffReason_Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Written-OffInventory">
+          <Key>
+            <PropertyRef Name="Write-Off_ID" />
+          </Key>
+          <Property Name="Write-Off_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inventory_ID" Type="int" Nullable="false" />
+          <Property Name="Write-OffReason_ID" Type="int" Nullable="false" />
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Write-Off_Date" Type="date" />
+          <Property Name="Write-Off_Qty" Type="int" />
         </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
@@ -606,12 +606,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InventoryCategory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
+        <Association Name="FK_InventoryCategory_InterviewType">
+          <End Role="InterviewType" Type="Self.InterviewType" Multiplicity="1" />
           <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
+            <Principal Role="InterviewType">
+              <PropertyRef Name="InterviewType_ID" />
             </Principal>
             <Dependent Role="InventoryCategory">
               <PropertyRef Name="InventoryType_ID" />
@@ -894,38 +894,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Write-OffInventory_Employee">
+        <Association Name="FK_Written-OffInventory_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Write-OffInventory" Type="Self.Write-OffInventory" Multiplicity="*" />
+          <End Role="Written-OffInventory" Type="Self.Written-OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Employee_ID" />
             </Principal>
-            <Dependent Role="Write-OffInventory">
+            <Dependent Role="Written-OffInventory">
               <PropertyRef Name="Employee_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Write-OffInventory_Inventory">
+        <Association Name="FK_Written-OffInventory_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
-          <End Role="Write-OffInventory" Type="Self.Write-OffInventory" Multiplicity="*" />
+          <End Role="Written-OffInventory" Type="Self.Written-OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
               <PropertyRef Name="Inventory_ID" />
             </Principal>
-            <Dependent Role="Write-OffInventory">
+            <Dependent Role="Written-OffInventory">
               <PropertyRef Name="Inventory_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Write-OffInventory_Write-OffReason">
+        <Association Name="FK_Written-OffInventory_Write-OffReason">
           <End Role="Write-OffReason" Type="Self.Write-OffReason" Multiplicity="1" />
-          <End Role="Write-OffInventory" Type="Self.Write-OffInventory" Multiplicity="*" />
+          <End Role="Written-OffInventory" Type="Self.Written-OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Write-OffReason">
               <PropertyRef Name="Write-OffReason_ID" />
             </Principal>
-            <Dependent Role="Write-OffInventory">
+            <Dependent Role="Written-OffInventory">
               <PropertyRef Name="Write-OffReason_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -971,8 +971,8 @@
           <EntitySet Name="VehicleInspection" EntityType="Self.VehicleInspection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleInventory" EntityType="Self.VehicleInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Write-OffInventory" EntityType="Self.Write-OffInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Write-OffReason" EntityType="Self.Write-OffReason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Written-OffInventory" EntityType="Self.Written-OffInventory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Barcode_Inventory" Association="Self.FK_Barcode_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="Barcode" EntitySet="Barcode" />
@@ -1045,8 +1045,8 @@
             <End Role="InventoryType" EntitySet="InventoryType" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InventoryType" Association="Self.FK_InventoryCategory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryType" />
+          <AssociationSet Name="FK_InventoryCategory_InterviewType" Association="Self.FK_InventoryCategory_InterviewType">
+            <End Role="InterviewType" EntitySet="InterviewType" />
             <End Role="InventoryCategory" EntitySet="InventoryCategory" />
           </AssociationSet>
           <AssociationSet Name="FK_ItemsChecklist_Checklist" Association="Self.FK_ItemsChecklist_Checklist">
@@ -1141,17 +1141,17 @@
             <End Role="Checklist" EntitySet="Checklist" />
             <End Role="VehicleType" EntitySet="VehicleType" />
           </AssociationSet>
-          <AssociationSet Name="FK_Write-OffInventory_Employee" Association="Self.FK_Write-OffInventory_Employee">
+          <AssociationSet Name="FK_Written-OffInventory_Employee" Association="Self.FK_Written-OffInventory_Employee">
             <End Role="Employee" EntitySet="Employee" />
-            <End Role="Write-OffInventory" EntitySet="Write-OffInventory" />
+            <End Role="Written-OffInventory" EntitySet="Written-OffInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Write-OffInventory_Inventory" Association="Self.FK_Write-OffInventory_Inventory">
+          <AssociationSet Name="FK_Written-OffInventory_Inventory" Association="Self.FK_Written-OffInventory_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="Write-OffInventory" EntitySet="Write-OffInventory" />
+            <End Role="Written-OffInventory" EntitySet="Written-OffInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Write-OffInventory_Write-OffReason" Association="Self.FK_Write-OffInventory_Write-OffReason">
+          <AssociationSet Name="FK_Written-OffInventory_Write-OffReason" Association="Self.FK_Written-OffInventory_Write-OffReason">
             <End Role="Write-OffReason" EntitySet="Write-OffReason" />
-            <End Role="Write-OffInventory" EntitySet="Write-OffInventory" />
+            <End Role="Written-OffInventory" EntitySet="Written-OffInventory" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1163,7 +1163,7 @@
           <Key>
             <PropertyRef Name="Barcode_ID" />
           </Key>
-          <Property Name="Barcode_ID" Type="Int32" Nullable="false" />
+          <Property Name="Barcode_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
           <Property Name="Barcode_Number" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="Barcode_Date" Type="DateTime" Precision="0" />
@@ -1173,7 +1173,7 @@
           <Key>
             <PropertyRef Name="Call_ID" />
           </Key>
-          <Property Name="Call_ID" Type="Int32" Nullable="false" />
+          <Property Name="Call_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CallStatus_ID" Type="Int32" Nullable="false" />
           <Property Name="Reason_ID" Type="Int32" Nullable="false" />
           <Property Name="Call_Date" Type="DateTime" Precision="0" />
@@ -1190,7 +1190,7 @@
           <Key>
             <PropertyRef Name="ItemsUsed_ID" />
           </Key>
-          <Property Name="ItemsUsed_ID" Type="Int32" Nullable="false" />
+          <Property Name="ItemsUsed_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Call_ID" Type="Int32" Nullable="false" />
           <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
           <Property Name="ItemsUsed_Qty" Type="Int32" />
@@ -1201,7 +1201,7 @@
           <Key>
             <PropertyRef Name="Reason_ID" />
           </Key>
-          <Property Name="Reason_ID" Type="Int32" Nullable="false" />
+          <Property Name="Reason_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Reason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Calls" Relationship="Self.FK_Call_CallCancelReason" FromRole="CallCancelReason" ToRole="Call" />
         </EntityType>
@@ -1209,7 +1209,7 @@
           <Key>
             <PropertyRef Name="CallStatus_ID" />
           </Key>
-          <Property Name="CallStatus_ID" Type="Int32" Nullable="false" />
+          <Property Name="CallStatus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CallStatus_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Calls" Relationship="Self.FK_Call_CallStatus" FromRole="CallStatus" ToRole="Call" />
         </EntityType>
@@ -1217,7 +1217,7 @@
           <Key>
             <PropertyRef Name="Candidate_ID" />
           </Key>
-          <Property Name="Candidate_ID" Type="Int32" Nullable="false" />
+          <Property Name="Candidate_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Candidate_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Candidate_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Candidate_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1230,8 +1230,8 @@
           <Key>
             <PropertyRef Name="Checklist_ID" />
           </Key>
-          <Property Name="Checklist_ID" Type="Int32" Nullable="false" />
-          <Property Name="Checklist_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Checklist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Checklist_Name" Type="Binary" MaxLength="50" FixedLength="false" />
           <NavigationProperty Name="ItemsChecklists" Relationship="Self.FK_ItemsChecklist_Checklist" FromRole="Checklist" ToRole="ItemsChecklist" />
           <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_Checklist" FromRole="Checklist" ToRole="VehicleType" />
         </EntityType>
@@ -1239,8 +1239,8 @@
           <Key>
             <PropertyRef Name="ChecklistItem_ID" />
           </Key>
+          <Property Name="ChecklistItem_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ChecklistItemType_ID" Type="Int32" Nullable="false" />
-          <Property Name="ChecklistItem_ID" Type="Int32" Nullable="false" />
           <Property Name="ChecklistItem_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ChecklistItem_ComplianceValue" Type="Boolean" />
           <NavigationProperty Name="ChecklistItemType" Relationship="Self.FK_ChecklistItem_ChecklistItemType" FromRole="ChecklistItem" ToRole="ChecklistItemType" />
@@ -1250,7 +1250,7 @@
           <Key>
             <PropertyRef Name="ChecklistItemType_ID" />
           </Key>
-          <Property Name="ChecklistItemType_ID" Type="Int32" Nullable="false" />
+          <Property Name="ChecklistItemType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ChecklistItemType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ChecklistItems" Relationship="Self.FK_ChecklistItem_ChecklistItemType" FromRole="ChecklistItemType" ToRole="ChecklistItem" />
         </EntityType>
@@ -1258,7 +1258,7 @@
           <Key>
             <PropertyRef Name="Employee_ID" />
           </Key>
-          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeTitle_ID" Type="Int32" Nullable="false" />
           <Property Name="SecurityQuestion_ID" Type="Int32" Nullable="false" />
           <Property Name="Employee_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1276,7 +1276,7 @@
           <NavigationProperty Name="Shifts" Relationship="Self.FK_Shift_Employee" FromRole="Employee" ToRole="Shift" />
           <NavigationProperty Name="StockTakes" Relationship="Self.FK_StockTake_Employee" FromRole="Employee" ToRole="StockTake" />
           <NavigationProperty Name="VehicleCalls" Relationship="Self.FK_VehicleCall_Employee" FromRole="Employee" ToRole="VehicleCall" />
-          <NavigationProperty Name="Write_OffInventory" Relationship="Self.FK_Write_OffInventory_Employee" FromRole="Employee" ToRole="Write_OffInventory" />
+          <NavigationProperty Name="Written_OffInventory" Relationship="Self.FK_Written_OffInventory_Employee" FromRole="Employee" ToRole="Written_OffInventory" />
           <NavigationProperty Name="QualificationTypes" Relationship="Self.EmployeeQualification" FromRole="Employee" ToRole="QualificationType" />
           <NavigationProperty Name="RoleTypes" Relationship="Self.EmployeeRole" FromRole="Employee" ToRole="RoleType" />
         </EntityType>
@@ -1284,7 +1284,7 @@
           <Key>
             <PropertyRef Name="EmployeeTitle_ID" />
           </Key>
-          <Property Name="EmployeeTitle_ID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeTitle_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeTitle_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_EmployeeTitle" FromRole="EmployeeTitle" ToRole="Employee" />
         </EntityType>
@@ -1305,7 +1305,7 @@
           <Key>
             <PropertyRef Name="InspectionType_ID" />
           </Key>
-          <Property Name="InspectionType_ID" Type="Int32" Nullable="false" />
+          <Property Name="InspectionType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InspectionType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VehicleInspections" Relationship="Self.FK_VehicleInspection_InspectionType" FromRole="InspectionType" ToRole="VehicleInspection" />
         </EntityType>
@@ -1313,11 +1313,11 @@
           <Key>
             <PropertyRef Name="Interview_ID" />
           </Key>
-          <Property Name="Interview_ID" Type="Int32" Nullable="false" />
+          <Property Name="Interview_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Candidate_ID" Type="Int32" Nullable="false" />
           <Property Name="InterviewType_ID" Type="Int32" Nullable="false" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="ScheduledDate_TIme" Type="DateTime" Precision="3" />
+          <Property Name="SheduleDate_Time" Type="DateTime" Precision="3" />
           <Property Name="InterviewMethod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Candidate" Relationship="Self.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
@@ -1328,15 +1328,16 @@
           <Key>
             <PropertyRef Name="InterviewType_ID" />
           </Key>
-          <Property Name="InterviewType_ID" Type="Int32" Nullable="false" />
+          <Property Name="InterviewType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InterviewType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Interviews" Relationship="Self.FK_Interview_InterviewType" FromRole="InterviewType" ToRole="Interview" />
+          <NavigationProperty Name="InventoryCategories" Relationship="Self.FK_InventoryCategory_InterviewType" FromRole="InterviewType" ToRole="InventoryCategory" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="Inventory_ID" />
           </Key>
-          <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+          <Property Name="Inventory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
           <Property Name="Inventory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Inventory_LatestPrice" Type="Decimal" Precision="19" Scale="4" />
@@ -1350,25 +1351,24 @@
           <NavigationProperty Name="PriceHistories" Relationship="Self.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
           <NavigationProperty Name="VehicleInventories" Relationship="Self.FK_VehicleInventory_Inventory" FromRole="Inventory" ToRole="VehicleInventory" />
-          <NavigationProperty Name="Write_OffInventory" Relationship="Self.FK_Write_OffInventory_Inventory" FromRole="Inventory" ToRole="Write_OffInventory" />
+          <NavigationProperty Name="Written_OffInventory" Relationship="Self.FK_Written_OffInventory_Inventory" FromRole="Inventory" ToRole="Written_OffInventory" />
         </EntityType>
         <EntityType Name="InventoryCategory">
           <Key>
             <PropertyRef Name="InventoryCategory_ID" />
           </Key>
-          <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="InventoryType" Relationship="Self.FK_InventoryCategory_InventoryType" FromRole="InventoryCategory" ToRole="InventoryType" />
+          <NavigationProperty Name="InterviewType" Relationship="Self.FK_InventoryCategory_InterviewType" FromRole="InventoryCategory" ToRole="InterviewType" />
         </EntityType>
         <EntityType Name="InventoryType">
           <Key>
             <PropertyRef Name="InventoryType_ID" />
           </Key>
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryType" FromRole="InventoryType" ToRole="Inventory" />
-          <NavigationProperty Name="InventoryCategories" Relationship="Self.FK_InventoryCategory_InventoryType" FromRole="InventoryType" ToRole="InventoryCategory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1397,7 +1397,7 @@
           <Key>
             <PropertyRef Name="Position_ID" />
           </Key>
-          <Property Name="Position_ID" Type="Int32" Nullable="false" />
+          <Property Name="Position_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleType_ID" Type="Int32" Nullable="false" />
           <Property Name="Position_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Position_Compensation" Type="Decimal" Precision="19" Scale="4" />
@@ -1409,7 +1409,7 @@
           <Key>
             <PropertyRef Name="Order_ID" />
           </Key>
-          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
           <Property Name="OrderStatus_ID" Type="Int32" Nullable="false" />
           <Property Name="Order_Date" Type="DateTime" Precision="0" />
@@ -1425,7 +1425,7 @@
           </Key>
           <Property Name="Order_ID" Type="Int32" Nullable="false" />
           <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
-          <Property Name="OrderLine_Quantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderLine_Quantity" Type="Int32" />
           <NavigationProperty Name="Inventory" Relationship="Self.FK_OrderLine_Inventory" FromRole="OrderLine" ToRole="Inventory" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderLine_Order" FromRole="OrderLine" ToRole="Order" />
         </EntityType>
@@ -1433,7 +1433,7 @@
           <Key>
             <PropertyRef Name="OrderStatus_ID" />
           </Key>
-          <Property Name="OrderStatus_ID" Type="Int32" Nullable="false" />
+          <Property Name="OrderStatus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderStatus_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
         </EntityType>
@@ -1441,7 +1441,7 @@
           <Key>
             <PropertyRef Name="PriceHistory_ID" />
           </Key>
-          <Property Name="PriceHistory_ID" Type="Int32" Nullable="false" />
+          <Property Name="PriceHistory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
           <Property Name="PriceHistory_Date" Type="DateTime" Precision="0" />
           <Property Name="PriceHistory_Price" Type="Decimal" Precision="19" Scale="4" />
@@ -1451,7 +1451,7 @@
           <Key>
             <PropertyRef Name="QualificationType_ID" />
           </Key>
-          <Property Name="QualificationType_ID" Type="Int32" Nullable="false" />
+          <Property Name="QualificationType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="QualificationType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.EmployeeQualification" FromRole="QualificationType" ToRole="Employee" />
         </EntityType>
@@ -1459,7 +1459,7 @@
           <Key>
             <PropertyRef Name="RoleType_ID" />
           </Key>
-          <Property Name="RoleType_ID" Type="Int32" Nullable="false" />
+          <Property Name="RoleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="JobPositions" Relationship="Self.FK_JobPosition_RoleType" FromRole="RoleType" ToRole="JobPosition" />
           <NavigationProperty Name="Employees" Relationship="Self.EmployeeRole" FromRole="RoleType" ToRole="Employee" />
@@ -1468,7 +1468,7 @@
           <Key>
             <PropertyRef Name="SecurityQuestion_ID" />
           </Key>
-          <Property Name="SecurityQuestion_ID" Type="Int32" Nullable="false" />
+          <Property Name="SecurityQuestion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SecurityQuestion_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_SecurityQuestions" FromRole="SecurityQuestions" ToRole="Employee" />
         </EntityType>
@@ -1476,7 +1476,7 @@
           <Key>
             <PropertyRef Name="Shift_ID" />
           </Key>
-          <Property Name="Shift_ID" Type="Int32" Nullable="false" />
+          <Property Name="Shift_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
           <Property Name="ShiftDate" Type="DateTime" Precision="0" />
           <Property Name="ShiftStartTime" Type="Time" Precision="7" />
@@ -1487,7 +1487,7 @@
           <Key>
             <PropertyRef Name="StockTake_ID" />
           </Key>
-          <Property Name="StockTake_ID" Type="Int32" Nullable="false" />
+          <Property Name="StockTake_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
           <Property Name="StockTake_Date_Time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_StockTake_Employee" FromRole="StockTake" ToRole="Employee" />
@@ -1508,7 +1508,7 @@
           <Key>
             <PropertyRef Name="Supplier_ID" />
           </Key>
-          <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+          <Property Name="Supplier_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Supplier_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Supplier_ContactPersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Supplier_ContactNumber" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
@@ -1529,7 +1529,7 @@
           <Key>
             <PropertyRef Name="Vehicle_ID" />
           </Key>
-          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" />
           <Property Name="Vehicle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VehicleType" Relationship="Self.FK_Vehicle_VehicleType" FromRole="Vehicle" ToRole="VehicleType" />
@@ -1554,7 +1554,7 @@
           <Key>
             <PropertyRef Name="Inspection_ID" />
           </Key>
-          <Property Name="Inspection_ID" Type="Int32" Nullable="false" />
+          <Property Name="Inspection_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Vehicle_ID" Type="Int32" Nullable="false" />
           <Property Name="InspectionType_ID" Type="Int32" Nullable="false" />
           <Property Name="Inspection_Date" Type="DateTime" Precision="0" />
@@ -1584,33 +1584,33 @@
           <Key>
             <PropertyRef Name="VehicleType_ID" />
           </Key>
-          <Property Name="VehicleType_ID" Type="Int32" Nullable="false" />
+          <Property Name="VehicleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" />
-          <Property Name="VehicleType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleType_Description" Type="Binary" MaxLength="50" FixedLength="false" />
           <NavigationProperty Name="Checklist" Relationship="Self.FK_VehicleType_Checklist" FromRole="VehicleType" ToRole="Checklist" />
           <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_VehicleType" FromRole="VehicleType" ToRole="Vehicle" />
-        </EntityType>
-        <EntityType Name="Write_OffInventory">
-          <Key>
-            <PropertyRef Name="Write_Off_ID" />
-          </Key>
-          <Property Name="Write_Off_ID" Type="Int32" Nullable="false" />
-          <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
-          <Property Name="Write_OffReason_ID" Type="Int32" Nullable="false" />
-          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="Write_Off_Date" Type="DateTime" Precision="0" />
-          <Property Name="Write_Off_Qty" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Write_OffInventory_Employee" FromRole="Write_OffInventory" ToRole="Employee" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK_Write_OffInventory_Inventory" FromRole="Write_OffInventory" ToRole="Inventory" />
-          <NavigationProperty Name="Write_OffReason" Relationship="Self.FK_Write_OffInventory_Write_OffReason" FromRole="Write_OffInventory" ToRole="Write_OffReason" />
         </EntityType>
         <EntityType Name="Write_OffReason">
           <Key>
             <PropertyRef Name="Write_OffReason_ID" />
           </Key>
-          <Property Name="Write_OffReason_ID" Type="Int32" Nullable="false" />
+          <Property Name="Write_OffReason_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Write_OffReason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Write_OffInventory" Relationship="Self.FK_Write_OffInventory_Write_OffReason" FromRole="Write_OffReason" ToRole="Write_OffInventory" />
+          <NavigationProperty Name="Written_OffInventory" Relationship="Self.FK_Written_OffInventory_Write_OffReason" FromRole="Write_OffReason" ToRole="Written_OffInventory" />
+        </EntityType>
+        <EntityType Name="Written_OffInventory">
+          <Key>
+            <PropertyRef Name="Write_Off_ID" />
+          </Key>
+          <Property Name="Write_Off_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+          <Property Name="Write_OffReason_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Write_Off_Date" Type="DateTime" Precision="0" />
+          <Property Name="Write_Off_Qty" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Written_OffInventory_Employee" FromRole="Written_OffInventory" ToRole="Employee" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Written_OffInventory_Inventory" FromRole="Written_OffInventory" ToRole="Inventory" />
+          <NavigationProperty Name="Write_OffReason" Relationship="Self.FK_Written_OffInventory_Write_OffReason" FromRole="Written_OffInventory" ToRole="Write_OffReason" />
         </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
@@ -1828,14 +1828,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Write_OffInventory_Employee">
+        <Association Name="FK_Written_OffInventory_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Write_OffInventory" Type="Self.Write_OffInventory" Multiplicity="*" />
+          <End Role="Written_OffInventory" Type="Self.Written_OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Employee_ID" />
             </Principal>
-            <Dependent Role="Write_OffInventory">
+            <Dependent Role="Written_OffInventory">
               <PropertyRef Name="Employee_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1887,6 +1887,18 @@
             </Principal>
             <Dependent Role="Interview">
               <PropertyRef Name="InterviewType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryCategory_InterviewType">
+          <End Role="InterviewType" Type="Self.InterviewType" Multiplicity="1" />
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InterviewType">
+              <PropertyRef Name="InterviewType_ID" />
+            </Principal>
+            <Dependent Role="InventoryCategory">
+              <PropertyRef Name="InventoryType_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1950,27 +1962,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Write_OffInventory_Inventory">
+        <Association Name="FK_Written_OffInventory_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
-          <End Role="Write_OffInventory" Type="Self.Write_OffInventory" Multiplicity="*" />
+          <End Role="Written_OffInventory" Type="Self.Written_OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
               <PropertyRef Name="Inventory_ID" />
             </Principal>
-            <Dependent Role="Write_OffInventory">
+            <Dependent Role="Written_OffInventory">
               <PropertyRef Name="Inventory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InventoryCategory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
-            </Principal>
-            <Dependent Role="InventoryCategory">
-              <PropertyRef Name="InventoryType_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2094,14 +2094,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Write_OffInventory_Write_OffReason">
+        <Association Name="FK_Written_OffInventory_Write_OffReason">
           <End Role="Write_OffReason" Type="Self.Write_OffReason" Multiplicity="1" />
-          <End Role="Write_OffInventory" Type="Self.Write_OffInventory" Multiplicity="*" />
+          <End Role="Written_OffInventory" Type="Self.Written_OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Write_OffReason">
               <PropertyRef Name="Write_OffReason_ID" />
             </Principal>
-            <Dependent Role="Write_OffInventory">
+            <Dependent Role="Written_OffInventory">
               <PropertyRef Name="Write_OffReason_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2153,8 +2153,8 @@
           <EntitySet Name="VehicleInspections" EntityType="Self.VehicleInspection" />
           <EntitySet Name="VehicleInventories" EntityType="Self.VehicleInventory" />
           <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
-          <EntitySet Name="Write_OffInventory" EntityType="Self.Write_OffInventory" />
           <EntitySet Name="Write_OffReason" EntityType="Self.Write_OffReason" />
+          <EntitySet Name="Written_OffInventory" EntityType="Self.Written_OffInventory" />
           <AssociationSet Name="FK_Barcode_Inventory" Association="Self.FK_Barcode_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="Barcode" EntitySet="Barcodes" />
@@ -2227,9 +2227,9 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="VehicleCall" EntitySet="VehicleCalls" />
           </AssociationSet>
-          <AssociationSet Name="FK_Write_OffInventory_Employee" Association="Self.FK_Write_OffInventory_Employee">
+          <AssociationSet Name="FK_Written_OffInventory_Employee" Association="Self.FK_Written_OffInventory_Employee">
             <End Role="Employee" EntitySet="Employees" />
-            <End Role="Write_OffInventory" EntitySet="Write_OffInventory" />
+            <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
           </AssociationSet>
           <AssociationSet Name="FK_InspectionChecklist_ItemsChecklist" Association="Self.FK_InspectionChecklist_ItemsChecklist">
             <End Role="ItemsChecklist" EntitySet="ItemsChecklists" />
@@ -2246,6 +2246,10 @@
           <AssociationSet Name="FK_Interview_InterviewType" Association="Self.FK_Interview_InterviewType">
             <End Role="InterviewType" EntitySet="InterviewTypes" />
             <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryCategory_InterviewType" Association="Self.FK_InventoryCategory_InterviewType">
+            <End Role="InterviewType" EntitySet="InterviewTypes" />
+            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_InventoryType" Association="Self.FK_Inventory_InventoryType">
             <End Role="InventoryType" EntitySet="InventoryTypes" />
@@ -2267,13 +2271,9 @@
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="VehicleInventory" EntitySet="VehicleInventories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Write_OffInventory_Inventory" Association="Self.FK_Write_OffInventory_Inventory">
+          <AssociationSet Name="FK_Written_OffInventory_Inventory" Association="Self.FK_Written_OffInventory_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
-            <End Role="Write_OffInventory" EntitySet="Write_OffInventory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InventoryType" Association="Self.FK_InventoryCategory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryTypes" />
-            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
+            <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
           </AssociationSet>
           <AssociationSet Name="FK_JobApplication_JobPosition" Association="Self.FK_JobApplication_JobPosition">
             <End Role="JobPosition" EntitySet="JobPositions" />
@@ -2315,9 +2315,9 @@
             <End Role="Vehicle" EntitySet="Vehicles" />
             <End Role="VehicleInventory" EntitySet="VehicleInventories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Write_OffInventory_Write_OffReason" Association="Self.FK_Write_OffInventory_Write_OffReason">
+          <AssociationSet Name="FK_Written_OffInventory_Write_OffReason" Association="Self.FK_Written_OffInventory_Write_OffReason">
             <End Role="Write_OffReason" EntitySet="Write_OffReason" />
-            <End Role="Write_OffInventory" EntitySet="Write_OffInventory" />
+            <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
           </AssociationSet>
           <AssociationSet Name="EmployeeQualification" Association="Self.EmployeeQualification">
             <End Role="Employee" EntitySet="Employees" />
@@ -2407,8 +2407,8 @@
           <EntitySetMapping Name="ChecklistItems">
             <EntityTypeMapping TypeName="MediStock_DBModel.ChecklistItem">
               <MappingFragment StoreEntitySet="ChecklistItem">
-                <ScalarProperty Name="ChecklistItemType_ID" ColumnName="ChecklistItemType_ID" />
                 <ScalarProperty Name="ChecklistItem_ID" ColumnName="ChecklistItem_ID" />
+                <ScalarProperty Name="ChecklistItemType_ID" ColumnName="ChecklistItemType_ID" />
                 <ScalarProperty Name="ChecklistItem_Description" ColumnName="ChecklistItem_Description" />
                 <ScalarProperty Name="ChecklistItem_ComplianceValue" ColumnName="ChecklistItem_ComplianceValue" />
               </MappingFragment>
@@ -2473,7 +2473,7 @@
                 <ScalarProperty Name="Candidate_ID" ColumnName="Candidate_ID" />
                 <ScalarProperty Name="InterviewType_ID" ColumnName="InterviewType_ID" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="ScheduledDate_TIme" ColumnName="ScheduledDate&amp;TIme" />
+                <ScalarProperty Name="SheduleDate_Time" ColumnName="SheduleDate&amp;Time" />
                 <ScalarProperty Name="InterviewMethod" ColumnName="InterviewMethod" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
@@ -2712,23 +2712,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Write_OffInventory">
-            <EntityTypeMapping TypeName="MediStock_DBModel.Write_OffInventory">
-              <MappingFragment StoreEntitySet="Write-OffInventory">
+          <EntitySetMapping Name="Write_OffReason">
+            <EntityTypeMapping TypeName="MediStock_DBModel.Write_OffReason">
+              <MappingFragment StoreEntitySet="Write-OffReason">
+                <ScalarProperty Name="Write_OffReason_ID" ColumnName="Write-OffReason_ID" />
+                <ScalarProperty Name="Write_OffReason_Description" ColumnName="Write-OffReason_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Written_OffInventory">
+            <EntityTypeMapping TypeName="MediStock_DBModel.Written_OffInventory">
+              <MappingFragment StoreEntitySet="Written-OffInventory">
                 <ScalarProperty Name="Write_Off_ID" ColumnName="Write-Off_ID" />
                 <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
                 <ScalarProperty Name="Write_OffReason_ID" ColumnName="Write-OffReason_ID" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
                 <ScalarProperty Name="Write_Off_Date" ColumnName="Write-Off_Date" />
                 <ScalarProperty Name="Write_Off_Qty" ColumnName="Write-Off_Qty" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Write_OffReason">
-            <EntityTypeMapping TypeName="MediStock_DBModel.Write_OffReason">
-              <MappingFragment StoreEntitySet="Write-OffReason">
-                <ScalarProperty Name="Write_OffReason_ID" ColumnName="Write-OffReason_ID" />
-                <ScalarProperty Name="Write_OffReason_Description" ColumnName="Write-OffReason_Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

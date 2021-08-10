@@ -23,7 +23,7 @@ namespace MediStockAPI.Models
             this.PriceHistories = new HashSet<PriceHistory>();
             this.StockTakeTotals = new HashSet<StockTakeTotal>();
             this.VehicleInventories = new HashSet<VehicleInventory>();
-            this.Write_OffInventory = new HashSet<Write_OffInventory>();
+            this.Written_OffInventory = new HashSet<Written_OffInventory>();
         }
     
         public int Inventory_ID { get; set; }
@@ -48,6 +48,6 @@ namespace MediStockAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehicleInventory> VehicleInventories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Write_OffInventory> Write_OffInventory { get; set; }
+        public virtual ICollection<Written_OffInventory> Written_OffInventory { get; set; }
     }
 }

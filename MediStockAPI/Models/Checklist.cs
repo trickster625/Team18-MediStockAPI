@@ -22,7 +22,7 @@ namespace MediStockAPI.Models
         }
     
         public int Checklist_ID { get; set; }
-        public string Checklist_Name { get; set; }
+        public byte[] Checklist_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemsChecklist> ItemsChecklists { get; set; }

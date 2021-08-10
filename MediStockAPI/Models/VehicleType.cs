@@ -22,7 +22,7 @@ namespace MediStockAPI.Models
     
         public int VehicleType_ID { get; set; }
         public int Checklist_ID { get; set; }
-        public string VehicleType_Description { get; set; }
+        public byte[] VehicleType_Description { get; set; }
     
         public virtual Checklist Checklist { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

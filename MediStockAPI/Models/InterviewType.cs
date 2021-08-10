@@ -18,6 +18,7 @@ namespace MediStockAPI.Models
         public InterviewType()
         {
             this.Interviews = new HashSet<Interview>();
+            this.InventoryCategories = new HashSet<InventoryCategory>();
         }
     
         public int InterviewType_ID { get; set; }
@@ -25,5 +26,7 @@ namespace MediStockAPI.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Interview> Interviews { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InventoryCategory> InventoryCategories { get; set; }
     }
 }
