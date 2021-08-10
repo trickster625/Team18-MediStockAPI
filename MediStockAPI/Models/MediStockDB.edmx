@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MediStock_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MediStock_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Barcode">
           <Key>
             <PropertyRef Name="Barcode_ID" />
@@ -24,6 +24,8 @@
           <Property Name="Call_Date" Type="date" />
           <Property Name="Call_StartTime" Type="time" Precision="7" />
           <Property Name="Call_EndTime" Type="time" Precision="7" />
+          <Property Name="DOA_Number" Type="int" />
+          <Property Name="PRF_Number" Type="int" />
         </EntityType>
         <EntityType Name="Call_ItemsUsed">
           <Key>
@@ -1152,8 +1154,7 @@
             <End Role="Write-OffInventory" EntitySet="Write-OffInventory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MediStock_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1181,6 +1182,8 @@
           <NavigationProperty Name="CallStatu" Relationship="Self.FK_Call_CallStatus" FromRole="Call" ToRole="CallStatus" />
           <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Call" FromRole="Call" ToRole="Call_ItemsUsed" />
           <NavigationProperty Name="VehicleCalls" Relationship="Self.FK_VehicleCall_Call" FromRole="Call" ToRole="VehicleCall" />
+          <Property Name="DOA_Number" Type="Int32" />
+          <Property Name="PRF_Number" Type="Int32" />
         </EntityType>
         <EntityType Name="Call_ItemsUsed">
           <Key>
@@ -2343,6 +2346,8 @@
           <EntitySetMapping Name="Calls">
             <EntityTypeMapping TypeName="MediStock_DBModel.Call">
               <MappingFragment StoreEntitySet="Call">
+                <ScalarProperty Name="PRF_Number" ColumnName="PRF_Number" />
+                <ScalarProperty Name="DOA_Number" ColumnName="DOA_Number" />
                 <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
                 <ScalarProperty Name="CallStatus_ID" ColumnName="CallStatus_ID" />
                 <ScalarProperty Name="Reason_ID" ColumnName="Reason_ID" />
