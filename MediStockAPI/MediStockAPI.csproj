@@ -175,6 +175,9 @@
     <Compile Include="Controllers\Inventory\BarcodeController.cs" />
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
     <Compile Include="Controllers\Inventory\InventoryTypeController.cs" />
+    <Compile Include="Controllers\Inventory\invVehicleController.cs" />
+    <Compile Include="Controllers\Inventory\VehicleInventoryController.cs" />
+    <Compile Include="Controllers\Inventory\WriteOffController.cs" />
     <Compile Include="Controllers\Inventory\WriteOffReasonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
