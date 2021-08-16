@@ -87,24 +87,24 @@ namespace MediStockAPI.Controllers
 
         //    }
 
-        //    [HttpPost]
-        //    [Route("CreateItem")]
-        //    public IHttpActionResult createIem(Inventory inventoryItem)
-        //    {
+        [HttpPost]
+        [Route("CreateItem")]
+        public IHttpActionResult createIem(Inventory inventoryItem)
+        {
 
-        //        try
-        //        {
-        //            db.Inventories.Add(inventoryItem);
-        //            db.SaveChangesAsync();
+            try
+            {
+                db.Inventories.Add(inventoryItem);
+                db.SaveChangesAsync();
 
-        //            return Ok();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            return BadRequest();
-        //        }
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
 
-        //    }
+        }
 
         //    [HttpDelete]
         //    [Route("DeleteItem")]
