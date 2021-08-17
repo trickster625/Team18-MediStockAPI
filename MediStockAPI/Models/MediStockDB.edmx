@@ -150,7 +150,7 @@
           <Property Name="Candidate_ID" Type="int" Nullable="false" />
           <Property Name="InterviewType_ID" Type="int" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="SheduleDate&amp;Time" Type="datetime" />
+          <Property Name="SheduleDateTime" Type="datetime" />
           <Property Name="InterviewMethod" Type="varchar" MaxLength="25" />
           <Property Name="Address" Type="varchar" MaxLength="25" />
         </EntityType>
@@ -288,7 +288,7 @@
           </Key>
           <Property Name="StockTake_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="StockTake_Date&amp;Time" Type="datetime" />
+          <Property Name="StockTake_DateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="StockTakeTotal">
           <Key>
@@ -368,7 +368,7 @@
           </Key>
           <Property Name="VehicleType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Checklist_ID" Type="int" Nullable="false" />
-          <Property Name="VehicleType_Description" Type="varbinary" MaxLength="50" />
+          <Property Name="VehicleType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Write-OffReason">
           <Key>
@@ -606,12 +606,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InventoryCategory_InterviewType">
-          <End Role="InterviewType" Type="Self.InterviewType" Multiplicity="1" />
+        <Association Name="FK_InventoryCategory_InventoryType">
+          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
           <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InterviewType">
-              <PropertyRef Name="InterviewType_ID" />
+            <Principal Role="InventoryType">
+              <PropertyRef Name="InventoryType_ID" />
             </Principal>
             <Dependent Role="InventoryCategory">
               <PropertyRef Name="InventoryType_ID" />
@@ -786,7 +786,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vehicle_VehicleType">
+        <Association Name="FK_Vehicle_VehicleType1">
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -882,7 +882,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VehicleType_Checklist">
+        <Association Name="FK_VehicleType_Checklist1">
           <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1045,8 +1045,8 @@
             <End Role="InventoryType" EntitySet="InventoryType" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InterviewType" Association="Self.FK_InventoryCategory_InterviewType">
-            <End Role="InterviewType" EntitySet="InterviewType" />
+          <AssociationSet Name="FK_InventoryCategory_InventoryType" Association="Self.FK_InventoryCategory_InventoryType">
+            <End Role="InventoryType" EntitySet="InventoryType" />
             <End Role="InventoryCategory" EntitySet="InventoryCategory" />
           </AssociationSet>
           <AssociationSet Name="FK_ItemsChecklist_Checklist" Association="Self.FK_ItemsChecklist_Checklist">
@@ -1105,7 +1105,7 @@
             <End Role="StockTake" EntitySet="StockTake" />
             <End Role="StockTakeTotal" EntitySet="StockTakeTotal" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vehicle_VehicleType" Association="Self.FK_Vehicle_VehicleType">
+          <AssociationSet Name="FK_Vehicle_VehicleType1" Association="Self.FK_Vehicle_VehicleType1">
             <End Role="VehicleType" EntitySet="VehicleType" />
             <End Role="Vehicle" EntitySet="Vehicle" />
           </AssociationSet>
@@ -1137,7 +1137,7 @@
             <End Role="Vehicle" EntitySet="Vehicle" />
             <End Role="VehicleInventory" EntitySet="VehicleInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_VehicleType_Checklist" Association="Self.FK_VehicleType_Checklist">
+          <AssociationSet Name="FK_VehicleType_Checklist1" Association="Self.FK_VehicleType_Checklist1">
             <End Role="Checklist" EntitySet="Checklist" />
             <End Role="VehicleType" EntitySet="VehicleType" />
           </AssociationSet>
@@ -1233,7 +1233,7 @@
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_Name" Type="Binary" MaxLength="50" FixedLength="false" />
           <NavigationProperty Name="ItemsChecklists" Relationship="Self.FK_ItemsChecklist_Checklist" FromRole="Checklist" ToRole="ItemsChecklist" />
-          <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_Checklist" FromRole="Checklist" ToRole="VehicleType" />
+          <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_Checklist1" FromRole="Checklist" ToRole="VehicleType" />
         </EntityType>
         <EntityType Name="ChecklistItem">
           <Key>
@@ -1317,7 +1317,7 @@
           <Property Name="Candidate_ID" Type="Int32" Nullable="false" />
           <Property Name="InterviewType_ID" Type="Int32" Nullable="false" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="SheduleDate_Time" Type="DateTime" Precision="3" />
+          <Property Name="SheduleDateTime" Type="DateTime" Precision="3" />
           <Property Name="InterviewMethod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Candidate" Relationship="Self.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
@@ -1331,7 +1331,6 @@
           <Property Name="InterviewType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InterviewType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Interviews" Relationship="Self.FK_Interview_InterviewType" FromRole="InterviewType" ToRole="Interview" />
-          <NavigationProperty Name="InventoryCategories" Relationship="Self.FK_InventoryCategory_InterviewType" FromRole="InterviewType" ToRole="InventoryCategory" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -1360,7 +1359,7 @@
           <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="InterviewType" Relationship="Self.FK_InventoryCategory_InterviewType" FromRole="InventoryCategory" ToRole="InterviewType" />
+          <NavigationProperty Name="InventoryType" Relationship="Self.FK_InventoryCategory_InventoryType" FromRole="InventoryCategory" ToRole="InventoryType" />
         </EntityType>
         <EntityType Name="InventoryType">
           <Key>
@@ -1369,6 +1368,7 @@
           <Property Name="InventoryType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryType" FromRole="InventoryType" ToRole="Inventory" />
+          <NavigationProperty Name="InventoryCategories" Relationship="Self.FK_InventoryCategory_InventoryType" FromRole="InventoryType" ToRole="InventoryCategory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1489,7 +1489,7 @@
           </Key>
           <Property Name="StockTake_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="StockTake_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="StockTake_DateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_StockTake_Employee" FromRole="StockTake" ToRole="Employee" />
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_StockTake" FromRole="StockTake" ToRole="StockTakeTotal" />
         </EntityType>
@@ -1532,7 +1532,7 @@
           <Property Name="Vehicle_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" />
           <Property Name="Vehicle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="VehicleType" Relationship="Self.FK_Vehicle_VehicleType" FromRole="Vehicle" ToRole="VehicleType" />
+          <NavigationProperty Name="VehicleType" Relationship="Self.FK_Vehicle_VehicleType1" FromRole="Vehicle" ToRole="VehicleType" />
           <NavigationProperty Name="VehicleCalls" Relationship="Self.FK_VehicleCall_Vehicle" FromRole="Vehicle" ToRole="VehicleCall" />
           <NavigationProperty Name="VehicleInspections" Relationship="Self.FK_VehicleInspection_Vehicle" FromRole="Vehicle" ToRole="VehicleInspection" />
           <NavigationProperty Name="VehicleInventories" Relationship="Self.FK_VehicleInventory_Vehicle" FromRole="Vehicle" ToRole="VehicleInventory" />
@@ -1586,9 +1586,9 @@
           </Key>
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" />
-          <Property Name="VehicleType_Description" Type="Binary" MaxLength="50" FixedLength="false" />
-          <NavigationProperty Name="Checklist" Relationship="Self.FK_VehicleType_Checklist" FromRole="VehicleType" ToRole="Checklist" />
-          <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_VehicleType" FromRole="VehicleType" ToRole="Vehicle" />
+          <Property Name="VehicleType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Checklist" Relationship="Self.FK_VehicleType_Checklist1" FromRole="VehicleType" ToRole="Checklist" />
+          <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_VehicleType1" FromRole="VehicleType" ToRole="Vehicle" />
         </EntityType>
         <EntityType Name="Write_OffReason">
           <Key>
@@ -1720,7 +1720,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VehicleType_Checklist">
+        <Association Name="FK_VehicleType_Checklist1">
           <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1890,18 +1890,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InventoryCategory_InterviewType">
-          <End Role="InterviewType" Type="Self.InterviewType" Multiplicity="1" />
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InterviewType">
-              <PropertyRef Name="InterviewType_ID" />
-            </Principal>
-            <Dependent Role="InventoryCategory">
-              <PropertyRef Name="InventoryType_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inventory_InventoryType">
           <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
@@ -1971,6 +1959,18 @@
             </Principal>
             <Dependent Role="Written_OffInventory">
               <PropertyRef Name="Inventory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryCategory_InventoryType">
+          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryType">
+              <PropertyRef Name="InventoryType_ID" />
+            </Principal>
+            <Dependent Role="InventoryCategory">
+              <PropertyRef Name="InventoryType_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2046,7 +2046,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vehicle_VehicleType">
+        <Association Name="FK_Vehicle_VehicleType1">
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2191,7 +2191,7 @@
             <End Role="Checklist" EntitySet="Checklists" />
             <End Role="ItemsChecklist" EntitySet="ItemsChecklists" />
           </AssociationSet>
-          <AssociationSet Name="FK_VehicleType_Checklist" Association="Self.FK_VehicleType_Checklist">
+          <AssociationSet Name="FK_VehicleType_Checklist1" Association="Self.FK_VehicleType_Checklist1">
             <End Role="Checklist" EntitySet="Checklists" />
             <End Role="VehicleType" EntitySet="VehicleTypes" />
           </AssociationSet>
@@ -2247,10 +2247,6 @@
             <End Role="InterviewType" EntitySet="InterviewTypes" />
             <End Role="Interview" EntitySet="Interviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InterviewType" Association="Self.FK_InventoryCategory_InterviewType">
-            <End Role="InterviewType" EntitySet="InterviewTypes" />
-            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inventory_InventoryType" Association="Self.FK_Inventory_InventoryType">
             <End Role="InventoryType" EntitySet="InventoryTypes" />
             <End Role="Inventory" EntitySet="Inventories" />
@@ -2274,6 +2270,10 @@
           <AssociationSet Name="FK_Written_OffInventory_Inventory" Association="Self.FK_Written_OffInventory_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryCategory_InventoryType" Association="Self.FK_InventoryCategory_InventoryType">
+            <End Role="InventoryType" EntitySet="InventoryTypes" />
+            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_JobApplication_JobPosition" Association="Self.FK_JobApplication_JobPosition">
             <End Role="JobPosition" EntitySet="JobPositions" />
@@ -2299,7 +2299,7 @@
             <End Role="StockTake" EntitySet="StockTakes" />
             <End Role="StockTakeTotal" EntitySet="StockTakeTotals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vehicle_VehicleType" Association="Self.FK_Vehicle_VehicleType">
+          <AssociationSet Name="FK_Vehicle_VehicleType1" Association="Self.FK_Vehicle_VehicleType1">
             <End Role="VehicleType" EntitySet="VehicleTypes" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
@@ -2473,7 +2473,7 @@
                 <ScalarProperty Name="Candidate_ID" ColumnName="Candidate_ID" />
                 <ScalarProperty Name="InterviewType_ID" ColumnName="InterviewType_ID" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="SheduleDate_Time" ColumnName="SheduleDate&amp;Time" />
+                <ScalarProperty Name="SheduleDateTime" ColumnName="SheduleDateTime" />
                 <ScalarProperty Name="InterviewMethod" ColumnName="InterviewMethod" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
@@ -2624,7 +2624,7 @@
               <MappingFragment StoreEntitySet="StockTake">
                 <ScalarProperty Name="StockTake_ID" ColumnName="StockTake_ID" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="StockTake_Date_Time" ColumnName="StockTake_Date&amp;Time" />
+                <ScalarProperty Name="StockTake_DateTime" ColumnName="StockTake_DateTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -18,6 +18,6 @@ namespace MediStockAPI.Models
         public int InventoryType_ID { get; set; }
         public string InventoryCategory_Description { get; set; }
     
-        public virtual InterviewType InterviewType { get; set; }
+        public virtual InventoryType InventoryType { get; set; }
     }
 }

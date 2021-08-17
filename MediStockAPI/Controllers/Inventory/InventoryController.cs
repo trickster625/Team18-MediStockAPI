@@ -20,6 +20,7 @@ namespace MediStockAPI.Controllers.Inventory
             try
             {
                 List<InventoryFullVM> outputItems = new List<InventoryFullVM>();
+
                 List<int> barcodeIDs = new List<int>();
                 List<string> barcodeNumbers = new List<string>();
 
@@ -29,6 +30,9 @@ namespace MediStockAPI.Controllers.Inventory
 
                 foreach (var storedItem in storedItems)
                 {
+                    barcodeIDs.Clear();
+                    barcodeNumbers.Clear();
+
                     InventoryFullVM item = new InventoryFullVM();
 
                     item.Inventory_ID = storedItem.Inventory_ID;

@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0b399141342247c3978635b4177a2310" Name="Diagram1">
+      <Diagram DiagramId="c783942e04764bcba8b7bb65c28ba427" Name="Diagram1">
         <EntityTypeShape EntityType="MediStock_DBModel.Barcode" Width="1.5" PointX="8.25" PointY="24.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Call" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Call_ItemsUsed" Width="1.5" PointX="12.25" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.CallCancelReason" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.CallStatu" Width="1.5" PointX="0.75" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Candidate" Width="1.5" PointX="6" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Candidate" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Checklist" Width="1.5" PointX="1.5" PointY="22.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItem" Width="1.5" PointX="1.5" PointY="25" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItemType" Width="1.5" PointX="1.5" PointY="28.375" IsExpanded="true" />
@@ -21,8 +21,8 @@
         <EntityTypeShape EntityType="MediStock_DBModel.Interview" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.InterviewType" Width="1.5" PointX="6" PointY="27.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Inventory" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.InventoryCategory" Width="1.5" PointX="8.25" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.InventoryType" Width="1.5" PointX="3.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InventoryCategory" Width="1.5" PointX="6" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InventoryType" Width="1.5" PointX="3.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.ItemsChecklist" Width="1.5" PointX="3.75" PointY="24.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.JobApplication" Width="1.5" PointX="9.75" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.JobPosition" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
@@ -54,7 +54,7 @@
         <AssociationConnector Association="MediStock_DBModel.FK_Interview_Candidate" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_JobApplication_Candidate" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_ItemsChecklist_Checklist" ManuallyRouted="false" />
-        <AssociationConnector Association="MediStock_DBModel.FK_VehicleType_Checklist" ManuallyRouted="false" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleType_Checklist1" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_ChecklistItem_ChecklistItemType" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_ItemsChecklist_ChecklistItem" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Employee_EmployeeTitle" ManuallyRouted="false" />
@@ -68,20 +68,20 @@
         <AssociationConnector Association="MediStock_DBModel.FK_InspectionChecklist_VehicleInspection" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_VehicleInspection_InspectionType" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Interview_InterviewType" ManuallyRouted="false" />
-        <AssociationConnector Association="MediStock_DBModel.FK_InventoryCategory_InterviewType" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Inventory_InventoryType" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_OrderLine_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_PriceHistory_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_StockTakeTotal_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_VehicleInventory_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Written_OffInventory_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="MediStock_DBModel.FK_InventoryCategory_InventoryType" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_JobApplication_JobPosition" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_JobPosition_RoleType" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Order_OrderStatus" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Order_Supplier" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_OrderLine_Order" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_StockTakeTotal_StockTake" ManuallyRouted="false" />
-        <AssociationConnector Association="MediStock_DBModel.FK_Vehicle_VehicleType" ManuallyRouted="false" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Vehicle_VehicleType1" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_VehicleCall_Vehicle" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_VehicleInspection_Vehicle" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_VehicleInventory_Vehicle" ManuallyRouted="false" />

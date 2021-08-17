@@ -18,6 +18,7 @@ namespace MediStockAPI.Models
         public InventoryType()
         {
             this.Inventories = new HashSet<Inventory>();
+            this.InventoryCategories = new HashSet<InventoryCategory>();
         }
     
         public int InventoryType_ID { get; set; }
@@ -25,5 +26,7 @@ namespace MediStockAPI.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InventoryCategory> InventoryCategories { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace MediStockAPI.Controllers.Inventory
                 foreach (var item in VehicleInventories)
                 {
 
-                    if (item.Inventory_ID == addedInventory.Inventory_ID)
+                    if (item.Inventory_ID == addedInventory.Inventory_ID && item.Vehicle_ID == addedInventory.Vehicle_ID)
                     {
                         itemLoaded = true;
                     }
@@ -66,7 +66,7 @@ namespace MediStockAPI.Controllers.Inventory
                 if (itemLoaded == true)
                 {
                     VehicleInventory currentVehicleInventory = new VehicleInventory();
-                    currentVehicleInventory = db.VehicleInventories.Where(z => z.Inventory_ID == addedInventory.Inventory_ID).FirstOrDefault();
+                    currentVehicleInventory = db.VehicleInventories.Where(z => z.Inventory_ID == addedInventory.Inventory_ID && z.Vehicle_ID == addedInventory.Vehicle_ID).FirstOrDefault();
                     currentVehicleInventory.VehicleInventory_Qty = (currentVehicleInventory.VehicleInventory_Qty + addedInventory.VehicleInventory_Qty);
                 }
                 else
@@ -81,30 +81,6 @@ namespace MediStockAPI.Controllers.Inventory
                 db.SaveChangesAsync();
 
                 return Ok("Vehicle Inventory Added");
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpPut]
-        [Route("transferVehicleInventory")]
-        public IHttpActionResult transfer(VehicleInventory addedInventory)
-        {
-            try
-            {
-                VehicleInventory currentVehicleInventory = new VehicleInventory();
-                currentVehicleInventory = db.VehicleInventories.Where(z => z.Vehicle_ID == addedInventory.Vehicle_ID && z.Inventory_ID == addedInventory.Inventory_ID).FirstOrDefault();
-                currentVehicleInventory.VehicleInventory_Qty = (currentVehicleInventory.VehicleInventory_Qty + addedInventory.VehicleInventory_Qty);
-
-                Models.Inventory currentInventory = new Models.Inventory();
-                currentInventory = db.Inventories.Where(z => z.Inventory_ID == addedInventory.Inventory_ID).FirstOrDefault();
-                currentInventory.Inventory_BaseCampQty = (currentInventory.Inventory_BaseCampQty - addedInventory.VehicleInventory_Qty);
-
-                db.SaveChangesAsync();
-
-                return Ok("Vehicle Inventory Transferred");
             }
             catch (Exception)
             {

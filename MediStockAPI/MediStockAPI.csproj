@@ -176,9 +176,11 @@
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
     <Compile Include="Controllers\Inventory\InventoryTypeController.cs" />
     <Compile Include="Controllers\Inventory\invVehicleController.cs" />
+    <Compile Include="Controllers\Inventory\StockTakeController.cs" />
     <Compile Include="Controllers\Inventory\VehicleInventoryController.cs" />
     <Compile Include="Controllers\Inventory\WriteOffController.cs" />
     <Compile Include="Controllers\Inventory\WriteOffReasonsController.cs" />
+    <Compile Include="Controllers\Supplier\SupplierController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,6 +238,7 @@
     <Compile Include="Models\InventoryType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Inventory\FullStockTakeVM.cs" />
     <Compile Include="Models\Inventory\InventoryFullVM.cs" />
     <Compile Include="Models\Inventory\InventoryVM.cs" />
     <Compile Include="Models\ItemsChecklist.cs">
