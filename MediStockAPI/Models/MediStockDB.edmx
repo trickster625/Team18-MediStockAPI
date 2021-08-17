@@ -166,7 +166,7 @@
             <PropertyRef Name="Inventory_ID" />
           </Key>
           <Property Name="Inventory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InventoryType_ID" Type="int" Nullable="false" />
+          <Property Name="InventoryCategory_ID" Type="int" Nullable="false" />
           <Property Name="Inventory_Name" Type="varchar" MaxLength="50" />
           <Property Name="Inventory_LatestPrice" Type="money" />
           <Property Name="Inventory_BaseCampQty" Type="int" />
@@ -178,15 +178,7 @@
             <PropertyRef Name="InventoryCategory_ID" />
           </Key>
           <Property Name="InventoryCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InventoryType_ID" Type="int" Nullable="false" />
           <Property Name="InventoryCategory_Description" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="InventoryType">
-          <Key>
-            <PropertyRef Name="InventoryType_ID" />
-          </Key>
-          <Property Name="InventoryType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InventoryType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -594,27 +586,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inventory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
+        <Association Name="FK_Inventory_InventoryCategory">
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
+            <Principal Role="InventoryCategory">
+              <PropertyRef Name="InventoryCategory_ID" />
             </Principal>
             <Dependent Role="Inventory">
-              <PropertyRef Name="InventoryType_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InventoryCategory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
-            </Principal>
-            <Dependent Role="InventoryCategory">
-              <PropertyRef Name="InventoryType_ID" />
+              <PropertyRef Name="InventoryCategory_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -950,7 +930,6 @@
           <EntitySet Name="InterviewType" EntityType="Self.InterviewType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryCategory" EntityType="Self.InventoryCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InventoryType" EntityType="Self.InventoryType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemsChecklist" EntityType="Self.ItemsChecklist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobApplication" EntityType="Self.JobApplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobPosition" EntityType="Self.JobPosition" Schema="dbo" store:Type="Tables" />
@@ -1041,13 +1020,9 @@
             <End Role="InterviewType" EntitySet="InterviewType" />
             <End Role="Interview" EntitySet="Interview" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inventory_InventoryType" Association="Self.FK_Inventory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryType" />
-            <End Role="Inventory" EntitySet="Inventory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InventoryType" Association="Self.FK_InventoryCategory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryType" />
+          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
             <End Role="InventoryCategory" EntitySet="InventoryCategory" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_ItemsChecklist_Checklist" Association="Self.FK_ItemsChecklist_Checklist">
             <End Role="Checklist" EntitySet="Checklist" />
@@ -1337,7 +1312,7 @@
             <PropertyRef Name="Inventory_ID" />
           </Key>
           <Property Name="Inventory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" />
           <Property Name="Inventory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Inventory_LatestPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Inventory_BaseCampQty" Type="Int32" />
@@ -1345,7 +1320,7 @@
           <Property Name="Inventory_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Barcodes" Relationship="Self.FK_Barcode_Inventory" FromRole="Inventory" ToRole="Barcode" />
           <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Inventory" FromRole="Inventory" ToRole="Call_ItemsUsed" />
-          <NavigationProperty Name="InventoryType" Relationship="Self.FK_Inventory_InventoryType" FromRole="Inventory" ToRole="InventoryType" />
+          <NavigationProperty Name="InventoryCategory" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="Inventory" ToRole="InventoryCategory" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLine_Inventory" FromRole="Inventory" ToRole="OrderLine" />
           <NavigationProperty Name="PriceHistories" Relationship="Self.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
@@ -1357,18 +1332,8 @@
             <PropertyRef Name="InventoryCategory_ID" />
           </Key>
           <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="InventoryType" Relationship="Self.FK_InventoryCategory_InventoryType" FromRole="InventoryCategory" ToRole="InventoryType" />
-        </EntityType>
-        <EntityType Name="InventoryType">
-          <Key>
-            <PropertyRef Name="InventoryType_ID" />
-          </Key>
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InventoryType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryType" FromRole="InventoryType" ToRole="Inventory" />
-          <NavigationProperty Name="InventoryCategories" Relationship="Self.FK_InventoryCategory_InventoryType" FromRole="InventoryType" ToRole="InventoryCategory" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="InventoryCategory" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1890,15 +1855,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inventory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
+        <Association Name="FK_Inventory_InventoryCategory">
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
+            <Principal Role="InventoryCategory">
+              <PropertyRef Name="InventoryCategory_ID" />
             </Principal>
             <Dependent Role="Inventory">
-              <PropertyRef Name="InventoryType_ID" />
+              <PropertyRef Name="InventoryCategory_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1959,18 +1924,6 @@
             </Principal>
             <Dependent Role="Written_OffInventory">
               <PropertyRef Name="Inventory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InventoryCategory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
-            </Principal>
-            <Dependent Role="InventoryCategory">
-              <PropertyRef Name="InventoryType_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2132,7 +2085,6 @@
           <EntitySet Name="InterviewTypes" EntityType="Self.InterviewType" />
           <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <EntitySet Name="InventoryCategories" EntityType="Self.InventoryCategory" />
-          <EntitySet Name="InventoryTypes" EntityType="Self.InventoryType" />
           <EntitySet Name="ItemsChecklists" EntityType="Self.ItemsChecklist" />
           <EntitySet Name="JobApplications" EntityType="Self.JobApplication" />
           <EntitySet Name="JobPositions" EntityType="Self.JobPosition" />
@@ -2247,8 +2199,8 @@
             <End Role="InterviewType" EntitySet="InterviewTypes" />
             <End Role="Interview" EntitySet="Interviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inventory_InventoryType" Association="Self.FK_Inventory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryTypes" />
+          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
+            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
             <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderLine_Inventory" Association="Self.FK_OrderLine_Inventory">
@@ -2270,10 +2222,6 @@
           <AssociationSet Name="FK_Written_OffInventory_Inventory" Association="Self.FK_Written_OffInventory_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InventoryType" Association="Self.FK_InventoryCategory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryTypes" />
-            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_JobApplication_JobPosition" Association="Self.FK_JobApplication_JobPosition">
             <End Role="JobPosition" EntitySet="JobPositions" />
@@ -2491,7 +2439,7 @@
             <EntityTypeMapping TypeName="MediStock_DBModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
                 <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
-                <ScalarProperty Name="InventoryType_ID" ColumnName="InventoryType_ID" />
+                <ScalarProperty Name="InventoryCategory_ID" ColumnName="InventoryCategory_ID" />
                 <ScalarProperty Name="Inventory_Name" ColumnName="Inventory_Name" />
                 <ScalarProperty Name="Inventory_LatestPrice" ColumnName="Inventory_LatestPrice" />
                 <ScalarProperty Name="Inventory_BaseCampQty" ColumnName="Inventory_BaseCampQty" />
@@ -2504,16 +2452,7 @@
             <EntityTypeMapping TypeName="MediStock_DBModel.InventoryCategory">
               <MappingFragment StoreEntitySet="InventoryCategory">
                 <ScalarProperty Name="InventoryCategory_ID" ColumnName="InventoryCategory_ID" />
-                <ScalarProperty Name="InventoryType_ID" ColumnName="InventoryType_ID" />
                 <ScalarProperty Name="InventoryCategory_Description" ColumnName="InventoryCategory_Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InventoryTypes">
-            <EntityTypeMapping TypeName="MediStock_DBModel.InventoryType">
-              <MappingFragment StoreEntitySet="InventoryType">
-                <ScalarProperty Name="InventoryType_ID" ColumnName="InventoryType_ID" />
-                <ScalarProperty Name="InventoryType_Description" ColumnName="InventoryType_Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

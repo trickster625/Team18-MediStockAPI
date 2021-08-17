@@ -27,7 +27,7 @@ namespace MediStockAPI.Models
         }
     
         public int Inventory_ID { get; set; }
-        public int InventoryType_ID { get; set; }
+        public int InventoryCategory_ID { get; set; }
         public string Inventory_Name { get; set; }
         public Nullable<decimal> Inventory_LatestPrice { get; set; }
         public Nullable<int> Inventory_BaseCampQty { get; set; }
@@ -38,7 +38,7 @@ namespace MediStockAPI.Models
         public virtual ICollection<Barcode> Barcodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Call_ItemsUsed> Call_ItemsUsed { get; set; }
-        public virtual InventoryType InventoryType { get; set; }
+        public virtual InventoryCategory InventoryCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

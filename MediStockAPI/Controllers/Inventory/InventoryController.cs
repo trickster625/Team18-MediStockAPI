@@ -25,7 +25,7 @@ namespace MediStockAPI.Controllers.Inventory
                 List<string> barcodeNumbers = new List<string>();
 
                 var storedItems = db.Inventories.ToList();
-                var storedTypes = db.InventoryTypes.ToList();
+                var storedCategories = db.InventoryCategories.ToList();
                 var storedBarcodes = db.Barcodes.ToList();
 
                 foreach (var storedItem in storedItems)
@@ -36,16 +36,16 @@ namespace MediStockAPI.Controllers.Inventory
                     InventoryFullVM item = new InventoryFullVM();
 
                     item.Inventory_ID = storedItem.Inventory_ID;
-                    item.InventoryType_ID = storedItem.InventoryType_ID;
+                    item.InventoryCategory_ID = storedItem.InventoryCategory_ID;
                     item.Inventory_Name = storedItem.Inventory_Name;
                     item.Inventory_LatestPrice = (decimal)storedItem.Inventory_LatestPrice;
                     item.Inventory_BaseCampQty = (int)storedItem.Inventory_BaseCampQty;
 
-                    foreach (var storedType in storedTypes)
+                    foreach (var storedCategory in storedCategories)
                     {
-                        if (storedItem.InventoryType_ID == storedType.InventoryType_ID)
+                        if (storedItem.InventoryCategory_ID == storedCategory.InventoryCategory_ID)
                         {
-                            item.InventoryType_Description = storedType.InventoryType_Description;
+                            item.InventoryCategory_Description = storedCategory.InventoryCategory_Description;
                         }
                     }
 
@@ -101,7 +101,7 @@ namespace MediStockAPI.Controllers.Inventory
                 Models.Inventory currentItem = new Models.Inventory();
                 currentItem = db.Inventories.Where(z => z.Inventory_ID == updateItem.Inventory_ID).FirstOrDefault();
 
-                currentItem.InventoryType_ID = updateItem.InventoryType_ID;
+                currentItem.InventoryCategory_ID = updateItem.InventoryCategory_ID;
                 currentItem.Inventory_Name = updateItem.Inventory_Name;
                 currentItem.Inventory_LatestPrice = updateItem.Inventory_LatestPrice;
 
