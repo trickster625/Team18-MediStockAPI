@@ -165,6 +165,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\Call SubSystem\CallController.cs" />
+    <Compile Include="Controllers\Call SubSystem\CallItemsUsedController.cs" />
     <Compile Include="Controllers\Call SubSystem\CancelReasonController.cs" />
     <Compile Include="Controllers\FilterItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -203,6 +204,7 @@
     </Compile>
     <Compile Include="Models\CallVM.cs" />
     <Compile Include="Models\CallCancelReasonsVM.cs" />
+    <Compile Include="Models\CallItemsUsedVM.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>

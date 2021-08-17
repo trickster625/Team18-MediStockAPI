@@ -8,7 +8,7 @@ namespace MediStockAPI.Models
     public class CallVM
     {
         public int Call_ID { get; set; }
-        public int CallStatusID { get; set; }
+        public int CallStatus_ID { get; set; }
         public int Reason_ID { get; set; }
         public DateTime Call_Date { get; set; }
         public TimeSpan Call_StartTime {get;set;}

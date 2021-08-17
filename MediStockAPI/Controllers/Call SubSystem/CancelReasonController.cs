@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace MediStockAPI.Controllers.Call_SubSystem
@@ -22,7 +23,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                 Reasons = ctx.CallCancelReasons.Select(s => new CallCancelReasonsVM()
                 {
                     Reason_ID = s.Reason_ID,
-                    Reason_Descripotion = s.Reason_Description
+                    Reason_Description = s.Reason_Description
                 }).ToList<CallCancelReasonsVM>();
             }
             if (Reasons.Count == 0 )
@@ -45,7 +46,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
         //Adding New Cancel Reason
         [HttpPost]
         [Route("AddNewCancelReason")]
-        public IHttpActionResult AddNewCancelReason(CallCancelReason callCancelReason)
+        public async Task<IHttpActionResult> AddNewCancelReasonAsync(CallCancelReason callCancelReason)
         {
             if (!ModelState.IsValid)
             {
@@ -54,13 +55,8 @@ namespace MediStockAPI.Controllers.Call_SubSystem
 
             using(var ctx = new MediStock_DBEntities())
             {
-                ctx.CallCancelReasons.Add(new CallCancelReason()
-                {
-                    Reason_ID = callCancelReason.Reason_ID,
-                    Reason_Description = callCancelReason.Reason_Description
-
-                });
-                ctx.SaveChangesAsync();
+                ctx.CallCancelReasons.Add(callCancelReason);
+                await ctx.SaveChangesAsync();
             }
             return Ok();
         }
@@ -86,7 +82,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                     existingCancelReason.Reason_ID = callCancelReason.Reason_ID;
                     existingCancelReason.Reason_Description = callCancelReason.Reason_Description;
 
-                    ctx.SaveChangesAsync(); //saves changes to Database
+                    ctx.SaveChanges(); //saves changes to Database
                 }
                 else
                 {
@@ -94,7 +90,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                 }
             }
 
-            return Ok();
+            return Ok("Saved Succesfully!");
         }
         //Delete cancel reason based on ID
           [HttpDelete]
@@ -109,7 +105,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
             using (var ctx = new MediStock_DBEntities())
             {
                 ctx.CallCancelReasons.Remove(ctx.CallCancelReasons.Single(z => z.Reason_ID == id));
-                ctx.SaveChangesAsync();
+                ctx.SaveChanges();
                
             }
 

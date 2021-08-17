@@ -27,7 +27,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                     {
                         Call_ID = s.Call_ID,
                         Reason_ID = s.Reason_ID,
-                        CallStatusID = s.CallStatus_ID,
+                        CallStatus_ID = s.CallStatus_ID,
                         Call_Date = (DateTime)s.Call_Date,
                         Call_StartTime = (TimeSpan)s.Call_StartTime,
                         Call_EndTime = (TimeSpan)s.Call_EndTime,
@@ -35,6 +35,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                         DOA_Number = (int)((s.DOA_Number == null) ? 0 : s.DOA_Number)
                     }).ToList<CallVM>();
                 }
+                
                 return Ok(calls);
            }
            catch (Exception)
@@ -43,6 +44,48 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                 return BadRequest("not working :-(");
           }
         }
+
+        [HttpGet]
+        [Route("GetPendingCalls")]
+        
+        public IEnumerable<Call> GetPendingCalls()
+        {
+            try
+            {
+                return (IEnumerable<Call>)db.Calls.Where(p => p.CallStatus_ID == 2);
+                //IList<CallVM> calls = null;
+                //IList<CallVM> newCalls = null;
+                //using (var ctx = new MediStock_DBEntities())
+                //{
+                //    calls = db.Calls.Select(s => new CallVM()
+                //    {
+                //        Call_ID = s.Call_ID,
+                //        Reason_ID = s.Reason_ID,
+                //        CallStatusID = s.CallStatus_ID,
+                //        Call_Date = (DateTime)s.Call_Date,
+                //        Call_StartTime = (TimeSpan)s.Call_StartTime,
+                //        Call_EndTime = (TimeSpan)s.Call_EndTime,
+                //        PRF_Number = (int)((s.PRF_Number == null) ? 0 : s.PRF_Number),
+                //        DOA_Number = (int)((s.DOA_Number == null) ? 0 : s.DOA_Number)
+                //    }).ToList<CallVM>();
+
+                //    IEnumerable<CallVM> query = calls.Where(call => call.CallStatusID == 2);
+
+                //    foreach (var call in query)
+                //    {
+                //        newCalls.Add(call);
+                //    }
+                //}
+                //return Ok(newCalls);
+            }
+            catch (Exception)
+            {
+                throw;
+                //return BadRequest("notWorking");
+               
+            }
+        }
+
 
         [HttpGet]
         [Route("SearchCall")]
@@ -85,7 +128,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                     existingcall.PRF_Number = call.PRF_Number;
                     existingcall.DOA_Number = call.DOA_Number;
 
-                    ctx.SaveChangesAsync();
+                     ctx.SaveChanges();
 
                 }
                 else
