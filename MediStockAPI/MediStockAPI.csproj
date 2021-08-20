@@ -171,6 +171,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Employee\EmpJobPosition\JobPositionController.cs" />
+    <Compile Include="Controllers\Employee\EmpJobPosition\RoleTypeController.cs" />
+    <Compile Include="Controllers\Employee\EmpShift\ShiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Inventory\BarcodeController.cs" />
     <Compile Include="Controllers\Inventory\InventoryCategoryController.cs" />
@@ -181,6 +184,8 @@
     <Compile Include="Controllers\Inventory\VehicleInventoryController.cs" />
     <Compile Include="Controllers\Inventory\WriteOffController.cs" />
     <Compile Include="Controllers\Inventory\WriteOffReasonsController.cs" />
+    <Compile Include="Controllers\Vehicle\VehicleController.cs" />
+    <Compile Include="Controllers\Vehicle\VehicleTypeController.cs" />
     <Compile Include="Controllers\Supplier\OrderController.cs" />
     <Compile Include="Controllers\Supplier\OrderLinesController.cs" />
     <Compile Include="Controllers\Supplier\OrderStatusController.cs" />
@@ -215,12 +220,14 @@
     <Compile Include="Models\ChecklistItemType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Employee\EmpJobPosition\JobPositionVM.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeTitle.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Employee\EmpShift\ShiftVM.cs" />
     <Compile Include="Models\InspectionChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -240,17 +247,8 @@
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Inventory\FullStockTakeVM.cs" />
-    <Compile Include="Models\Inventory\InventoryFullVM.cs" />
-    <Compile Include="Models\Inventory\InventoryVM.cs" />
-    <Compile Include="Models\ItemsChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\JobApplication.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobPosition.cs">
-	 <DependentUpon>MediStockDB.tt</DependentUpon>
-	</Compile>
     <Compile Include="Models\Inventory\InventoryFullVM.cs" />
     <Compile Include="Models\Inventory\InventoryVM.cs" />
     <Compile Include="Models\ItemsChecklist.cs">
