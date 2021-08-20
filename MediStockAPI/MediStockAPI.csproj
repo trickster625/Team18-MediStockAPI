@@ -211,9 +211,6 @@
     <Compile Include="Models\EmployeeTitle.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FullCall.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\InspectionChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>

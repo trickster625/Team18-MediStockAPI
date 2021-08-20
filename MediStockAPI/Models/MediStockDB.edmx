@@ -380,21 +380,6 @@
           <Property Name="Write-Off_Date" Type="date" />
           <Property Name="Write-Off_Qty" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="FullCall">
-          <Key>
-            <PropertyRef Name="Call_ID" />
-          </Key>
-          <Property Name="Call_ID" Type="int" Nullable="false" />
-          <Property Name="Call_Date" Type="date" />
-          <Property Name="Call_StartTime" Type="time" Precision="7" />
-          <Property Name="Call_EndTime" Type="time" Precision="7" />
-          <Property Name="DOA_Number" Type="int" />
-          <Property Name="PRF_Number" Type="int" />
-          <Property Name="CallStatus_Description" Type="varchar" MaxLength="50" />
-          <Property Name="Reason_Description" Type="varchar" MaxLength="50" />
-        </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
           <End Role="Barcode" Type="Self.Barcode" Multiplicity="*" />
@@ -781,7 +766,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vehicle_VehicleType1">
+        <Association Name="FK_Vehicle_VehicleType">
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -877,7 +862,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VehicleType_Checklist1">
+        <Association Name="FK_VehicleType_Checklist">
           <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="*" />
           <ReferentialConstraint>
@@ -967,18 +952,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Write-OffReason" EntityType="Self.Write-OffReason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Written-OffInventory" EntityType="Self.Written-OffInventory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FullCall" EntityType="Self.FullCall" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [FullCall].[Call_ID] AS [Call_ID], 
-    [FullCall].[Call_Date] AS [Call_Date], 
-    [FullCall].[Call_StartTime] AS [Call_StartTime], 
-    [FullCall].[Call_EndTime] AS [Call_EndTime], 
-    [FullCall].[DOA_Number] AS [DOA_Number], 
-    [FullCall].[PRF_Number] AS [PRF_Number], 
-    [FullCall].[CallStatus_Description] AS [CallStatus_Description], 
-    [FullCall].[Reason_Description] AS [Reason_Description]
-    FROM [dbo].[FullCall] AS [FullCall]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Barcode_Inventory" Association="Self.FK_Barcode_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="Barcode" EntitySet="Barcode" />
@@ -1107,7 +1080,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             <End Role="StockTake" EntitySet="StockTake" />
             <End Role="StockTakeTotal" EntitySet="StockTakeTotal" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vehicle_VehicleType1" Association="Self.FK_Vehicle_VehicleType1">
+          <AssociationSet Name="FK_Vehicle_VehicleType" Association="Self.FK_Vehicle_VehicleType">
             <End Role="VehicleType" EntitySet="VehicleType" />
             <End Role="Vehicle" EntitySet="Vehicle" />
           </AssociationSet>
@@ -1139,7 +1112,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             <End Role="Vehicle" EntitySet="Vehicle" />
             <End Role="VehicleInventory" EntitySet="VehicleInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_VehicleType_Checklist1" Association="Self.FK_VehicleType_Checklist1">
+          <AssociationSet Name="FK_VehicleType_Checklist" Association="Self.FK_VehicleType_Checklist">
             <End Role="Checklist" EntitySet="Checklist" />
             <End Role="VehicleType" EntitySet="VehicleType" />
           </AssociationSet>
@@ -1200,7 +1173,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
           <EntitySet Name="VehicleTypes" EntityType="MediStock_DBModel.VehicleType" />
           <EntitySet Name="Write_OffReason" EntityType="MediStock_DBModel.Write_OffReason" />
           <EntitySet Name="Written_OffInventory" EntityType="MediStock_DBModel.Written_OffInventory" />
-          <EntitySet Name="FullCalls" EntityType="MediStock_DBModel.FullCall" />
           <AssociationSet Name="FK_Barcode_Inventory" Association="MediStock_DBModel.FK_Barcode_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="Barcode" EntitySet="Barcodes" />
@@ -1237,7 +1209,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             <End Role="Checklist" EntitySet="Checklists" />
             <End Role="ItemsChecklist" EntitySet="ItemsChecklists" />
           </AssociationSet>
-          <AssociationSet Name="FK_VehicleType_Checklist1" Association="MediStock_DBModel.FK_VehicleType_Checklist1">
+          <AssociationSet Name="FK_VehicleType_Checklist" Association="MediStock_DBModel.FK_VehicleType_Checklist">
             <End Role="Checklist" EntitySet="Checklists" />
             <End Role="VehicleType" EntitySet="VehicleTypes" />
           </AssociationSet>
@@ -1341,7 +1313,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             <End Role="StockTake" EntitySet="StockTakes" />
             <End Role="StockTakeTotal" EntitySet="StockTakeTotals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vehicle_VehicleType1" Association="MediStock_DBModel.FK_Vehicle_VehicleType1">
+          <AssociationSet Name="FK_Vehicle_VehicleType" Association="MediStock_DBModel.FK_Vehicle_VehicleType">
             <End Role="VehicleType" EntitySet="VehicleTypes" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
@@ -1444,7 +1416,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ItemsChecklists" Relationship="MediStock_DBModel.FK_ItemsChecklist_Checklist" FromRole="Checklist" ToRole="ItemsChecklist" />
-          <NavigationProperty Name="VehicleTypes" Relationship="MediStock_DBModel.FK_VehicleType_Checklist1" FromRole="Checklist" ToRole="VehicleType" />
+          <NavigationProperty Name="VehicleTypes" Relationship="MediStock_DBModel.FK_VehicleType_Checklist" FromRole="Checklist" ToRole="VehicleType" />
         </EntityType>
         <EntityType Name="ChecklistItem">
           <Key>
@@ -1733,7 +1705,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
           <Property Name="Vehicle_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" />
           <Property Name="Vehicle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="VehicleType" Relationship="MediStock_DBModel.FK_Vehicle_VehicleType1" FromRole="Vehicle" ToRole="VehicleType" />
+          <NavigationProperty Name="VehicleType" Relationship="MediStock_DBModel.FK_Vehicle_VehicleType" FromRole="Vehicle" ToRole="VehicleType" />
           <NavigationProperty Name="VehicleCalls" Relationship="MediStock_DBModel.FK_VehicleCall_Vehicle" FromRole="Vehicle" ToRole="VehicleCall" />
           <NavigationProperty Name="VehicleInspections" Relationship="MediStock_DBModel.FK_VehicleInspection_Vehicle" FromRole="Vehicle" ToRole="VehicleInspection" />
           <NavigationProperty Name="VehicleInventories" Relationship="MediStock_DBModel.FK_VehicleInventory_Vehicle" FromRole="Vehicle" ToRole="VehicleInventory" />
@@ -1788,8 +1760,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" />
           <Property Name="VehicleType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Checklist" Relationship="MediStock_DBModel.FK_VehicleType_Checklist1" FromRole="VehicleType" ToRole="Checklist" />
-          <NavigationProperty Name="Vehicles" Relationship="MediStock_DBModel.FK_Vehicle_VehicleType1" FromRole="VehicleType" ToRole="Vehicle" />
+          <NavigationProperty Name="Checklist" Relationship="MediStock_DBModel.FK_VehicleType_Checklist" FromRole="VehicleType" ToRole="Checklist" />
+          <NavigationProperty Name="Vehicles" Relationship="MediStock_DBModel.FK_Vehicle_VehicleType" FromRole="VehicleType" ToRole="Vehicle" />
         </EntityType>
         <EntityType Name="Write_OffReason">
           <Key>
@@ -1812,19 +1784,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
           <NavigationProperty Name="Employee" Relationship="MediStock_DBModel.FK_Written_OffInventory_Employee" FromRole="Written_OffInventory" ToRole="Employee" />
           <NavigationProperty Name="Inventory" Relationship="MediStock_DBModel.FK_Written_OffInventory_Inventory" FromRole="Written_OffInventory" ToRole="Inventory" />
           <NavigationProperty Name="Write_OffReason" Relationship="MediStock_DBModel.FK_Written_OffInventory_Write_OffReason" FromRole="Written_OffInventory" ToRole="Write_OffReason" />
-        </EntityType>
-        <EntityType Name="FullCall">
-          <Key>
-            <PropertyRef Name="Call_ID" />
-          </Key>
-          <Property Name="Call_ID" Type="Int32" Nullable="false" />
-          <Property Name="Call_Date" Type="DateTime" Precision="0" />
-          <Property Name="Call_StartTime" Type="Time" Precision="7" />
-          <Property Name="Call_EndTime" Type="Time" Precision="7" />
-          <Property Name="DOA_Number" Type="Int32" />
-          <Property Name="PRF_Number" Type="Int32" />
-          <Property Name="CallStatus_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Reason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Type="MediStock_DBModel.Inventory" Role="Inventory" Multiplicity="1" />
@@ -1934,7 +1893,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VehicleType_Checklist1">
+        <Association Name="FK_VehicleType_Checklist">
           <End Type="MediStock_DBModel.Checklist" Role="Checklist" Multiplicity="1" />
           <End Type="MediStock_DBModel.VehicleType" Role="VehicleType" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2248,7 +2207,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vehicle_VehicleType1">
+        <Association Name="FK_Vehicle_VehicleType">
           <End Type="MediStock_DBModel.VehicleType" Role="VehicleType" Multiplicity="1" />
           <End Type="MediStock_DBModel.Vehicle" Role="Vehicle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2708,20 +2667,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary
                 <ScalarProperty Name="Write_OffReason_ID" ColumnName="Write-OffReason_ID" />
                 <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
                 <ScalarProperty Name="Write_Off_ID" ColumnName="Write-Off_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FullCalls">
-            <EntityTypeMapping TypeName="MediStock_DBModel.FullCall">
-              <MappingFragment StoreEntitySet="FullCall">
-                <ScalarProperty Name="Reason_Description" ColumnName="Reason_Description" />
-                <ScalarProperty Name="CallStatus_Description" ColumnName="CallStatus_Description" />
-                <ScalarProperty Name="PRF_Number" ColumnName="PRF_Number" />
-                <ScalarProperty Name="DOA_Number" ColumnName="DOA_Number" />
-                <ScalarProperty Name="Call_EndTime" ColumnName="Call_EndTime" />
-                <ScalarProperty Name="Call_StartTime" ColumnName="Call_StartTime" />
-                <ScalarProperty Name="Call_Date" ColumnName="Call_Date" />
-                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
