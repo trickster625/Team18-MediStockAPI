@@ -56,6 +56,102 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Tools.Sql.BatchParser, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.Data.Tools.Sql.BatchParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dmf, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Dmf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dmf.Common, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Dmf.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Assessment, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.Assessment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Collector, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.Collector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.CollectorEnum, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.CollectorEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.HadrData, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.HadrData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.HadrModel, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.HadrModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.RegisteredServers, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.RegisteredServers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.SqlScriptPublish, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.SqlScriptPublish.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEvent, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.XEvent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventDbScoped, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.XEventDbScoped.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventDbScopedEnum, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.XEventDbScopedEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventEnum, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Management.XEventEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.PolicyEnum, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.PolicyEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ServiceBrokerEnum, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.ServiceBrokerEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Smo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo.Notebook, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.Smo.Notebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SmoExtended, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.SmoExtended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netstandard2.0\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlWmiManagement, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netcoreapp3.1\Microsoft.SqlServer.SqlWmiManagement.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=16.200.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.161.46437.65\lib\netcoreapp3.1\Microsoft.SqlServer.WmiEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -171,6 +267,33 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Barcode.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Call.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CallCancelReason.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CallStatu.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Call_ItemsUsed.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Candidate.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Checklist.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChecklistItem.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChecklistItemType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Interviews\CandidateNameController.cs" />
     <Compile Include="Controllers\Interviews\EmployeeNameController.cs" />
     <Compile Include="Controllers\FilterItemsController.cs" />
@@ -186,148 +309,121 @@
     <Compile Include="Controllers\Role Types\GetCurrentRoleTypeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Role Types\RoleTypesController.cs" />
+    <Compile Include="Employee.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeTitle.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Barcode.cs">
+    <Compile Include="InspectionChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Call.cs">
+    <Compile Include="InspectionType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CallCancelReason.cs">
+    <Compile Include="Interview.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CallStatu.cs">
+    <Compile Include="InterviewType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Call_ItemsUsed.cs">
+    <Compile Include="Inventory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Candidate.cs">
+    <Compile Include="InventoryCategory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Checklist.cs">
+    <Compile Include="InventoryType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChecklistItem.cs">
+    <Compile Include="ItemsChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChecklistItemType.cs">
+    <Compile Include="JobApplication.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InterviewVM.cs" />
-    <Compile Include="Models\RoleTypeVM.cs" />
-    <Compile Include="Models\Employee.cs">
+    <Compile Include="JobPosition.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeTitle.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InspectionChecklist.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InspectionType.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Interview.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InterviewType.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Inventory.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InventoryCategory.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InventoryType.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InventoryVM.cs" />
-    <Compile Include="Models\ItemsChecklist.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobApplication.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobPosition.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MediStockDB.Context.cs">
+    <Compile Include="MediStockDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MediStockDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MediStockDB.cs">
+    <Compile Include="MediStockDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MediStockDB.Designer.cs">
+    <Compile Include="MediStockDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MediStockDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order.cs">
+    <Compile Include="Models\InterviewVM.cs" />
+    <Compile Include="Models\RoleTypeVM.cs" />
+    <Compile Include="Models\InventoryVM.cs" />
+    <Compile Include="Order.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderLine.cs">
+    <Compile Include="OrderLine.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderStatu.cs">
+    <Compile Include="OrderStatu.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PriceHistory.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QualificationType.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RoleType.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SecurityQuestion.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Shift.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StockTake.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StockTakeTotal.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Supplier.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Vehicle.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VehicleCall.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VehicleInspection.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VehicleInventory.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VehicleType.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Write_OffInventory.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Write_OffReason.cs">
+    <Compile Include="PriceHistory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualificationType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoleType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SecurityQuestion.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shift.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockTake.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockTakeTotal.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicle.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleCall.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleInspection.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleInventory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Write_OffReason.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Written_OffInventory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -336,12 +432,12 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\MediStockDB.Context.tt">
+    <Content Include="MediStockDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MediStockDB.edmx</DependentUpon>
       <LastGenOutput>MediStockDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\MediStockDB.tt">
+    <Content Include="MediStockDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MediStockDB.edmx</DependentUpon>
       <LastGenOutput>MediStockDB.cs</LastGenOutput>
@@ -367,11 +463,11 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\MediStockDB.edmx">
+    <EntityDeploy Include="MediStockDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MediStockDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\MediStockDB.edmx.diagram">
+    <Content Include="MediStockDB.edmx.diagram">
       <DependentUpon>MediStockDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

@@ -97,7 +97,7 @@ namespace MediStockAPI.Controllers
 
                 db.SaveChangesAsync();
 
-                return Ok("Updated");
+                return Ok(currentRoleType);
             }
             catch (Exception)
             {

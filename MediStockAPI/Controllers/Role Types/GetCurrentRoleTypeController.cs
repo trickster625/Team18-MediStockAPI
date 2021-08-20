@@ -33,10 +33,10 @@ namespace MediStockAPI.Controllers.Role_Types
 
                         Role.RoleType_ID = i.RoleType_ID;
                         Role.RoleType_Description = i.RoleType_Description;
-
+                        roleTypeList.Add(Role);
                     }
 
-                    roleTypeList.Add(Role);
+                    
 
                 }
 

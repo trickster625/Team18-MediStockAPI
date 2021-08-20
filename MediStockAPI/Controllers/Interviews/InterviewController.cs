@@ -25,17 +25,17 @@ namespace MediStockAPI.Controllers
                 foreach (var i in interviews)
                 {
 
-                    Interview Interviews = new Interview();
+                    Interview interview = new Interview();
 
-                    Interviews.Interview_ID = i.Interview_ID;
-                    Interviews.Candidate_ID = i.Candidate_ID;
-                    Interviews.InterviewType_ID = i.InterviewType_ID;
-                    Interviews.Employee_ID = i.Employee_ID;
-                    Interviews.ScheduledDate_Time = i.ScheduledDate_Time;
-                    Interviews.InterviewMethod = i.InterviewMethod;
-                    Interviews.Address = i.Address;
+                    interview.Interview_ID = i.Interview_ID;
+                    interview.Candidate_ID = i.Candidate_ID;
+                    interview.InterviewType_ID = i.InterviewType_ID;
+                    interview.Employee_ID = i.Employee_ID;
+                    interview.SheduleDateTime = i.SheduleDateTime;
+                    interview.InterviewMethod = i.InterviewMethod;
+                    interview.Address = i.Address;
 
-                    InterviewList.Add(Interviews);
+                    InterviewList.Add(interview);
 
                 }
 

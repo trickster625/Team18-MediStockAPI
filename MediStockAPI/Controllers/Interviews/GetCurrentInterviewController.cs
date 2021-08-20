@@ -34,7 +34,7 @@ namespace MediStockAPI.Controllers.Interviews
                         Interview.Interview_ID = i.Interview_ID;
                         Interview.InterviewType_ID = i.InterviewType_ID;
                         Interview.InterviewMethod = i.InterviewMethod;
-                        Interview.ScheduledDate_Time = i.ScheduledDate_Time;
+                        Interview.SheduleDateTime = i.SheduleDateTime;
 
                     }
 
