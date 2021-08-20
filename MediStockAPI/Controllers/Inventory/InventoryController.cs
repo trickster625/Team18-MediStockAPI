@@ -5,12 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MediStockAPI.Models;
+using System.Web.Http.Cors;
 
 namespace MediStockAPI.Controllers.Inventory
 {
+    /*
     public class InventoryController : ApiController
     {
-
         MediStock_DBEntities db = new MediStock_DBEntities();
 
         [HttpGet]
@@ -38,8 +39,8 @@ namespace MediStockAPI.Controllers.Inventory
                     item.Inventory_ID = storedItem.Inventory_ID;
                     item.InventoryCategory_ID = storedItem.InventoryCategory_ID;
                     item.Inventory_Name = storedItem.Inventory_Name;
-                    item.Inventory_LatestPrice = (decimal)storedItem.Inventory_LatestPrice;
-                    item.Inventory_BaseCampQty = (int)storedItem.Inventory_BaseCampQty;
+                    //item.Inventory_LatestPrice = (decimal)storedItem.Inventory_LatestPrice;
+                    //item.Inventory_BaseCampQty = (int)storedItem.Inventory_BaseCampQty;
 
                     foreach (var storedCategory in storedCategories)
                     {
@@ -49,7 +50,7 @@ namespace MediStockAPI.Controllers.Inventory
                         }
                     }
 
-                    foreach (var storedBarcode in storedBarcodes)
+                    /*foreach (var storedBarcode in storedBarcodes)
                     {
                         if (storedBarcode.Inventory_ID == storedItem.Inventory_ID)
                         {
@@ -60,10 +61,10 @@ namespace MediStockAPI.Controllers.Inventory
 
                     int[] idArray = barcodeIDs.ToArray();
                     string[] numberArray = barcodeNumbers.ToArray();
-
+                    
                     item.Barcode_ID = idArray;
                     item.BarcodeNumber = numberArray;
-
+                    
                     outputItems.Add(item);
                 }
 
@@ -75,6 +76,82 @@ namespace MediStockAPI.Controllers.Inventory
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("getFilteredItems")]
+        public IHttpActionResult getFilteredItems(string searchName, int searchTypeID)
+        {
+
+            try
+            {
+                var items = db.Inventories.ToList();
+                var types = db.InventoryTypes.ToList();
+                List<InventoryFullVM> ItemList = new List<InventoryFullVM>();
+
+                foreach (var item in items)
+                {
+
+                    if (item.Inventory_Name == searchName && item.InventoryType_ID == searchTypeID)
+                    {
+                        InventoryFullVM invItem = new InventoryFullVM();
+
+                        invItem.Inventory_ID = item.Inventory_ID;
+                        invItem.Inventory_Name = item.Inventory_Name;
+                        invItem.InventoryType_ID = item.InventoryType_ID;
+
+                        foreach (var type in types)
+                        {
+                            if (item.InventoryType_ID == type.InventoryType_ID)
+                            {
+                                invItem.InventoryType_Description = type.InventoryType_Description;
+                            }
+                        }
+
+                        ItemList.Add(invItem);
+                    }
+
+                }
+
+                return Ok(ItemList);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("getCurrentItem")]
+            public IHttpActionResult getCurrentItem(int id)
+            {
+
+                try
+                {
+                    var items = db.Inventories.ToList();
+                    List<InventoryFullVM> ItemList = new List<InventoryFullVM>();
+                    InventoryFullVM currentItem = new InventoryFullVM();
+
+                    foreach (var item in items)
+                    {
+
+                        if (item.Inventory_ID == id)
+                        {
+                            currentItem.Inventory_ID = id;
+                            currentItem.Inventory_Name = item.Inventory_Name;
+                            currentItem.InventoryType_ID = item.InventoryType_ID;
+                            return Ok(currentItem);
+                        }
+
+                    }
+
+                    return Ok("No Match Found");
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+
+            }
 
         [HttpPost]
         [Route("createItem")]
@@ -92,7 +169,7 @@ namespace MediStockAPI.Controllers.Inventory
                 return BadRequest();
             }
         }
-
+ 
         [HttpPut]
         [Route("updateItem")]
         public IHttpActionResult updateItem(Models.Inventory updateItem)
@@ -134,5 +211,5 @@ namespace MediStockAPI.Controllers.Inventory
             }
         }
 
-    }
+    } */
 }
