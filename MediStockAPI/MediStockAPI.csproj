@@ -211,6 +211,9 @@
     <Compile Include="Models\EmployeeTitle.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FullCall.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\InspectionChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -227,9 +230,6 @@
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InventoryCategory.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InventoryType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InventoryVM.cs" />
@@ -308,10 +308,10 @@
     <Compile Include="Models\VehicleType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Write_OffInventory.cs">
+    <Compile Include="Models\Write_OffReason.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Write_OffReason.cs">
+    <Compile Include="Models\Written_OffInventory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

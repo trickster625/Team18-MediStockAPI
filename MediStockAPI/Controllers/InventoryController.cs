@@ -13,34 +13,34 @@ namespace MediStockAPI.Controllers
 
         MediStock_DBEntities db = new MediStock_DBEntities();
 
-        [HttpGet]
-        [Route("GetItemTypes")]
-        public IHttpActionResult getItemTypes()
-        {
-            try
-            {
-                var types = db.InventoryTypes.ToList();
-                List<InventoryType> typeList = new List<InventoryType>();
+        //[HttpGet]
+        //[Route("GetItemTypes")]
+        //public IHttpActionResult getItemTypes()
+        //{
+        //    try
+        //    {
+        //        var types = db.InventoryTypes.ToList();
+        //        List<InventoryType> typeList = new List<InventoryType>();
 
-                foreach (var item in types)
-                {
+        //        foreach (var item in types)
+        //        {
 
-                    InventoryType newInventoryType = new InventoryType();
+        //            InventoryType newInventoryType = new InventoryType();
 
-                    newInventoryType.InventoryType_ID = item.InventoryType_ID;
-                    newInventoryType.InventoryType_Description = item.InventoryType_Description;
+        //            newInventoryType.InventoryType_ID = item.InventoryType_ID;
+        //            newInventoryType.InventoryType_Description = item.InventoryType_Description;
 
-                    typeList.Add(newInventoryType);
+        //            typeList.Add(newInventoryType);
 
-                }
+        //        }
 
-                return Ok(typeList);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
+        //        return Ok(typeList);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
 
 
         //    MedistockInventoryTestEntities db = new MedistockInventoryTestEntities();

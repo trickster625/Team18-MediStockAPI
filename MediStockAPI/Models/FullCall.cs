@@ -12,13 +12,15 @@ namespace MediStockAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderLine
+    public partial class FullCall
     {
-        public int Order_ID { get; set; }
-        public int Inventory_ID { get; set; }
-        public Nullable<int> OrderLine_Quantity { get; set; }
-    
-        public virtual Inventory Inventory { get; set; }
-        public virtual Order Order { get; set; }
+        public int Call_ID { get; set; }
+        public Nullable<System.DateTime> Call_Date { get; set; }
+        public Nullable<System.TimeSpan> Call_StartTime { get; set; }
+        public Nullable<System.TimeSpan> Call_EndTime { get; set; }
+        public Nullable<int> DOA_Number { get; set; }
+        public Nullable<int> PRF_Number { get; set; }
+        public string CallStatus_Description { get; set; }
+        public string Reason_Description { get; set; }
     }
 }

@@ -20,17 +20,21 @@ namespace MediStockAPI.Controllers.Call_SubSystem
             IList<CallCancelReasonsVM> Reasons = null;  
             using (var ctx = new MediStock_DBEntities())
             {
+                
                 Reasons = ctx.CallCancelReasons.Select(s => new CallCancelReasonsVM()
                 {
                     Reason_ID = s.Reason_ID,
                     Reason_Description = s.Reason_Description
+                   
                 }).ToList<CallCancelReasonsVM>();
+
             }
             if (Reasons.Count == 0 )
             {
                 return NotFound();
             }
             return Ok(Reasons);
+                
         }
         MediStock_DBEntities db = new MediStock_DBEntities();
         //Get to find Cancel Reason 
@@ -61,6 +65,22 @@ namespace MediStockAPI.Controllers.Call_SubSystem
             return Ok();
         }
 
+        [HttpPost]
+        [Route("TestAddNewReason")]
+        public IHttpActionResult createBarcode(Barcode newBarcode)
+        {
+            try
+            {
+                db.Barcodes.Add(newBarcode);
+                db.SaveChangesAsync();
+
+                return Ok("Barcode Added");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
 
         //Updating Cancel Reason
         [HttpPut]

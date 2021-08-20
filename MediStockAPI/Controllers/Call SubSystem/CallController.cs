@@ -44,6 +44,10 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                 return BadRequest("not working :-(");
           }
         }
+       
+
+
+
 
         [HttpGet]
         [Route("GetPendingCalls")]
@@ -51,7 +55,8 @@ namespace MediStockAPI.Controllers.Call_SubSystem
         public IEnumerable<Call> GetPendingCalls()
         {
             try
-            {
+            {   
+                
                 return (IEnumerable<Call>)db.Calls.Where(p => p.CallStatus_ID == 2);
                 //IList<CallVM> calls = null;
                 //IList<CallVM> newCalls = null;
