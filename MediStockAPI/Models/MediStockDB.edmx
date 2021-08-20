@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MediStock_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MediStock_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Barcode">
           <Key>
             <PropertyRef Name="Barcode_ID" />
@@ -1415,8 +1415,8 @@
           </Key>
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ItemsChecklists" Relationship="MediStock_DBModel.FK_ItemsChecklist_Checklist" FromRole="Checklist" ToRole="ItemsChecklist" />
-          <NavigationProperty Name="VehicleTypes" Relationship="MediStock_DBModel.FK_VehicleType_Checklist" FromRole="Checklist" ToRole="VehicleType" />
+          <NavigationProperty Name="ItemsChecklists" Relationship="Self.FK_ItemsChecklist_Checklist" FromRole="Checklist" ToRole="ItemsChecklist" />
+          <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_Checklist" FromRole="Checklist" ToRole="VehicleType" />
         </EntityType>
         <EntityType Name="ChecklistItem">
           <Key>
@@ -1513,7 +1513,7 @@
           </Key>
           <Property Name="InterviewType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InterviewType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Interviews" Relationship="MediStock_DBModel.FK_Interview_InterviewType" FromRole="InterviewType" ToRole="Interview" />
+          <NavigationProperty Name="Interviews" Relationship="Self.FK_Interview_InterviewType" FromRole="InterviewType" ToRole="Interview" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -1534,14 +1534,6 @@
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
           <NavigationProperty Name="VehicleInventories" Relationship="Self.FK_VehicleInventory_Inventory" FromRole="Inventory" ToRole="VehicleInventory" />
           <NavigationProperty Name="Written_OffInventory" Relationship="Self.FK_Written_OffInventory_Inventory" FromRole="Inventory" ToRole="Written_OffInventory" />
-          <NavigationProperty Name="Barcodes" Relationship="MediStock_DBModel.FK_Barcode_Inventory" FromRole="Inventory" ToRole="Barcode" />
-          <NavigationProperty Name="Call_ItemsUsed" Relationship="MediStock_DBModel.FK_Call_ItemsUsed_Inventory" FromRole="Inventory" ToRole="Call_ItemsUsed" />
-          <NavigationProperty Name="InventoryCategory" Relationship="MediStock_DBModel.FK_Inventory_InventoryCategory" FromRole="Inventory" ToRole="InventoryCategory" />
-          <NavigationProperty Name="OrderLines" Relationship="MediStock_DBModel.FK_OrderLine_Inventory" FromRole="Inventory" ToRole="OrderLine" />
-          <NavigationProperty Name="PriceHistories" Relationship="MediStock_DBModel.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
-          <NavigationProperty Name="StockTakeTotals" Relationship="MediStock_DBModel.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
-          <NavigationProperty Name="VehicleInventories" Relationship="MediStock_DBModel.FK_VehicleInventory_Inventory" FromRole="Inventory" ToRole="VehicleInventory" />
-          <NavigationProperty Name="Written_OffInventory" Relationship="MediStock_DBModel.FK_Written_OffInventory_Inventory" FromRole="Inventory" ToRole="Written_OffInventory" />
         </EntityType>
         <EntityType Name="InventoryCategory">
           <Key>
@@ -1550,15 +1542,6 @@
           <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="InventoryCategory" ToRole="Inventory" />
-        </EntityType>
-        <EntityType Name="InventoryType">
-          <Key>
-            <PropertyRef Name="InventoryType_ID" />
-          </Key>
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
-          <Property Name="InventoryType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryType" FromRole="InventoryType" ToRole="Inventory" />
-          <NavigationProperty Name="InventoryCategories" Relationship="Self.FK_InventoryCategory_InventoryType" FromRole="InventoryType" ToRole="InventoryCategory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1777,18 +1760,10 @@
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" />
           <Property Name="VehicleType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Checklist" Relationship="MediStock_DBModel.FK_VehicleType_Checklist" FromRole="VehicleType" ToRole="Checklist" />
-          <NavigationProperty Name="Vehicles" Relationship="MediStock_DBModel.FK_Vehicle_VehicleType" FromRole="VehicleType" ToRole="Vehicle" />
+          <NavigationProperty Name="Checklist" Relationship="Self.FK_VehicleType_Checklist" FromRole="VehicleType" ToRole="Checklist" />
+          <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_VehicleType" FromRole="VehicleType" ToRole="Vehicle" />
         </EntityType>
         <EntityType Name="Write_OffReason">
-          <Key>
-            <PropertyRef Name="Write_OffReason_ID" />
-          </Key>
-          <Property Name="Write_OffReason_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Write_OffReason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Written_OffInventory" Relationship="MediStock_DBModel.FK_Written_OffInventory_Write_OffReason" FromRole="Write_OffReason" ToRole="Written_OffInventory" />
-        </EntityType>
-        <EntityType Name="Written_OffInventory">
           <Key>
             <PropertyRef Name="Write_OffReason_ID" />
           </Key>
