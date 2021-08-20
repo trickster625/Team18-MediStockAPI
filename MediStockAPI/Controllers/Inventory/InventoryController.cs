@@ -9,12 +9,11 @@ using System.Web.Http.Cors;
 
 namespace MediStockAPI.Controllers.Inventory
 {
-
+    /*
     public class InventoryController : ApiController
     {
         MediStock_DBEntities db = new MediStock_DBEntities();
 
-        [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
         [HttpGet]
         [Route("getInventoryItems")]
         public IHttpActionResult getInventoryItems()
@@ -61,7 +60,7 @@ namespace MediStockAPI.Controllers.Inventory
                     
                     item.Barcode_ID = idArray;
                     item.BarcodeNumber = numberArray;
-                    */
+                    
                     outputItems.Add(item);
                 }
 
@@ -207,5 +206,5 @@ namespace MediStockAPI.Controllers.Inventory
             }
         }
 
-    }
+    } */
 }

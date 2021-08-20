@@ -237,9 +237,6 @@
     <Compile Include="Models\InventoryCategory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InventoryType.cs">
-      <DependentUpon>MediStockDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Inventory\InventoryFullVM.cs" />
     <Compile Include="Models\Inventory\InventoryVM.cs" />
     <Compile Include="Models\ItemsChecklist.cs">

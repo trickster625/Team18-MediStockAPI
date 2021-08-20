@@ -8,7 +8,8 @@ using System.Web.Http.Cors;
 using MediStockAPI.Models;
 
 namespace MediStockAPI.Controllers
-{
+{   
+    /*
     public class InventoryTypeController : ApiController
     {
 
@@ -40,5 +41,5 @@ namespace MediStockAPI.Controllers
             }
         }
 
-    }
+    } */
 }
