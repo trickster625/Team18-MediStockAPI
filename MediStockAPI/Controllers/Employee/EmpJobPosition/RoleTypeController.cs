@@ -4,31 +4,28 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using MediStockAPI.Models;
 
 namespace MediStockAPI.Controllers
 {
-    public class InventoryTypeController : ApiController
+    public class RoleTypeController : ApiController
     {
-
         MediStock_DBEntities db = new MediStock_DBEntities();
 
-        [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
         [HttpGet]
-        [Route("getInventoryTypes")]
-        public IHttpActionResult getInventoryTypes()
+        [Route("getRoleTypes")]
+        public IHttpActionResult getRoleTypes()
         {
             try
             {
-                List<InventoryType> outputTypes = new List<InventoryType>();
-                var storedTypes = db.InventoryTypes.ToList();
+                List<RoleType> outputTypes = new List<RoleType>();
+                var storedTypes = db.RoleTypes.ToList();
 
                 foreach (var storedType in storedTypes)
                 {
-                    InventoryType type = new InventoryType();
-                    type.InventoryType_ID = storedType.InventoryType_ID;
-                    type.InventoryType_Description = storedType.InventoryType_Description;
+                    RoleType type = new RoleType();
+                    type.RoleType_ID = storedType.RoleType_ID;
+                    type.RoleType_Description = storedType.RoleType_Description;
                     outputTypes.Add(type);
                 }
 
@@ -36,9 +33,9 @@ namespace MediStockAPI.Controllers
             }
             catch (Exception)
             {
+
                 return BadRequest();
             }
         }
-
     }
 }
