@@ -17,13 +17,13 @@ namespace MediStockAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Write_OffReason()
         {
-            this.Written_OffInventory = new HashSet<Written_OffInventory>();
+            this.Write_OffInventory = new HashSet<Write_OffInventory>();
         }
     
         public int Write_OffReason_ID { get; set; }
         public string Write_OffReason_Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Written_OffInventory> Written_OffInventory { get; set; }
+        public virtual ICollection<Write_OffInventory> Write_OffInventory { get; set; }
     }
 }

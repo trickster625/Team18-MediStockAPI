@@ -20,8 +20,8 @@ namespace MediStockAPI.Models
             this.ItemsChecklists = new HashSet<ItemsChecklist>();
         }
     
-        public int ChecklistItem_ID { get; set; }
         public int ChecklistItemType_ID { get; set; }
+        public int ChecklistItem_ID { get; set; }
         public string ChecklistItem_Description { get; set; }
         public Nullable<bool> ChecklistItem_ComplianceValue { get; set; }
     

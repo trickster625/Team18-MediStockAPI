@@ -12,27 +12,21 @@ namespace MediStockAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Call
+    public partial class InventoryType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Call()
+        public InventoryType()
         {
-            this.Call_ItemsUsed = new HashSet<Call_ItemsUsed>();
-            this.VehicleCalls = new HashSet<VehicleCall>();
+            this.Inventories = new HashSet<Inventory>();
+            this.InventoryCategories = new HashSet<InventoryCategory>();
         }
     
-        public int Call_ID { get; set; }
-        public int CallStatus_ID { get; set; }
-        public int Reason_ID { get; set; }
-        public Nullable<System.DateTime> Call_Date { get; set; }
-        public Nullable<System.TimeSpan> Call_StartTime { get; set; }
-        public Nullable<System.TimeSpan> Call_EndTime { get; set; }
+        public int InventoryType_ID { get; set; }
+        public string InventoryType_Description { get; set; }
     
-        public virtual CallCancelReason CallCancelReason { get; set; }
-        public virtual CallStatu CallStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Call_ItemsUsed> Call_ItemsUsed { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VehicleCall> VehicleCalls { get; set; }
+        public virtual ICollection<InventoryCategory> InventoryCategories { get; set; }
     }
 }

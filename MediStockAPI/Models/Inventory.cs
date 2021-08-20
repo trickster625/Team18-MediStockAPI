@@ -23,11 +23,11 @@ namespace MediStockAPI.Models
             this.PriceHistories = new HashSet<PriceHistory>();
             this.StockTakeTotals = new HashSet<StockTakeTotal>();
             this.VehicleInventories = new HashSet<VehicleInventory>();
-            this.Written_OffInventory = new HashSet<Written_OffInventory>();
+            this.Write_OffInventory = new HashSet<Write_OffInventory>();
         }
     
         public int Inventory_ID { get; set; }
-        public int InventoryCategory_ID { get; set; }
+        public int InventoryType_ID { get; set; }
         public string Inventory_Name { get; set; }
         public Nullable<decimal> Inventory_LatestPrice { get; set; }
         public Nullable<int> Inventory_BaseCampQty { get; set; }
@@ -38,7 +38,7 @@ namespace MediStockAPI.Models
         public virtual ICollection<Barcode> Barcodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Call_ItemsUsed> Call_ItemsUsed { get; set; }
-        public virtual InventoryCategory InventoryCategory { get; set; }
+        public virtual InventoryType InventoryType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -48,6 +48,6 @@ namespace MediStockAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehicleInventory> VehicleInventories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Written_OffInventory> Written_OffInventory { get; set; }
+        public virtual ICollection<Write_OffInventory> Write_OffInventory { get; set; }
     }
 }

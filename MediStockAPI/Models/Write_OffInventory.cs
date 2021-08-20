@@ -12,7 +12,7 @@ namespace MediStockAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Written_OffInventory
+    public partial class Write_OffInventory
     {
         public int Write_Off_ID { get; set; }
         public int Inventory_ID { get; set; }
