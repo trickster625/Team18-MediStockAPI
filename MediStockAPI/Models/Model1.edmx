@@ -66,7 +66,7 @@
             <PropertyRef Name="Checklist_ID" />
           </Key>
           <Property Name="Checklist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Checklist_Name" Type="varbinary" MaxLength="50" />
+          <Property Name="Checklist_Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ChecklistItem">
           <Key>
@@ -150,7 +150,7 @@
           <Property Name="Candidate_ID" Type="int" Nullable="false" />
           <Property Name="InterviewType_ID" Type="int" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="SheduleDate&amp;Time" Type="datetime" />
+          <Property Name="SheduleDateTime" Type="datetime" />
           <Property Name="InterviewMethod" Type="varchar" MaxLength="25" />
           <Property Name="Address" Type="varchar" MaxLength="25" />
         </EntityType>
@@ -166,7 +166,7 @@
             <PropertyRef Name="Inventory_ID" />
           </Key>
           <Property Name="Inventory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InventoryType_ID" Type="int" Nullable="false" />
+          <Property Name="InventoryCategory_ID" Type="int" Nullable="false" />
           <Property Name="Inventory_Name" Type="varchar" MaxLength="50" />
           <Property Name="Inventory_LatestPrice" Type="money" />
           <Property Name="Inventory_BaseCampQty" Type="int" />
@@ -178,15 +178,7 @@
             <PropertyRef Name="InventoryCategory_ID" />
           </Key>
           <Property Name="InventoryCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InventoryType_ID" Type="int" Nullable="false" />
           <Property Name="InventoryCategory_Description" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="InventoryType">
-          <Key>
-            <PropertyRef Name="InventoryType_ID" />
-          </Key>
-          <Property Name="InventoryType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InventoryType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -288,7 +280,7 @@
           </Key>
           <Property Name="StockTake_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="StockTake_Date&amp;Time" Type="datetime" />
+          <Property Name="StockTake_DateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="StockTakeTotal">
           <Key>
@@ -368,7 +360,7 @@
           </Key>
           <Property Name="VehicleType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Checklist_ID" Type="int" Nullable="false" />
-          <Property Name="VehicleType_Description" Type="varbinary" MaxLength="50" />
+          <Property Name="VehicleType_Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Write-OffReason">
           <Key>
@@ -594,27 +586,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inventory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
+        <Association Name="FK_Inventory_InventoryCategory">
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
+            <Principal Role="InventoryCategory">
+              <PropertyRef Name="InventoryCategory_ID" />
             </Principal>
             <Dependent Role="Inventory">
-              <PropertyRef Name="InventoryType_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InventoryCategory_InterviewType">
-          <End Role="InterviewType" Type="Self.InterviewType" Multiplicity="1" />
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InterviewType">
-              <PropertyRef Name="InterviewType_ID" />
-            </Principal>
-            <Dependent Role="InventoryCategory">
-              <PropertyRef Name="InventoryType_ID" />
+              <PropertyRef Name="InventoryCategory_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -930,6 +910,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MediStock_DBModelStoreContainer">
           <EntitySet Name="Barcode" EntityType="Self.Barcode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Call" EntityType="Self.Call" Schema="dbo" store:Type="Tables" />
@@ -950,7 +961,6 @@
           <EntitySet Name="InterviewType" EntityType="Self.InterviewType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryCategory" EntityType="Self.InventoryCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InventoryType" EntityType="Self.InventoryType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemsChecklist" EntityType="Self.ItemsChecklist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobApplication" EntityType="Self.JobApplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobPosition" EntityType="Self.JobPosition" Schema="dbo" store:Type="Tables" />
@@ -1041,13 +1051,9 @@
             <End Role="InterviewType" EntitySet="InterviewType" />
             <End Role="Interview" EntitySet="Interview" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inventory_InventoryType" Association="Self.FK_Inventory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryType" />
-            <End Role="Inventory" EntitySet="Inventory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InterviewType" Association="Self.FK_InventoryCategory_InterviewType">
-            <End Role="InterviewType" EntitySet="InterviewType" />
+          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
             <End Role="InventoryCategory" EntitySet="InventoryCategory" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_ItemsChecklist_Checklist" Association="Self.FK_ItemsChecklist_Checklist">
             <End Role="Checklist" EntitySet="Checklist" />
@@ -1231,7 +1237,7 @@
             <PropertyRef Name="Checklist_ID" />
           </Key>
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Checklist_Name" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="Checklist_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ItemsChecklists" Relationship="Self.FK_ItemsChecklist_Checklist" FromRole="Checklist" ToRole="ItemsChecklist" />
           <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_Checklist" FromRole="Checklist" ToRole="VehicleType" />
         </EntityType>
@@ -1317,7 +1323,7 @@
           <Property Name="Candidate_ID" Type="Int32" Nullable="false" />
           <Property Name="InterviewType_ID" Type="Int32" Nullable="false" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="SheduleDate_Time" Type="DateTime" Precision="3" />
+          <Property Name="SheduleDateTime" Type="DateTime" Precision="3" />
           <Property Name="InterviewMethod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Candidate" Relationship="Self.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
@@ -1331,14 +1337,13 @@
           <Property Name="InterviewType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InterviewType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Interviews" Relationship="Self.FK_Interview_InterviewType" FromRole="InterviewType" ToRole="Interview" />
-          <NavigationProperty Name="InventoryCategories" Relationship="Self.FK_InventoryCategory_InterviewType" FromRole="InterviewType" ToRole="InventoryCategory" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="Inventory_ID" />
           </Key>
           <Property Name="Inventory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" />
           <Property Name="Inventory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Inventory_LatestPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Inventory_BaseCampQty" Type="Int32" />
@@ -1346,7 +1351,7 @@
           <Property Name="Inventory_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Barcodes" Relationship="Self.FK_Barcode_Inventory" FromRole="Inventory" ToRole="Barcode" />
           <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Inventory" FromRole="Inventory" ToRole="Call_ItemsUsed" />
-          <NavigationProperty Name="InventoryType" Relationship="Self.FK_Inventory_InventoryType" FromRole="Inventory" ToRole="InventoryType" />
+          <NavigationProperty Name="InventoryCategory" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="Inventory" ToRole="InventoryCategory" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLine_Inventory" FromRole="Inventory" ToRole="OrderLine" />
           <NavigationProperty Name="PriceHistories" Relationship="Self.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
@@ -1358,17 +1363,8 @@
             <PropertyRef Name="InventoryCategory_ID" />
           </Key>
           <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="InterviewType" Relationship="Self.FK_InventoryCategory_InterviewType" FromRole="InventoryCategory" ToRole="InterviewType" />
-        </EntityType>
-        <EntityType Name="InventoryType">
-          <Key>
-            <PropertyRef Name="InventoryType_ID" />
-          </Key>
-          <Property Name="InventoryType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InventoryType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryType" FromRole="InventoryType" ToRole="Inventory" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="InventoryCategory" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1489,7 +1485,7 @@
           </Key>
           <Property Name="StockTake_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="StockTake_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="StockTake_DateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_StockTake_Employee" FromRole="StockTake" ToRole="Employee" />
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_StockTake" FromRole="StockTake" ToRole="StockTakeTotal" />
         </EntityType>
@@ -1586,7 +1582,7 @@
           </Key>
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" />
-          <Property Name="VehicleType_Description" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="VehicleType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Checklist" Relationship="Self.FK_VehicleType_Checklist" FromRole="VehicleType" ToRole="Checklist" />
           <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_VehicleType" FromRole="VehicleType" ToRole="Vehicle" />
         </EntityType>
@@ -1890,27 +1886,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InventoryCategory_InterviewType">
-          <End Role="InterviewType" Type="Self.InterviewType" Multiplicity="1" />
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InterviewType">
-              <PropertyRef Name="InterviewType_ID" />
-            </Principal>
-            <Dependent Role="InventoryCategory">
-              <PropertyRef Name="InventoryType_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inventory_InventoryType">
-          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="1" />
+        <Association Name="FK_Inventory_InventoryCategory">
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InventoryType">
-              <PropertyRef Name="InventoryType_ID" />
+            <Principal Role="InventoryCategory">
+              <PropertyRef Name="InventoryCategory_ID" />
             </Principal>
             <Dependent Role="Inventory">
-              <PropertyRef Name="InventoryType_ID" />
+              <PropertyRef Name="InventoryCategory_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2114,7 +2098,7 @@
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <End Role="RoleType" Type="Self.RoleType" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MediStock_DBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MediStock_DBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Barcodes" EntityType="Self.Barcode" />
           <EntitySet Name="Calls" EntityType="Self.Call" />
           <EntitySet Name="Call_ItemsUsed" EntityType="Self.Call_ItemsUsed" />
@@ -2132,7 +2116,6 @@
           <EntitySet Name="InterviewTypes" EntityType="Self.InterviewType" />
           <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <EntitySet Name="InventoryCategories" EntityType="Self.InventoryCategory" />
-          <EntitySet Name="InventoryTypes" EntityType="Self.InventoryType" />
           <EntitySet Name="ItemsChecklists" EntityType="Self.ItemsChecklist" />
           <EntitySet Name="JobApplications" EntityType="Self.JobApplication" />
           <EntitySet Name="JobPositions" EntityType="Self.JobPosition" />
@@ -2247,12 +2230,8 @@
             <End Role="InterviewType" EntitySet="InterviewTypes" />
             <End Role="Interview" EntitySet="Interviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_InventoryCategory_InterviewType" Association="Self.FK_InventoryCategory_InterviewType">
-            <End Role="InterviewType" EntitySet="InterviewTypes" />
+          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
             <End Role="InventoryCategory" EntitySet="InventoryCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inventory_InventoryType" Association="Self.FK_Inventory_InventoryType">
-            <End Role="InventoryType" EntitySet="InventoryTypes" />
             <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderLine_Inventory" Association="Self.FK_OrderLine_Inventory">
@@ -2327,13 +2306,43 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="RoleType" EntitySet="RoleTypes" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MediStock_DBModelStoreContainer" CdmEntityContainer="MediStock_DBEntities">
+        <EntityContainerMapping StorageEntityContainer="MediStock_DBModelStoreContainer" CdmEntityContainer="MediStock_DBEntities1">
           <EntitySetMapping Name="Barcodes">
             <EntityTypeMapping TypeName="MediStock_DBModel.Barcode">
               <MappingFragment StoreEntitySet="Barcode">
@@ -2473,7 +2482,7 @@
                 <ScalarProperty Name="Candidate_ID" ColumnName="Candidate_ID" />
                 <ScalarProperty Name="InterviewType_ID" ColumnName="InterviewType_ID" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="SheduleDate_Time" ColumnName="SheduleDate&amp;Time" />
+                <ScalarProperty Name="SheduleDateTime" ColumnName="SheduleDateTime" />
                 <ScalarProperty Name="InterviewMethod" ColumnName="InterviewMethod" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
@@ -2491,7 +2500,7 @@
             <EntityTypeMapping TypeName="MediStock_DBModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
                 <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
-                <ScalarProperty Name="InventoryType_ID" ColumnName="InventoryType_ID" />
+                <ScalarProperty Name="InventoryCategory_ID" ColumnName="InventoryCategory_ID" />
                 <ScalarProperty Name="Inventory_Name" ColumnName="Inventory_Name" />
                 <ScalarProperty Name="Inventory_LatestPrice" ColumnName="Inventory_LatestPrice" />
                 <ScalarProperty Name="Inventory_BaseCampQty" ColumnName="Inventory_BaseCampQty" />
@@ -2504,16 +2513,7 @@
             <EntityTypeMapping TypeName="MediStock_DBModel.InventoryCategory">
               <MappingFragment StoreEntitySet="InventoryCategory">
                 <ScalarProperty Name="InventoryCategory_ID" ColumnName="InventoryCategory_ID" />
-                <ScalarProperty Name="InventoryType_ID" ColumnName="InventoryType_ID" />
                 <ScalarProperty Name="InventoryCategory_Description" ColumnName="InventoryCategory_Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InventoryTypes">
-            <EntityTypeMapping TypeName="MediStock_DBModel.InventoryType">
-              <MappingFragment StoreEntitySet="InventoryType">
-                <ScalarProperty Name="InventoryType_ID" ColumnName="InventoryType_ID" />
-                <ScalarProperty Name="InventoryType_Description" ColumnName="InventoryType_Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2624,7 +2624,7 @@
               <MappingFragment StoreEntitySet="StockTake">
                 <ScalarProperty Name="StockTake_ID" ColumnName="StockTake_ID" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="StockTake_Date_Time" ColumnName="StockTake_Date&amp;Time" />
+                <ScalarProperty Name="StockTake_DateTime" ColumnName="StockTake_DateTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2748,6 +2748,13 @@
               <ScalarProperty Name="RoleType_ID" ColumnName="RoleType_ID" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MediStock_DBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MediStock_DBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MediStock_DBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MediStock_DBModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MediStock_DBModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MediStock_DBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MediStock_DBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

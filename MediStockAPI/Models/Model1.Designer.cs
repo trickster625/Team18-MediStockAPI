@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\MediStock\API\MediStockAPI\MediStockAPI\Models\MediStockDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\EliteBook\Desktop\Tuks\2021\370\DEL 5-7\MediStock\API\MediStockAPI\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
