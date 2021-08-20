@@ -67,6 +67,7 @@ namespace MediStockAPI.Controllers.Inventory
                     outputItems.Add(item);
                 }
 
+                outputItems = outputItems.OrderBy(z => z.Inventory_Name).ToList();
                 return Ok(outputItems);
             }
             catch (Exception)

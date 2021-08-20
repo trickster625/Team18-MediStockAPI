@@ -35,6 +35,7 @@ namespace MediStockAPI.Controllers.Supplier
                     outputSuppliers.Add(newSupplier);
                 }
 
+                outputSuppliers = outputSuppliers.OrderBy(z => z.Supplier_Name).ToList();
                 return Ok(outputSuppliers);
             }
             catch (Exception)

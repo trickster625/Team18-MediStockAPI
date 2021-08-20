@@ -66,7 +66,7 @@
             <PropertyRef Name="Checklist_ID" />
           </Key>
           <Property Name="Checklist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Checklist_Name" Type="varbinary" MaxLength="50" />
+          <Property Name="Checklist_Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ChecklistItem">
           <Key>
@@ -766,7 +766,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vehicle_VehicleType1">
+        <Association Name="FK_Vehicle_VehicleType">
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -862,7 +862,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VehicleType_Checklist1">
+        <Association Name="FK_VehicleType_Checklist">
           <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1080,7 +1080,7 @@
             <End Role="StockTake" EntitySet="StockTake" />
             <End Role="StockTakeTotal" EntitySet="StockTakeTotal" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vehicle_VehicleType1" Association="Self.FK_Vehicle_VehicleType1">
+          <AssociationSet Name="FK_Vehicle_VehicleType" Association="Self.FK_Vehicle_VehicleType">
             <End Role="VehicleType" EntitySet="VehicleType" />
             <End Role="Vehicle" EntitySet="Vehicle" />
           </AssociationSet>
@@ -1112,7 +1112,7 @@
             <End Role="Vehicle" EntitySet="Vehicle" />
             <End Role="VehicleInventory" EntitySet="VehicleInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_VehicleType_Checklist1" Association="Self.FK_VehicleType_Checklist1">
+          <AssociationSet Name="FK_VehicleType_Checklist" Association="Self.FK_VehicleType_Checklist">
             <End Role="Checklist" EntitySet="Checklist" />
             <End Role="VehicleType" EntitySet="VehicleType" />
           </AssociationSet>
@@ -1206,9 +1206,9 @@
             <PropertyRef Name="Checklist_ID" />
           </Key>
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Checklist_Name" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="Checklist_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ItemsChecklists" Relationship="Self.FK_ItemsChecklist_Checklist" FromRole="Checklist" ToRole="ItemsChecklist" />
-          <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_Checklist1" FromRole="Checklist" ToRole="VehicleType" />
+          <NavigationProperty Name="VehicleTypes" Relationship="Self.FK_VehicleType_Checklist" FromRole="Checklist" ToRole="VehicleType" />
         </EntityType>
         <EntityType Name="ChecklistItem">
           <Key>
@@ -1497,7 +1497,7 @@
           <Property Name="Vehicle_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" />
           <Property Name="Vehicle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="VehicleType" Relationship="Self.FK_Vehicle_VehicleType1" FromRole="Vehicle" ToRole="VehicleType" />
+          <NavigationProperty Name="VehicleType" Relationship="Self.FK_Vehicle_VehicleType" FromRole="Vehicle" ToRole="VehicleType" />
           <NavigationProperty Name="VehicleCalls" Relationship="Self.FK_VehicleCall_Vehicle" FromRole="Vehicle" ToRole="VehicleCall" />
           <NavigationProperty Name="VehicleInspections" Relationship="Self.FK_VehicleInspection_Vehicle" FromRole="Vehicle" ToRole="VehicleInspection" />
           <NavigationProperty Name="VehicleInventories" Relationship="Self.FK_VehicleInventory_Vehicle" FromRole="Vehicle" ToRole="VehicleInventory" />
@@ -1552,8 +1552,8 @@
           <Property Name="VehicleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Checklist_ID" Type="Int32" Nullable="false" />
           <Property Name="VehicleType_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Checklist" Relationship="Self.FK_VehicleType_Checklist1" FromRole="VehicleType" ToRole="Checklist" />
-          <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_VehicleType1" FromRole="VehicleType" ToRole="Vehicle" />
+          <NavigationProperty Name="Checklist" Relationship="Self.FK_VehicleType_Checklist" FromRole="VehicleType" ToRole="Checklist" />
+          <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_VehicleType" FromRole="VehicleType" ToRole="Vehicle" />
         </EntityType>
         <EntityType Name="Write_OffReason">
           <Key>
@@ -1685,7 +1685,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VehicleType_Checklist1">
+        <Association Name="FK_VehicleType_Checklist">
           <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1999,7 +1999,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vehicle_VehicleType1">
+        <Association Name="FK_Vehicle_VehicleType">
           <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2143,7 +2143,7 @@
             <End Role="Checklist" EntitySet="Checklists" />
             <End Role="ItemsChecklist" EntitySet="ItemsChecklists" />
           </AssociationSet>
-          <AssociationSet Name="FK_VehicleType_Checklist1" Association="Self.FK_VehicleType_Checklist1">
+          <AssociationSet Name="FK_VehicleType_Checklist" Association="Self.FK_VehicleType_Checklist">
             <End Role="Checklist" EntitySet="Checklists" />
             <End Role="VehicleType" EntitySet="VehicleTypes" />
           </AssociationSet>
@@ -2247,7 +2247,7 @@
             <End Role="StockTake" EntitySet="StockTakes" />
             <End Role="StockTakeTotal" EntitySet="StockTakeTotals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vehicle_VehicleType1" Association="Self.FK_Vehicle_VehicleType1">
+          <AssociationSet Name="FK_Vehicle_VehicleType" Association="Self.FK_Vehicle_VehicleType">
             <End Role="VehicleType" EntitySet="VehicleTypes" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>

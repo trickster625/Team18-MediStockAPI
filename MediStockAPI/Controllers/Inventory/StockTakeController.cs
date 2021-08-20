@@ -13,37 +13,41 @@ namespace MediStockAPI.Controllers.Inventory
 
         MediStock_DBEntities db = new MediStock_DBEntities();
 
-        [HttpPost]
-        [Route("createStockTake")]
-        public IHttpActionResult createStockTake(FullStockTakeVM[] newStocktake) 
+        [HttpGet]
+        [Route("getStockTakes")]
+        public IHttpActionResult getStockTakes()
         {
             try
             {
+                List<StockTake> outputStockTakes = new List<StockTake>();
+                var storedStockTakes = db.StockTakes.ToList();
 
-                StockTake newStockTakeItem = new StockTake();
-
-                newStockTakeItem.Employee_ID = newStocktake[1].Employee_ID;
-                newStockTakeItem.StockTake_DateTime = newStocktake[1].StockTake_DateTime;
-
-                db.StockTakes.Add(newStockTakeItem);
-
-                db.SaveChangesAsync();
-
-                StockTake latestStockTake = new StockTake();
-
-                latestStockTake = db.StockTakes.LastOrDefault();
-
-                for (int i = 0; i < newStocktake.Length; i++)
+                foreach (var storedStockTake in storedStockTakes)
                 {
-                    StockTakeTotal newStockTakeTotal = new StockTakeTotal();
+                    StockTake stockTake = new StockTake();
 
-                    newStockTakeTotal.Inventory_ID = newStocktake[i].Inventory_ID;
-                    newStockTakeTotal.StockTake_ID = latestStockTake.StockTake_ID;
-                    newStockTakeTotal.StockTakeTotal_Qty = newStocktake[i].StockTakeTotal_Qty;
+                    stockTake.Employee_ID = storedStockTake.Employee_ID;
+                    stockTake.StockTake_DateTime = storedStockTake.StockTake_DateTime;
 
-                    db.StockTakeTotals.Add(newStockTakeTotal);
+                    outputStockTakes.Add(stockTake);
                 }
 
+                outputStockTakes = outputStockTakes.OrderBy(z => z.StockTake_DateTime).ToList();
+                return Ok(outputStockTakes);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("createStockTake")]
+        public IHttpActionResult createStockTake(StockTake newStocktake) 
+        {
+            try
+            {
+                db.StockTakes.Add(newStocktake);
                 db.SaveChangesAsync();
                 return Ok("Stocktake Added!");
             }

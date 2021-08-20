@@ -29,6 +29,7 @@ namespace MediStockAPI.Controllers
                     outputReasons.Add(reason);
                 }
 
+                outputReasons = outputReasons.OrderBy(z => z.Write_OffReason_Description).ToList();
                 return Ok(outputReasons);
             }
             catch (Exception)
