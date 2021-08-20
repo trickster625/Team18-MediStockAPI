@@ -16,7 +16,7 @@ namespace MediStockAPI.Models
     {
         public int Order_ID { get; set; }
         public int Inventory_ID { get; set; }
-        public int OrderLine_Quantity { get; set; }
+        public Nullable<int> OrderLine_Quantity { get; set; }
     
         public virtual Inventory Inventory { get; set; }
         public virtual Order Order { get; set; }

@@ -42,7 +42,6 @@ namespace MediStockAPI.Models
         public virtual DbSet<InterviewType> InterviewTypes { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<InventoryCategory> InventoryCategories { get; set; }
-        public virtual DbSet<InventoryType> InventoryTypes { get; set; }
         public virtual DbSet<ItemsChecklist> ItemsChecklists { get; set; }
         public virtual DbSet<JobApplication> JobApplications { get; set; }
         public virtual DbSet<JobPosition> JobPositions { get; set; }
@@ -63,7 +62,7 @@ namespace MediStockAPI.Models
         public virtual DbSet<VehicleInspection> VehicleInspections { get; set; }
         public virtual DbSet<VehicleInventory> VehicleInventories { get; set; }
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
-        public virtual DbSet<Write_OffInventory> Write_OffInventory { get; set; }
         public virtual DbSet<Write_OffReason> Write_OffReason { get; set; }
+        public virtual DbSet<Written_OffInventory> Written_OffInventory { get; set; }
     }
 }

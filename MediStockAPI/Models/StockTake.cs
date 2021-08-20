@@ -22,7 +22,7 @@ namespace MediStockAPI.Models
     
         public int StockTake_ID { get; set; }
         public int Employee_ID { get; set; }
-        public Nullable<System.DateTime> StockTake_Date_Time { get; set; }
+        public Nullable<System.DateTime> StockTake_DateTime { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
