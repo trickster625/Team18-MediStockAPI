@@ -19,12 +19,12 @@ namespace MediStockAPI.Controllers.Employee
             try
             {
                 List<Employee> outputItems = new List<Employee>();
-                
+
                 var storedItems = db.Employees.ToList();
-                
+
                 foreach (var storedItem in storedItems)
                 {
-                    Employee item = new Employee();           
+                    Employee item = new Employee();
 
                     item.Employee_ID = storedItem.Employee_ID;
                     item.EmployeeTitle_ID = storedItem.EmployeeTitle_ID;
@@ -112,6 +112,5 @@ namespace MediStockAPI.Controllers.Employee
                 return BadRequest();
             }
         }
-
     }
 }

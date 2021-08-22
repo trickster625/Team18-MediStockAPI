@@ -6,11 +6,11 @@ using System.Net.Http;
 using System.Web.Http;
 using MediStockAPI.Models;
 
+
 namespace MediStockAPI.Controllers.Candidate
 {
     public class CandidateController : ApiController
     {
-
         MediStock_DBEntities db = new MediStock_DBEntities();
 
         [HttpGet]
@@ -33,7 +33,7 @@ namespace MediStockAPI.Controllers.Candidate
                     item.Candidate_Email = storedItem.Candidate_Email;
                     item.Candidate_ContactNumber = storedItem.Candidate_ContactNumber;
                     item.Candidate_CVFile = storedItem.Candidate_CVFile;
-                    
+
                     outputItems.Add(item);
                 }
 
@@ -107,6 +107,5 @@ namespace MediStockAPI.Controllers.Candidate
                 return BadRequest();
             }
         }
-
     }
 }
