@@ -174,17 +174,11 @@
     <Compile Include="Controllers\Candidate\CandidateController.cs" />
     <Compile Include="Controllers\Employee\RegisterEmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Inventory\BarcodeController.cs" />
-    <Compile Include="Controllers\Inventory\InventoryController.cs" />
-    <Compile Include="Controllers\Inventory\InventoryTypeController.cs" />
-    <Compile Include="Controllers\Inventory\WriteOffReasonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Candidate\Candidate.cs" />
     <Compile Include="Models\Employee\Employee.cs" />
-    <Compile Include="Models\Inventory\InventoryFullVM.cs" />
-    <Compile Include="Models\Inventory\InventoryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

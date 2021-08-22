@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f0eb7f1a0a1401c84a079ce33d53f7f" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="MediStock_DBModel.Barcode" Width="1.5" PointX="8.25" PointY="28.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Call" Width="1.5" PointX="3" PointY="16.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Call_ItemsUsed" Width="1.5" PointX="8.25" PointY="23.875" />
+        <EntityTypeShape EntityType="MediStock_DBModel.CallCancelReason" Width="1.5" PointX="0.75" PointY="16.5" />
+        <EntityTypeShape EntityType="MediStock_DBModel.CallStatu" Width="1.5" PointX="0.75" PointY="18.875" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Candidate" Width="1.5" PointX="7.5" PointY="3.625" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Checklist" Width="1.5" PointX="1.5" PointY="2.625" />
+        <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItem" Width="1.5" PointX="1.5" PointY="21.5" />
+        <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItemType" Width="1.5" PointX="1.5" PointY="24.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Employee" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="MediStock_DBModel.EmployeeTitle" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InspectionChecklist" Width="1.5" PointX="12.5" PointY="3.25" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InspectionType" Width="1.5" PointX="8" PointY="0.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Interview" Width="1.5" PointX="10.25" PointY="15.375" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InterviewType" Width="1.5" PointX="8" PointY="20.125" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Inventory" Width="1.5" PointX="6" PointY="29.125" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InventoryCategory" Width="1.5" PointX="3.75" PointY="30.25" />
+        <EntityTypeShape EntityType="MediStock_DBModel.ItemsChecklist" Width="1.5" PointX="3.75" PointY="2.5" />
+        <EntityTypeShape EntityType="MediStock_DBModel.JobApplication" Width="1.5" PointX="9.75" PointY="7.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.JobPosition" Width="1.5" PointX="7.5" PointY="7.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Order" Width="1.5" PointX="13" PointY="11.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.OrderLine" Width="1.5" PointX="15.25" PointY="21.375" />
+        <EntityTypeShape EntityType="MediStock_DBModel.OrderStatu" Width="1.5" PointX="10.75" PointY="23.25" />
+        <EntityTypeShape EntityType="MediStock_DBModel.PriceHistory" Width="1.5" PointX="8.25" PointY="31.5" />
+        <EntityTypeShape EntityType="MediStock_DBModel.QualificationType" Width="1.5" PointX="5.25" PointY="26.625" />
+        <EntityTypeShape EntityType="MediStock_DBModel.RoleType" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="MediStock_DBModel.SecurityQuestion" Width="1.5" PointX="0.75" PointY="12.125" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Shift" Width="1.5" PointX="5.25" PointY="23.625" />
+        <EntityTypeShape EntityType="MediStock_DBModel.StockTake" Width="1.5" PointX="5.25" PointY="17.25" />
+        <EntityTypeShape EntityType="MediStock_DBModel.StockTakeTotal" Width="1.5" PointX="7.5" PointY="17.25" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Supplier" Width="1.5" PointX="10.75" PointY="12" />
+        <EntityTypeShape EntityType="MediStock_DBModel.sysdiagram" Width="1.5" PointX="11.75" PointY="7.5" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Vehicle" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleCall" Width="1.5" PointX="5.25" PointY="11.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleInspection" Width="1.5" PointX="10.25" PointY="2.875" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleInventory" Width="1.5" PointX="10.25" PointY="20" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleType" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Write_OffReason" Width="1.5" PointX="6" PointY="14.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Written_OffInventory" Width="1.5" PointX="8.25" PointY="11.5" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Barcode_Inventory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Call_CallCancelReason" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Call_CallStatus" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Call_ItemsUsed_Call" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleCall_Call" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Call_ItemsUsed_Inventory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Interview_Candidate" />
+        <AssociationConnector Association="MediStock_DBModel.FK_JobApplication_Candidate" />
+        <AssociationConnector Association="MediStock_DBModel.FK_ItemsChecklist_Checklist" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleType_Checklist" />
+        <AssociationConnector Association="MediStock_DBModel.FK_ChecklistItem_ChecklistItemType" />
+        <AssociationConnector Association="MediStock_DBModel.FK_ItemsChecklist_ChecklistItem" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Employee_EmployeeTitle" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Employee_SecurityQuestions" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Interview_Employee" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Shift_Employee" />
+        <AssociationConnector Association="MediStock_DBModel.FK_StockTake_Employee" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleCall_Employee" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Written_OffInventory_Employee" />
+        <AssociationConnector Association="MediStock_DBModel.FK_InspectionChecklist_ItemsChecklist" />
+        <AssociationConnector Association="MediStock_DBModel.FK_InspectionChecklist_VehicleInspection" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleInspection_InspectionType" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Interview_InterviewType" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Inventory_InventoryCategory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_OrderLine_Inventory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_PriceHistory_Inventory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_StockTakeTotal_Inventory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleInventory_Inventory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Written_OffInventory_Inventory" />
+        <AssociationConnector Association="MediStock_DBModel.FK_JobApplication_JobPosition" />
+        <AssociationConnector Association="MediStock_DBModel.FK_JobPosition_RoleType" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Order_OrderStatus" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Order_Supplier" />
+        <AssociationConnector Association="MediStock_DBModel.FK_OrderLine_Order" />
+        <AssociationConnector Association="MediStock_DBModel.FK_StockTakeTotal_StockTake" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Vehicle_VehicleType" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleCall_Vehicle" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleInspection_Vehicle" />
+        <AssociationConnector Association="MediStock_DBModel.FK_VehicleInventory_Vehicle" />
+        <AssociationConnector Association="MediStock_DBModel.FK_Written_OffInventory_Write_OffReason" />
+        <AssociationConnector Association="MediStock_DBModel.EmployeeQualification" />
+        <AssociationConnector Association="MediStock_DBModel.EmployeeRole" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
