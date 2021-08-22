@@ -4,28 +4,27 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using MediStockAPI.Models;
 
-namespace MediStockAPI.Controllers
+namespace MediStockAPI.Controllers.Employee.RegisterEmp
 {
-    public class VehicleTypeController : ApiController
+    public class RoleType : ApiController
     {
         MediStock_DBEntities db = new MediStock_DBEntities();
 
         [HttpGet]
-        [Route("getVehicleTypes")]
-        public IHttpActionResult getVehicleTypes()
+        [Route("getRoleTypes")]
+        public IHttpActionResult getRoleTypes()
         {
             try
             {
-                List<VehicleType> outputTypes = new List<VehicleType>();
-                var storedTypes = db.VehicleTypes.ToList();
+                List<RoleType> outputTypes = new List<RoleType>();
+                var storedTypes = db.RoleTypes.ToList();
 
                 foreach (var storedType in storedTypes)
                 {
-                    VehicleType type = new VehicleType();
-                    type.VehicleType_ID = storedType.VehicleType_ID;
-                    type.VehicleType_Description = storedType.VehicleType_Description;
+                    RoleType type = new RoleType();
+                    type.RoleType_ID = storedType.RoleType_ID;
+                    type.RoleType_Description = storedType.RoleType_Description;
                     outputTypes.Add(type);
                 }
 
