@@ -6,11 +6,10 @@ using System.Net.Http;
 using System.Web.Http;
 using MediStockAPI.Models;
 
-namespace MediStockAPI.Controllers.Candidate
+namespace MediStockAPI.Controllers.Employee.Candidate
 {
     public class CandidateController : ApiController
     {
-
         MediStock_DBEntities db = new MediStock_DBEntities();
 
         [HttpGet]
@@ -23,18 +22,18 @@ namespace MediStockAPI.Controllers.Candidate
 
                 var storedCandidates = db.Candidate.ToList();
 
-                foreach (var storedCandidates in storedCandidates)
+                foreach (var storedCandidate in storedCandidates)
                 {
                     Candidate candidate = new Candidate();
 
-                    candidate.Candidate_ID = storedCandidates.Candidate_ID;
-                    candidate.Candidate_Name = storedCandidates.Candidate_Name;
-                    candidate.Candidate_Surname = storedCandidates.Candidate_Surname;
-                    candidate.Candidate_Email = storedCandidates.Candidate_Email;
-                    candidate.Candidate_ContactNumber = storedCandidates.Candidate_ContactNumber;
-                    candidate.Candidate_CVFile = storedCandidates.Candidate_CVFile;
+                    candidate.Candidate_ID = storedCandidate.Candidate_ID;
+                    candidate.Candidate_Name = storedCandidate.Candidate_Name;
+                    candidate.Candidate_Surname = storedCandidate.Candidate_Surname;
+                    candidate.Candidate_Email = storedCandidate.Candidate_Email;
+                    candidate.Candidate_ContactNumber = storedCandidate.Candidate_ContactNumber;
+                    candidate.Candidate_CVFile = storedCandidate.Candidate_CVFile;
 
-                    outputCandidatesItems.Add(candidate);
+                    outputCandidates.Add(candidate);
                 }
 
                 return Ok(outputCandidates);
@@ -51,7 +50,7 @@ namespace MediStockAPI.Controllers.Candidate
         {
             try
             {
-                db.Candidates.Add(newCandidateItem);
+                db.Candidate.Add(newCandidateItem);
                 db.SaveChangesAsync();
 
                 return Ok("Candidate Added");
@@ -107,6 +106,5 @@ namespace MediStockAPI.Controllers.Candidate
                 return BadRequest();
             }
         }
-
     }
 }

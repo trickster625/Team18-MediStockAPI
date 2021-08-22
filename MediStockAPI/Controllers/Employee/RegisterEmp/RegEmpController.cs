@@ -5,11 +5,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MediStockAPI.Models;
-using System.Web.Http.Cors;
+using MediStockAPI.Models.Employee.RegEmp;
 
 namespace MediStockAPI.Controllers.Employee.RegisterEmp
 {
-    public class RegisterEmployeeController : ApiController
+    public class RegEmpController : ApiController
     {
         MediStock_DBEntities db = new MediStock_DBEntities();
 
@@ -27,7 +27,7 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
                 var storedTitle = db.EmployeeTitle.ToList();
                 var storedQuestion = db.SecurityQuestion.ToList();
 
-                foreach (var storedEmployees in storedEmployees)
+                foreach (var storedEmployee in storedEmployees)
                 {
                     RegEmployee emp = new RegEmployee();
 
@@ -41,18 +41,18 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
                     emp.Employee_EmailAddress = storedEmployees.Employee_EmailAddress;
                     emp.Employee_HashedPassword = storedEmployees.Employee_HashedPassword;
                     emp.Employee_SecuirtyQuestionAsnwer = storedEmployees.Employee_SecuirtyQuestionAsnwer;
-                    emp.Employee_SARSTaxNumber = storedEmployees.Employee_SARSTaxNumber
+                    emp.Employee_SARSTaxNumber = storedEmployees.Employee_SARSTaxNumber;
                     emp.Employee_Signature = storedEmployees.Employee_Signature;
 
                     foreach (var storedRoleType in storedRoleTypes)
                     {
-                        if (storedJob.RoleType_ID == storedRoleType.RoleType_ID)
+                        if (storedRoleType.RoleType_ID == storedRoleType.RoleType_ID)
                         {
                             emp.RoleType_Description = storedRoleType.RoleType_Description;
                         }
                     }
 
-                    foreach (var storedTitle in storedTitle)
+                    foreach (var storedTitles in storedTitle)
                     {
                         if (storedTitle.EmployeeTitle_ID == storedTitle.EmployeeTitle_ID)
                         {
@@ -60,16 +60,16 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
                         }
                     }
 
-                    foreach (var storedQuestion in storedQuestion)
+                    foreach (var storedQuestions in storedQuestion)
                     {
-                        if (storedQuesion.SecurityQuestion_ID == storedQuestion.SecurityQuestion_ID)
+                        if (storedQuestion.SecurityQuestion_ID == storedQuestion.SecurityQuestion_ID)
                         {
                             emp.SecurityQuestion_Description = storedQuestion.SecurityQuestion_Description;
                         }
                     }
 
 
-                    outputEmployees.Add(job);
+                    outputEmployees.Add(emp);
                 }
 
                 return Ok(outputEmployees);
@@ -92,29 +92,29 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
                 var employee = db.Employee.ToList();
                 var roletypes = db.RoleTypes.ToList();
                 var titles = db.EmployeeTitle.ToList();
-                var question = db.SecuirtyQuestion.ToList();
-                List<RegEmployee> JobList = new List<RegEmployee>();
+                var questions = db.SecuirtyQuestion.ToList();
+                List<RegEmployee> EmployeeList = new List<RegEmployee>();
 
-                foreach (var employee in employees)
+                foreach (var storedEmployees in employee)
                 {
 
                     if (emp.Employee_Name == searchName && emp.RoleType_ID == searchTypeID)
                     {
                         RegEmployee emp = new RegEmployee();
 
-                            emp.Employee_ID = storedEmployees.Employee_ID;
-                            emp.EmployeeTitle_ID = storedEmployees.EmployeeTitle_ID;
-                            emp.SecurityQuestion_ID = storedEmployees.SecurityQuestion_ID;
-                            emp.Employee_Name = storedEmployees.Employee_Name;
-                            emp.Employee_Surname = storedEmployees.Employee_Surname;
-                            emp.Employee_IDNumber = storedEmployees.Employee_IDNumber;
-                            emp.Employee_ContactNumber = storedEmployees.Employee_ContactNumber;
-                            emp.Employee_EmailAddress = storedEmployees.Employee_EmailAddress;
-                            emp.Employee_HashedPassword = storedEmployees.Employee_HashedPassword;
-                            emp.Employee_SecuirtyQuestionAsnwer = storedEmployees.Employee_SecuirtyQuestionAsnwer;
-                            emp.Employee_SARSTaxNumber = storedEmployees.Employee_SARSTaxNumber
-                            emp.Employee_Signature = storedEmployees.Employee_Signature;
-                    
+                        emp.Employee_ID = storedEmployees.Employee_ID;
+                        emp.EmployeeTitle_ID = storedEmployees.EmployeeTitle_ID;
+                        emp.SecurityQuestion_ID = storedEmployees.SecurityQuestion_ID;
+                        emp.Employee_Name = storedEmployees.Employee_Name;
+                        emp.Employee_Surname = storedEmployees.Employee_Surname;
+                        emp.Employee_IDNumber = storedEmployees.Employee_IDNumber;
+                        emp.Employee_ContactNumber = storedEmployees.Employee_ContactNumber;
+                        emp.Employee_EmailAddress = storedEmployees.Employee_EmailAddress;
+                        emp.Employee_HashedPassword = storedEmployees.Employee_HashedPassword;
+                        emp.Employee_SecuirtyQuestionAsnwer = storedEmployees.Employee_SecuirtyQuestionAsnwer;
+                        emp.Employee_SARSTaxNumber = storedEmployees.Employee_SARSTaxNumber;
+                        emp.Employee_Signature = storedEmployees.Employee_Signature;
+
                         foreach (var roletype in roletypes)
                         {
                             if (emp.RoleType_ID == roletype.RoleType_ID)
@@ -124,7 +124,7 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
                         }
 
 
-                        foreach (var title in employeetitle)
+                        foreach (var title in titles)
                         {
                             if (emp.EmployeeTitle_ID == title.EmployeeTitle_ID)
                             {
@@ -152,9 +152,9 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
             {
                 return BadRequest();
             }
-                    }
-                        
-   
+        }
+
+
         [HttpGet]
         [Route("getcurrentEmployee")]
         public IHttpActionResult getcurrenEmployee(int id)
@@ -181,7 +181,7 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
                         emp.Employee_EmailAddress = storedEmployees.Employee_EmailAddress;
                         emp.Employee_HashedPassword = storedEmployees.Employee_HashedPassword;
                         emp.Employee_SecuirtyQuestionAsnwer = storedEmployees.Employee_SecuirtyQuestionAsnwer;
-                        emp.Employee_SARSTaxNumber = storedEmployees.Employee_SARSTaxNumber
+                        emp.Employee_SARSTaxNumber = storedEmployees.Employee_SARSTaxNumber;
                         emp.Employee_Signature = storedEmployees.Employee_Signature;
                         return Ok(emp);
                     }
@@ -199,7 +199,7 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
 
         [HttpPost]
         [Route("createEmployee")]
-        public IHttpActionResult createEmployee(Models.RegEmployee newEmployee)
+        public IHttpActionResult createEmployee(Models.RegEmp newEmployee)
         {
             try
             {
@@ -224,18 +224,18 @@ namespace MediStockAPI.Controllers.Employee.RegisterEmp
                 Models.RegEmployee currentEmployee = new Models.RegEmployee();
                 currentEmployee = db.Employee.Where(z => z.Employee_ID == updateEmployee.Employee_ID).FirstOrDefault();
 
-                        currentEmployee.Employee_ID = updateEmployee.Employee_ID;
-                        currentEmployee.EmployeeTitle_ID = updateEmployee.EmployeeTitle_ID;
-                        currentEmployee.SecurityQuestion_ID = updateEmployee.SecurityQuestion_ID;
-                        currentEmployee.Employee_Name = updateEmployee.Employee_Name;
-                        currentEmployee.Employee_Surname = updateEmployee.Employee_Surname;
-                        currentEmployee.Employee_IDNumber = updateEmployee.Employee_IDNumber;
-                        currentEmployee.Employee_ContactNumber = updateEmployee.Employee_ContactNumber;
-                        currentEmployee.Employee_EmailAddress = updateEmployee.Employee_EmailAddress;
-                        currentEmployee.Employee_HashedPassword = updateEmployee.Employee_HashedPassword;
-                        currentEmployee.Employee_SecuirtyQuestionAsnwer = updateEmployee.Employee_SecuirtyQuestionAsnwer;
-                        currentEmployee.Employee_SARSTaxNumber = updateEmployee.Employee_SARSTaxNumber
-                        currentEmployee.Employee_Signature = updateEmployee.Employee_Signature;
+                currentEmployee.Employee_ID = updateEmployee.Employee_ID;
+                currentEmployee.EmployeeTitle_ID = updateEmployee.EmployeeTitle_ID;
+                currentEmployee.SecurityQuestion_ID = updateEmployee.SecurityQuestion_ID;
+                currentEmployee.Employee_Name = updateEmployee.Employee_Name;
+                currentEmployee.Employee_Surname = updateEmployee.Employee_Surname;
+                currentEmployee.Employee_IDNumber = updateEmployee.Employee_IDNumber;
+                currentEmployee.Employee_ContactNumber = updateEmployee.Employee_ContactNumber;
+                currentEmployee.Employee_EmailAddress = updateEmployee.Employee_EmailAddress;
+                currentEmployee.Employee_HashedPassword = updateEmployee.Employee_HashedPassword;
+                currentEmployee.Employee_SecuirtyQuestionAsnwer = updateEmployee.Employee_SecuirtyQuestionAsnwer;
+                currentEmployee.Employee_SARSTaxNumber = updateEmployee.Employee_SARSTaxNumber;
+                currentEmployee.Employee_Signature = updateEmployee.Employee_Signature;
 
                 db.SaveChangesAsync();
 

@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -136,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Candidate\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -170,7 +172,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\Employee\RegisterEmp\RegisterEmployeeController.cs" />
+    <Compile Include="Controllers\Employee\Candidate\CandidateController.cs" />
+    <Compile Include="Controllers\Employee\RegisterEmp\RegEmpController.cs" />
     <Compile Include="Controllers\Employee\RegisterEmp\RoleTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,7 +206,6 @@
     <Compile Include="Models\ChecklistItemType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Employee\Candidate\Candidate.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -230,8 +232,6 @@
     <Compile Include="Models\InventoryCategory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Inventory\InventoryFullVM.cs" />
-    <Compile Include="Models\Inventory\InventoryVM.cs" />
     <Compile Include="Models\ItemsChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
