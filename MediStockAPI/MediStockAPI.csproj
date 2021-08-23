@@ -170,11 +170,38 @@
     <Compile Include="Controllers\Call SubSystem\CancelReasonController.cs" />
     <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullCallController.cs" />
     <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullVehicleInventoryController.cs" />
-    <Compile Include="Controllers\FilterItemsController.cs" />
+    <Compile Include="Controllers\Employee\CandidateController.cs" />
+    <Compile Include="Controllers\Employee\EmployeeTitleController.cs" />
+    <Compile Include="Controllers\Employee\JobPositionController.cs" />
+    <Compile Include="Controllers\Employee\RegisterEmployeeController.cs" />
+    <Compile Include="Controllers\Employee\RoleTypeController.cs" />
+    <Compile Include="Controllers\Employee\ShiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InventoryController.cs" />
-    <Compile Include="Controllers\InventoryTypeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\Interviews\CandidateNameController.cs" />
+    <Compile Include="Controllers\Interviews\EmployeeNameController.cs" />
+    <Compile Include="Controllers\Interviews\FilterInterviewsController.cs" />
+    <Compile Include="Controllers\Interviews\GetCurrentInterviewController.cs" />
+    <Compile Include="Controllers\Interviews\InterviewController.cs" />
+    <Compile Include="Controllers\Interviews\InterviewTypeController.cs" />
+    <Compile Include="Controllers\Interviews\MedistockInventoryTestEntities.cs" />
+    <Compile Include="Controllers\Inventory\BarcodeController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryCategoryController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryController.cs" />
+    <Compile Include="Controllers\Inventory\invVehicleController.cs" />
+    <Compile Include="Controllers\Inventory\StockTakeController.cs" />
+    <Compile Include="Controllers\Inventory\StockTakeTotalController.cs" />
+    <Compile Include="Controllers\Inventory\VehicleInventoryController.cs" />
+    <Compile Include="Controllers\Inventory\WriteOffController.cs" />
+    <Compile Include="Controllers\Inventory\WriteOffReasonsController.cs" />
+    <Compile Include="Controllers\Role Types\FilterRoleTypesController.cs" />
+    <Compile Include="Controllers\Role Types\GetCurrentRoleTypeController.cs" />
+    <Compile Include="Controllers\Role Types\RoleTypesController.cs" />
+    <Compile Include="Controllers\Supplier\OrderController.cs" />
+    <Compile Include="Controllers\Supplier\OrderLinesController.cs" />
+    <Compile Include="Controllers\Supplier\OrderStatusController.cs" />
+    <Compile Include="Controllers\Supplier\SupplierController.cs" />
+    <Compile Include="Controllers\Vehicle\VehicleController.cs" />
+    <Compile Include="Controllers\Vehicle\VehicleTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +217,11 @@
     <Compile Include="Models\CallStatu.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Call\CallCancelReasonsVM.cs" />
+    <Compile Include="Models\Call\CallItemsUsedVM.cs" />
+    <Compile Include="Models\Call\CallVM.cs" />
+    <Compile Include="Models\Call\Views VM\FullCallVM.cs" />
+    <Compile Include="Models\Call\Views VM\FullVehicleInventory.cs" />
     <Compile Include="Models\Call_ItemsUsed.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -214,7 +246,12 @@
     <Compile Include="Models\EmployeeTitle.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeVM.cs" />
+    <Compile Include="Models\Employee\Candidate.cs" />
+    <Compile Include="Models\Employee\InterviewVM.cs" />
+    <Compile Include="Models\Employee\JobPositionVM.cs" />
+    <Compile Include="Models\Employee\RegisterEmployee.cs" />
+    <Compile Include="Models\Employee\RoleTypeVM.cs" />
+    <Compile Include="Models\Employee\ShiftVM.cs" />
     <Compile Include="Models\FullCall.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -239,7 +276,9 @@
     <Compile Include="Models\InventoryCategory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InventoryVM.cs" />
+    <Compile Include="Models\Inventory\FullStockTakeVM.cs" />
+    <Compile Include="Models\Inventory\InventoryFullVM.cs" />
+    <Compile Include="Models\Inventory\InventoryVM.cs" />
     <Compile Include="Models\ItemsChecklist.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -315,8 +354,7 @@
     <Compile Include="Models\VehicleType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Views VM\FullCallVM.cs" />
-    <Compile Include="Models\Views VM\FullVehicleInventory.cs" />
+    <Compile Include="Models\Vehicle\VehicleVM.cs" />
     <Compile Include="Models\Write_OffReason.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>

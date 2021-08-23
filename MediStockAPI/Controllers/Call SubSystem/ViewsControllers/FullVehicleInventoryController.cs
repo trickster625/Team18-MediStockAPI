@@ -1,4 +1,5 @@
 ﻿using MediStockAPI.Models;
+using MediStockAPI.Models.Views_VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,23 +21,23 @@ namespace MediStockAPI.Controllers.Call_SubSystem.ViewsControllers
         {
             try
             {
-                IList<FullVehicleInventory> calls = null;
+                IList<FullVehicleInventoryVM> calls = null;
 
                 using (var ctx = new MediStock_DBEntities())
                 {
-                    calls = db.FullVehicleInventories.Select(s => new FullVehicleInventory()
+                    calls = db.FullVehicleInventories.Select(s => new FullVehicleInventoryVM()
                     {
                         Call_ID = s.Call_ID,
                         Vehicle_ID = s.Vehicle_ID,
-                        MinimumQty = s.MinimumQty,
-                        MaximumQty = s.MaximumQty,
-                        VehicleInventory_Qty = s.VehicleInventory_Qty,
+                        MinimumQty = (int)s.MinimumQty,
+                        MaximumQty = (int)s.MaximumQty,
+                        VehicleInventory_Qty = (int)s.VehicleInventory_Qty,
                         Inventory_Name = s.Inventory_Name,
                         Inventory_ID = s.Inventory_ID,
                         Employee_ID = s.Employee_ID
 
 
-                    }).ToList<FullVehicleInventory>();
+                    }).ToList<FullVehicleInventoryVM>();
                 }
 
                 return Ok(calls);
@@ -69,4 +70,3 @@ namespace MediStockAPI.Controllers.Call_SubSystem.ViewsControllers
 
         }
     }
-

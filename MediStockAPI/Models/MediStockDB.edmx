@@ -950,6 +950,37 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MediStock_DBModelStoreContainer">
           <EntitySet Name="Barcode" EntityType="Self.Barcode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Call" EntityType="Self.Call" Schema="dbo" store:Type="Tables" />
@@ -1434,10 +1465,10 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Call_EndTime" Type="Time" Precision="7" />
           <Property Name="DOA_Number" Type="Int32" />
           <Property Name="PRF_Number" Type="Int32" />
-          <NavigationProperty Name="CallCancelReason" Relationship="MediStock_DBModel.FK_Call_CallCancelReason" FromRole="Call" ToRole="CallCancelReason" />
-          <NavigationProperty Name="CallStatu" Relationship="MediStock_DBModel.FK_Call_CallStatus" FromRole="Call" ToRole="CallStatu" />
-          <NavigationProperty Name="Call_ItemsUsed" Relationship="MediStock_DBModel.FK_Call_ItemsUsed_Call" FromRole="Call" ToRole="Call_ItemsUsed" />
-          <NavigationProperty Name="VehicleCalls" Relationship="MediStock_DBModel.FK_VehicleCall_Call" FromRole="Call" ToRole="VehicleCall" />
+          <NavigationProperty Name="CallCancelReason" Relationship="Self.FK_Call_CallCancelReason" FromRole="Call" ToRole="CallCancelReason" />
+          <NavigationProperty Name="CallStatu" Relationship="Self.FK_Call_CallStatus" FromRole="Call" ToRole="CallStatus" />
+          <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Call" FromRole="Call" ToRole="Call_ItemsUsed" />
+          <NavigationProperty Name="VehicleCalls" Relationship="Self.FK_VehicleCall_Call" FromRole="Call" ToRole="VehicleCall" />
         </EntityType>
         <EntityType Name="Call_ItemsUsed">
           <Key>
@@ -1523,15 +1554,15 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Employee_SecurityQuestionAnswer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Employee_SARSTaxNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Employee_Signature" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="EmployeeTitle" Relationship="MediStock_DBModel.FK_Employee_EmployeeTitle" FromRole="Employee" ToRole="EmployeeTitle" />
-          <NavigationProperty Name="SecurityQuestion" Relationship="MediStock_DBModel.FK_Employee_SecurityQuestions" FromRole="Employee" ToRole="SecurityQuestion" />
-          <NavigationProperty Name="Interviews" Relationship="MediStock_DBModel.FK_Interview_Employee" FromRole="Employee" ToRole="Interview" />
-          <NavigationProperty Name="Shifts" Relationship="MediStock_DBModel.FK_Shift_Employee" FromRole="Employee" ToRole="Shift" />
-          <NavigationProperty Name="StockTakes" Relationship="MediStock_DBModel.FK_StockTake_Employee" FromRole="Employee" ToRole="StockTake" />
-          <NavigationProperty Name="VehicleCalls" Relationship="MediStock_DBModel.FK_VehicleCall_Employee" FromRole="Employee" ToRole="VehicleCall" />
-          <NavigationProperty Name="Written_OffInventory" Relationship="MediStock_DBModel.FK_Written_OffInventory_Employee" FromRole="Employee" ToRole="Written_OffInventory" />
-          <NavigationProperty Name="QualificationTypes" Relationship="MediStock_DBModel.EmployeeQualification" FromRole="Employee" ToRole="QualificationType" />
-          <NavigationProperty Name="RoleTypes" Relationship="MediStock_DBModel.EmployeeRole" FromRole="Employee" ToRole="RoleType" />
+          <NavigationProperty Name="EmployeeTitle" Relationship="Self.FK_Employee_EmployeeTitle" FromRole="Employee" ToRole="EmployeeTitle" />
+          <NavigationProperty Name="SecurityQuestion" Relationship="Self.FK_Employee_SecurityQuestions" FromRole="Employee" ToRole="SecurityQuestions" />
+          <NavigationProperty Name="Interviews" Relationship="Self.FK_Interview_Employee" FromRole="Employee" ToRole="Interview" />
+          <NavigationProperty Name="Shifts" Relationship="Self.FK_Shift_Employee" FromRole="Employee" ToRole="Shift" />
+          <NavigationProperty Name="StockTakes" Relationship="Self.FK_StockTake_Employee" FromRole="Employee" ToRole="StockTake" />
+          <NavigationProperty Name="VehicleCalls" Relationship="Self.FK_VehicleCall_Employee" FromRole="Employee" ToRole="VehicleCall" />
+          <NavigationProperty Name="Written_OffInventory" Relationship="Self.FK_Written_OffInventory_Employee" FromRole="Employee" ToRole="Written_OffInventory" />
+          <NavigationProperty Name="QualificationTypes" Relationship="Self.EmployeeQualification" FromRole="Employee" ToRole="QualificationType" />
+          <NavigationProperty Name="RoleTypes" Relationship="Self.EmployeeRole" FromRole="Employee" ToRole="RoleType" />
         </EntityType>
         <EntityType Name="EmployeeTitle">
           <Key>
@@ -1596,14 +1627,14 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Inventory_BaseCampQty" Type="Int32" />
           <Property Name="Inventory_DaysToExpire" Type="Int32" />
           <Property Name="Inventory_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Barcodes" Relationship="MediStock_DBModel.FK_Barcode_Inventory" FromRole="Inventory" ToRole="Barcode" />
-          <NavigationProperty Name="Call_ItemsUsed" Relationship="MediStock_DBModel.FK_Call_ItemsUsed_Inventory" FromRole="Inventory" ToRole="Call_ItemsUsed" />
-          <NavigationProperty Name="InventoryCategory" Relationship="MediStock_DBModel.FK_Inventory_InventoryCategory" FromRole="Inventory" ToRole="InventoryCategory" />
-          <NavigationProperty Name="OrderLines" Relationship="MediStock_DBModel.FK_OrderLine_Inventory" FromRole="Inventory" ToRole="OrderLine" />
-          <NavigationProperty Name="PriceHistories" Relationship="MediStock_DBModel.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
-          <NavigationProperty Name="StockTakeTotals" Relationship="MediStock_DBModel.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
-          <NavigationProperty Name="VehicleInventories" Relationship="MediStock_DBModel.FK_VehicleInventory_Inventory" FromRole="Inventory" ToRole="VehicleInventory" />
-          <NavigationProperty Name="Written_OffInventory" Relationship="MediStock_DBModel.FK_Written_OffInventory_Inventory" FromRole="Inventory" ToRole="Written_OffInventory" />
+          <NavigationProperty Name="Barcodes" Relationship="Self.FK_Barcode_Inventory" FromRole="Inventory" ToRole="Barcode" />
+          <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Inventory" FromRole="Inventory" ToRole="Call_ItemsUsed" />
+          <NavigationProperty Name="InventoryCategory" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="Inventory" ToRole="InventoryCategory" />
+          <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLine_Inventory" FromRole="Inventory" ToRole="OrderLine" />
+          <NavigationProperty Name="PriceHistories" Relationship="Self.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
+          <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
+          <NavigationProperty Name="VehicleInventories" Relationship="Self.FK_VehicleInventory_Inventory" FromRole="Inventory" ToRole="VehicleInventory" />
+          <NavigationProperty Name="Written_OffInventory" Relationship="Self.FK_Written_OffInventory_Inventory" FromRole="Inventory" ToRole="Written_OffInventory" />
         </EntityType>
         <EntityType Name="InventoryCategory">
           <Key>
@@ -1611,7 +1642,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </Key>
           <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Inventories" Relationship="MediStock_DBModel.FK_Inventory_InventoryCategory" FromRole="InventoryCategory" ToRole="Inventory" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="InventoryCategory" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1669,8 +1700,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Order_ID" Type="Int32" Nullable="false" />
           <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
           <Property Name="OrderLine_Quantity" Type="Int32" />
-          <NavigationProperty Name="Inventory" Relationship="MediStock_DBModel.FK_OrderLine_Inventory" FromRole="OrderLine" ToRole="Inventory" />
-          <NavigationProperty Name="Order" Relationship="MediStock_DBModel.FK_OrderLine_Order" FromRole="OrderLine" ToRole="Order" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_OrderLine_Inventory" FromRole="OrderLine" ToRole="Inventory" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderLine_Order" FromRole="OrderLine" ToRole="Order" />
         </EntityType>
         <EntityType Name="OrderStatu">
           <Key>
@@ -1733,8 +1764,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="StockTake_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
           <Property Name="StockTake_DateTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Employee" Relationship="MediStock_DBModel.FK_StockTake_Employee" FromRole="StockTake" ToRole="Employee" />
-          <NavigationProperty Name="StockTakeTotals" Relationship="MediStock_DBModel.FK_StockTakeTotal_StockTake" FromRole="StockTake" ToRole="StockTakeTotal" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_StockTake_Employee" FromRole="StockTake" ToRole="Employee" />
+          <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_StockTake" FromRole="StockTake" ToRole="StockTakeTotal" />
         </EntityType>
         <EntityType Name="StockTakeTotal">
           <Key>
@@ -1839,7 +1870,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </Key>
           <Property Name="Write_OffReason_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Write_OffReason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Written_OffInventory" Relationship="MediStock_DBModel.FK_Written_OffInventory_Write_OffReason" FromRole="Write_OffReason" ToRole="Written_OffInventory" />
+          <NavigationProperty Name="Written_OffInventory" Relationship="Self.FK_Written_OffInventory_Write_OffReason" FromRole="Write_OffReason" ToRole="Written_OffInventory" />
         </EntityType>
         <EntityType Name="Written_OffInventory">
           <Key>
@@ -1854,6 +1885,45 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <NavigationProperty Name="Employee" Relationship="MediStock_DBModel.FK_Written_OffInventory_Employee" FromRole="Written_OffInventory" ToRole="Employee" />
           <NavigationProperty Name="Inventory" Relationship="MediStock_DBModel.FK_Written_OffInventory_Inventory" FromRole="Written_OffInventory" ToRole="Inventory" />
           <NavigationProperty Name="Write_OffReason" Relationship="MediStock_DBModel.FK_Written_OffInventory_Write_OffReason" FromRole="Written_OffInventory" ToRole="Write_OffReason" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Written_OffInventory_Employee" FromRole="Written_OffInventory" ToRole="Employee" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Written_OffInventory_Inventory" FromRole="Written_OffInventory" ToRole="Inventory" />
+          <NavigationProperty Name="Write_OffReason" Relationship="Self.FK_Written_OffInventory_Write_OffReason" FromRole="Written_OffInventory" ToRole="Write_OffReason" />
+        </EntityType>
+        <EntityType Name="FullCall">
+          <Key>
+            <PropertyRef Name="Call_ID" />
+            <PropertyRef Name="CallStatus_ID" />
+            <PropertyRef Name="Reason_ID" />
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Call_ID" Type="Int32" Nullable="false" />
+          <Property Name="CallStatus_ID" Type="Int32" Nullable="false" />
+          <Property Name="Reason_ID" Type="Int32" Nullable="false" />
+          <Property Name="Call_Date" Type="DateTime" Precision="0" />
+          <Property Name="Call_StartTime" Type="Time" Precision="7" />
+          <Property Name="Call_EndTime" Type="Time" Precision="7" />
+          <Property Name="DOA_Number" Type="Int32" />
+          <Property Name="PRF_Number" Type="Int32" />
+          <Property Name="Reason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CallStatus_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FullVehicleInventory">
+          <Key>
+            <PropertyRef Name="Inventory_ID" />
+            <PropertyRef Name="Vehicle_ID" />
+            <PropertyRef Name="Employee_ID" />
+            <PropertyRef Name="Call_ID" />
+          </Key>
+          <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" />
+          <Property Name="MinimumQty" Type="Int32" />
+          <Property Name="MaximumQty" Type="Int32" />
+          <Property Name="VehicleInventory_Qty" Type="Int32" />
+          <Property Name="Inventory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Call_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Type="MediStock_DBModel.Inventory" Role="Inventory" Multiplicity="1" />
@@ -2072,8 +2142,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Written_OffInventory_Employee">
-          <End Type="MediStock_DBModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="MediStock_DBModel.Written_OffInventory" Role="Written_OffInventory" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Written_OffInventory" Type="Self.Written_OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Employee_ID" />
@@ -2134,8 +2204,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inventory_InventoryCategory">
-          <End Type="MediStock_DBModel.InventoryCategory" Role="InventoryCategory" Multiplicity="1" />
-          <End Type="MediStock_DBModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InventoryCategory">
               <PropertyRef Name="InventoryCategory_ID" />
@@ -2194,8 +2264,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Written_OffInventory_Inventory">
-          <End Type="MediStock_DBModel.Inventory" Role="Inventory" Multiplicity="1" />
-          <End Type="MediStock_DBModel.Written_OffInventory" Role="Written_OffInventory" Multiplicity="*" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Written_OffInventory" Type="Self.Written_OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
               <PropertyRef Name="Inventory_ID" />
@@ -2326,8 +2396,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Written_OffInventory_Write_OffReason">
-          <End Type="MediStock_DBModel.Write_OffReason" Role="Write_OffReason" Multiplicity="1" />
-          <End Type="MediStock_DBModel.Written_OffInventory" Role="Written_OffInventory" Multiplicity="*" />
+          <End Role="Write_OffReason" Type="Self.Write_OffReason" Multiplicity="1" />
+          <End Role="Written_OffInventory" Type="Self.Written_OffInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Write_OffReason">
               <PropertyRef Name="Write_OffReason_ID" />
@@ -2382,6 +2452,248 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Call_ID" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
+        <EntityContainer Name="MediStock_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Barcodes" EntityType="Self.Barcode" />
+          <EntitySet Name="Calls" EntityType="Self.Call" />
+          <EntitySet Name="Call_ItemsUsed" EntityType="Self.Call_ItemsUsed" />
+          <EntitySet Name="CallCancelReasons" EntityType="Self.CallCancelReason" />
+          <EntitySet Name="CallStatus" EntityType="Self.CallStatu" />
+          <EntitySet Name="Candidates" EntityType="Self.Candidate" />
+          <EntitySet Name="Checklists" EntityType="Self.Checklist" />
+          <EntitySet Name="ChecklistItems" EntityType="Self.ChecklistItem" />
+          <EntitySet Name="ChecklistItemTypes" EntityType="Self.ChecklistItemType" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeTitles" EntityType="Self.EmployeeTitle" />
+          <EntitySet Name="InspectionChecklists" EntityType="Self.InspectionChecklist" />
+          <EntitySet Name="InspectionTypes" EntityType="Self.InspectionType" />
+          <EntitySet Name="Interviews" EntityType="Self.Interview" />
+          <EntitySet Name="InterviewTypes" EntityType="Self.InterviewType" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventory" />
+          <EntitySet Name="InventoryCategories" EntityType="Self.InventoryCategory" />
+          <EntitySet Name="ItemsChecklists" EntityType="Self.ItemsChecklist" />
+          <EntitySet Name="JobApplications" EntityType="Self.JobApplication" />
+          <EntitySet Name="JobPositions" EntityType="Self.JobPosition" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
+          <EntitySet Name="PriceHistories" EntityType="Self.PriceHistory" />
+          <EntitySet Name="QualificationTypes" EntityType="Self.QualificationType" />
+          <EntitySet Name="RoleTypes" EntityType="Self.RoleType" />
+          <EntitySet Name="SecurityQuestions" EntityType="Self.SecurityQuestion" />
+          <EntitySet Name="Shifts" EntityType="Self.Shift" />
+          <EntitySet Name="StockTakes" EntityType="Self.StockTake" />
+          <EntitySet Name="StockTakeTotals" EntityType="Self.StockTakeTotal" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+          <EntitySet Name="VehicleCalls" EntityType="Self.VehicleCall" />
+          <EntitySet Name="VehicleInspections" EntityType="Self.VehicleInspection" />
+          <EntitySet Name="VehicleInventories" EntityType="Self.VehicleInventory" />
+          <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
+          <EntitySet Name="Write_OffReason" EntityType="Self.Write_OffReason" />
+          <EntitySet Name="Written_OffInventory" EntityType="Self.Written_OffInventory" />
+          <EntitySet Name="FullCalls" EntityType="Self.FullCall" />
+          <EntitySet Name="FullVehicleInventories" EntityType="Self.FullVehicleInventory" />
+          <AssociationSet Name="FK_Barcode_Inventory" Association="Self.FK_Barcode_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="Barcode" EntitySet="Barcodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_CallCancelReason" Association="Self.FK_Call_CallCancelReason">
+            <End Role="CallCancelReason" EntitySet="CallCancelReasons" />
+            <End Role="Call" EntitySet="Calls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_CallStatus" Association="Self.FK_Call_CallStatus">
+            <End Role="CallStatus" EntitySet="CallStatus" />
+            <End Role="Call" EntitySet="Calls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_ItemsUsed_Call" Association="Self.FK_Call_ItemsUsed_Call">
+            <End Role="Call" EntitySet="Calls" />
+            <End Role="Call_ItemsUsed" EntitySet="Call_ItemsUsed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleCall_Call" Association="Self.FK_VehicleCall_Call">
+            <End Role="Call" EntitySet="Calls" />
+            <End Role="VehicleCall" EntitySet="VehicleCalls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Call_ItemsUsed_Inventory" Association="Self.FK_Call_ItemsUsed_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="Call_ItemsUsed" EntitySet="Call_ItemsUsed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Candidate" Association="Self.FK_Interview_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobApplication_Candidate" Association="Self.FK_JobApplication_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="JobApplication" EntitySet="JobApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemsChecklist_Checklist" Association="Self.FK_ItemsChecklist_Checklist">
+            <End Role="Checklist" EntitySet="Checklists" />
+            <End Role="ItemsChecklist" EntitySet="ItemsChecklists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleType_Checklist" Association="Self.FK_VehicleType_Checklist">
+            <End Role="Checklist" EntitySet="Checklists" />
+            <End Role="VehicleType" EntitySet="VehicleTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChecklistItem_ChecklistItemType" Association="Self.FK_ChecklistItem_ChecklistItemType">
+            <End Role="ChecklistItemType" EntitySet="ChecklistItemTypes" />
+            <End Role="ChecklistItem" EntitySet="ChecklistItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemsChecklist_ChecklistItem" Association="Self.FK_ItemsChecklist_ChecklistItem">
+            <End Role="ChecklistItem" EntitySet="ChecklistItems" />
+            <End Role="ItemsChecklist" EntitySet="ItemsChecklists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_EmployeeTitle" Association="Self.FK_Employee_EmployeeTitle">
+            <End Role="EmployeeTitle" EntitySet="EmployeeTitles" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_SecurityQuestions" Association="Self.FK_Employee_SecurityQuestions">
+            <End Role="SecurityQuestions" EntitySet="SecurityQuestions" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Employee" Association="Self.FK_Interview_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shift_Employee" Association="Self.FK_Shift_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Shift" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockTake_Employee" Association="Self.FK_StockTake_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="StockTake" EntitySet="StockTakes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleCall_Employee" Association="Self.FK_VehicleCall_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="VehicleCall" EntitySet="VehicleCalls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Written_OffInventory_Employee" Association="Self.FK_Written_OffInventory_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InspectionChecklist_ItemsChecklist" Association="Self.FK_InspectionChecklist_ItemsChecklist">
+            <End Role="ItemsChecklist" EntitySet="ItemsChecklists" />
+            <End Role="InspectionChecklist" EntitySet="InspectionChecklists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InspectionChecklist_VehicleInspection" Association="Self.FK_InspectionChecklist_VehicleInspection">
+            <End Role="VehicleInspection" EntitySet="VehicleInspections" />
+            <End Role="InspectionChecklist" EntitySet="InspectionChecklists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleInspection_InspectionType" Association="Self.FK_VehicleInspection_InspectionType">
+            <End Role="InspectionType" EntitySet="InspectionTypes" />
+            <End Role="VehicleInspection" EntitySet="VehicleInspections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_InterviewType" Association="Self.FK_Interview_InterviewType">
+            <End Role="InterviewType" EntitySet="InterviewTypes" />
+            <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
+            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLine_Inventory" Association="Self.FK_OrderLine_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="OrderLine" EntitySet="OrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceHistory_Inventory" Association="Self.FK_PriceHistory_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="PriceHistory" EntitySet="PriceHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockTakeTotal_Inventory" Association="Self.FK_StockTakeTotal_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="StockTakeTotal" EntitySet="StockTakeTotals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleInventory_Inventory" Association="Self.FK_VehicleInventory_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="VehicleInventory" EntitySet="VehicleInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Written_OffInventory_Inventory" Association="Self.FK_Written_OffInventory_Inventory">
+            <End Role="Inventory" EntitySet="Inventories" />
+            <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobApplication_JobPosition" Association="Self.FK_JobApplication_JobPosition">
+            <End Role="JobPosition" EntitySet="JobPositions" />
+            <End Role="JobApplication" EntitySet="JobApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobPosition_RoleType" Association="Self.FK_JobPosition_RoleType">
+            <End Role="RoleType" EntitySet="RoleTypes" />
+            <End Role="JobPosition" EntitySet="JobPositions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Supplier" Association="Self.FK_Order_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLine_Order" Association="Self.FK_OrderLine_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderLine" EntitySet="OrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockTakeTotal_StockTake" Association="Self.FK_StockTakeTotal_StockTake">
+            <End Role="StockTake" EntitySet="StockTakes" />
+            <End Role="StockTakeTotal" EntitySet="StockTakeTotals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_VehicleType" Association="Self.FK_Vehicle_VehicleType">
+            <End Role="VehicleType" EntitySet="VehicleTypes" />
+            <End Role="Vehicle" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleCall_Vehicle" Association="Self.FK_VehicleCall_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="VehicleCall" EntitySet="VehicleCalls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleInspection_Vehicle" Association="Self.FK_VehicleInspection_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="VehicleInspection" EntitySet="VehicleInspections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleInventory_Vehicle" Association="Self.FK_VehicleInventory_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="VehicleInventory" EntitySet="VehicleInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Written_OffInventory_Write_OffReason" Association="Self.FK_Written_OffInventory_Write_OffReason">
+            <End Role="Write_OffReason" EntitySet="Write_OffReason" />
+            <End Role="Written_OffInventory" EntitySet="Written_OffInventory" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeQualification" Association="Self.EmployeeQualification">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="QualificationType" EntitySet="QualificationTypes" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeRole" Association="Self.EmployeeRole">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="RoleType" EntitySet="RoleTypes" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2392,6 +2704,32 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
               <MappingFragment StoreEntitySet="Barcode">
                 <ScalarProperty Name="Barcode_Date" ColumnName="Barcode_Date" />
                 <ScalarProperty Name="Barcode_Number" ColumnName="Barcode_Number" />
+                <ScalarProperty Name="Barcode_ID" ColumnName="Barcode_ID" />
+                <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+                <ScalarProperty Name="Barcode_Number" ColumnName="Barcode_Number" />
+                <ScalarProperty Name="Barcode_Date" ColumnName="Barcode_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calls">
+            <EntityTypeMapping TypeName="MediStock_DBModel.Call">
+              <MappingFragment StoreEntitySet="Call">
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+                <ScalarProperty Name="CallStatus_ID" ColumnName="CallStatus_ID" />
+                <ScalarProperty Name="Reason_ID" ColumnName="Reason_ID" />
+                <ScalarProperty Name="Call_Date" ColumnName="Call_Date" />
+                <ScalarProperty Name="Call_StartTime" ColumnName="Call_StartTime" />
+                <ScalarProperty Name="Call_EndTime" ColumnName="Call_EndTime" />
+                <ScalarProperty Name="DOA_Number" ColumnName="DOA_Number" />
+                <ScalarProperty Name="PRF_Number" ColumnName="PRF_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Call_ItemsUsed">
+            <EntityTypeMapping TypeName="MediStock_DBModel.Call_ItemsUsed">
+              <MappingFragment StoreEntitySet="Call_ItemsUsed">
+                <ScalarProperty Name="ItemsUsed_ID" ColumnName="ItemsUsed_ID" />
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
                 <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
                 <ScalarProperty Name="Barcode_ID" ColumnName="Barcode_ID" />
               </MappingFragment>
@@ -2460,10 +2798,10 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <EntitySetMapping Name="ChecklistItems">
             <EntityTypeMapping TypeName="MediStock_DBModel.ChecklistItem">
               <MappingFragment StoreEntitySet="ChecklistItem">
-                <ScalarProperty Name="ChecklistItem_ComplianceValue" ColumnName="ChecklistItem_ComplianceValue" />
-                <ScalarProperty Name="ChecklistItem_Description" ColumnName="ChecklistItem_Description" />
-                <ScalarProperty Name="ChecklistItemType_ID" ColumnName="ChecklistItemType_ID" />
                 <ScalarProperty Name="ChecklistItem_ID" ColumnName="ChecklistItem_ID" />
+                <ScalarProperty Name="ChecklistItemType_ID" ColumnName="ChecklistItemType_ID" />
+                <ScalarProperty Name="ChecklistItem_Description" ColumnName="ChecklistItem_Description" />
+                <ScalarProperty Name="ChecklistItem_ComplianceValue" ColumnName="ChecklistItem_ComplianceValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2522,6 +2860,12 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <EntitySetMapping Name="Interviews">
             <EntityTypeMapping TypeName="MediStock_DBModel.Interview">
               <MappingFragment StoreEntitySet="Interview">
+                <ScalarProperty Name="Interview_ID" ColumnName="Interview_ID" />
+                <ScalarProperty Name="Candidate_ID" ColumnName="Candidate_ID" />
+                <ScalarProperty Name="InterviewType_ID" ColumnName="InterviewType_ID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="SheduleDateTime" ColumnName="SheduleDateTime" />
+                <ScalarProperty Name="InterviewMethod" ColumnName="InterviewMethod" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="InterviewMethod" ColumnName="InterviewMethod" />
                 <ScalarProperty Name="SheduleDateTime" ColumnName="SheduleDateTime" />
@@ -2543,6 +2887,12 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <EntitySetMapping Name="Inventories">
             <EntityTypeMapping TypeName="MediStock_DBModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+                <ScalarProperty Name="InventoryCategory_ID" ColumnName="InventoryCategory_ID" />
+                <ScalarProperty Name="Inventory_Name" ColumnName="Inventory_Name" />
+                <ScalarProperty Name="Inventory_LatestPrice" ColumnName="Inventory_LatestPrice" />
+                <ScalarProperty Name="Inventory_BaseCampQty" ColumnName="Inventory_BaseCampQty" />
+                <ScalarProperty Name="Inventory_DaysToExpire" ColumnName="Inventory_DaysToExpire" />
                 <ScalarProperty Name="Inventory_Picture" ColumnName="Inventory_Picture" />
                 <ScalarProperty Name="Inventory_DaysToExpire" ColumnName="Inventory_DaysToExpire" />
                 <ScalarProperty Name="Inventory_BaseCampQty" ColumnName="Inventory_BaseCampQty" />
@@ -2556,8 +2906,8 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <EntitySetMapping Name="InventoryCategories">
             <EntityTypeMapping TypeName="MediStock_DBModel.InventoryCategory">
               <MappingFragment StoreEntitySet="InventoryCategory">
-                <ScalarProperty Name="InventoryCategory_Description" ColumnName="InventoryCategory_Description" />
                 <ScalarProperty Name="InventoryCategory_ID" ColumnName="InventoryCategory_ID" />
+                <ScalarProperty Name="InventoryCategory_Description" ColumnName="InventoryCategory_Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2669,6 +3019,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
                 <ScalarProperty Name="StockTake_DateTime" ColumnName="StockTake_DateTime" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
                 <ScalarProperty Name="StockTake_ID" ColumnName="StockTake_ID" />
+                <ScalarProperty Name="StockTake_DateTime" ColumnName="StockTake_DateTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2759,7 +3110,16 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <EntitySetMapping Name="Write_OffReason">
             <EntityTypeMapping TypeName="MediStock_DBModel.Write_OffReason">
               <MappingFragment StoreEntitySet="Write-OffReason">
+                <ScalarProperty Name="Write_OffReason_ID" ColumnName="Write-OffReason_ID" />
                 <ScalarProperty Name="Write_OffReason_Description" ColumnName="Write-OffReason_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Written_OffInventory">
+            <EntityTypeMapping TypeName="MediStock_DBModel.Written_OffInventory">
+              <MappingFragment StoreEntitySet="Written-OffInventory">
+                <ScalarProperty Name="Write_Off_ID" ColumnName="Write-Off_ID" />
+                <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
                 <ScalarProperty Name="Write_OffReason_ID" ColumnName="Write-OffReason_ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2773,6 +3133,35 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
                 <ScalarProperty Name="Write_OffReason_ID" ColumnName="Write-OffReason_ID" />
                 <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
                 <ScalarProperty Name="Write_Off_ID" ColumnName="Write-Off_ID" />
+          <EntitySetMapping Name="FullCalls">
+            <EntityTypeMapping TypeName="MediStock_DBModel.FullCall">
+              <MappingFragment StoreEntitySet="FullCall">
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+                <ScalarProperty Name="CallStatus_ID" ColumnName="CallStatus_ID" />
+                <ScalarProperty Name="Reason_ID" ColumnName="Reason_ID" />
+                <ScalarProperty Name="Call_Date" ColumnName="Call_Date" />
+                <ScalarProperty Name="Call_StartTime" ColumnName="Call_StartTime" />
+                <ScalarProperty Name="Call_EndTime" ColumnName="Call_EndTime" />
+                <ScalarProperty Name="DOA_Number" ColumnName="DOA_Number" />
+                <ScalarProperty Name="PRF_Number" ColumnName="PRF_Number" />
+                <ScalarProperty Name="Reason_Description" ColumnName="Reason_Description" />
+                <ScalarProperty Name="CallStatus_Description" ColumnName="CallStatus_Description" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Employee_Surname" ColumnName="Employee_Surname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FullVehicleInventories">
+            <EntityTypeMapping TypeName="MediStock_DBModel.FullVehicleInventory">
+              <MappingFragment StoreEntitySet="FullVehicleInventory">
+                <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+                <ScalarProperty Name="Vehicle_ID" ColumnName="Vehicle_ID" />
+                <ScalarProperty Name="MinimumQty" ColumnName="MinimumQty" />
+                <ScalarProperty Name="MaximumQty" ColumnName="MaximumQty" />
+                <ScalarProperty Name="VehicleInventory_Qty" ColumnName="VehicleInventory_Qty" />
+                <ScalarProperty Name="Inventory_Name" ColumnName="Inventory_Name" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2824,6 +3213,13 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MediStock_DBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MediStock_DBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MediStock_DBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MediStock_DBModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MediStock_DBModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MediStock_DBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MediStock_DBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
