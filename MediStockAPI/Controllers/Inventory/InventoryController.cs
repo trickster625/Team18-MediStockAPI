@@ -70,9 +70,9 @@ namespace MediStockAPI.Controllers.Inventory
                 outputItems = outputItems.OrderBy(z => z.Inventory_Name).ToList();
                 return Ok(outputItems);
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 
@@ -87,9 +87,9 @@ namespace MediStockAPI.Controllers.Inventory
 
                 return Ok("Item Added");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 
@@ -110,9 +110,9 @@ namespace MediStockAPI.Controllers.Inventory
 
                 return Ok("Reason Updated!");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 
@@ -128,9 +128,9 @@ namespace MediStockAPI.Controllers.Inventory
 
                 return Ok("Deleted");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 

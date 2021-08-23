@@ -380,6 +380,46 @@
           <Property Name="Write-Off_Date" Type="date" />
           <Property Name="Write-Off_Qty" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FullCall">
+          <Key>
+            <PropertyRef Name="Call_ID" />
+            <PropertyRef Name="CallStatus_ID" />
+            <PropertyRef Name="Reason_ID" />
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Call_ID" Type="int" Nullable="false" />
+          <Property Name="CallStatus_ID" Type="int" Nullable="false" />
+          <Property Name="Reason_ID" Type="int" Nullable="false" />
+          <Property Name="Call_Date" Type="date" />
+          <Property Name="Call_StartTime" Type="time" Precision="7" />
+          <Property Name="Call_EndTime" Type="time" Precision="7" />
+          <Property Name="DOA_Number" Type="int" />
+          <Property Name="PRF_Number" Type="int" />
+          <Property Name="Reason_Description" Type="varchar" MaxLength="50" />
+          <Property Name="CallStatus_Description" Type="varchar" MaxLength="50" />
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Employee_Surname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FullVehicleInventory">
+          <Key>
+            <PropertyRef Name="Inventory_ID" />
+            <PropertyRef Name="Vehicle_ID" />
+            <PropertyRef Name="Employee_ID" />
+            <PropertyRef Name="Call_ID" />
+          </Key>
+          <Property Name="Inventory_ID" Type="int" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="int" Nullable="false" />
+          <Property Name="MinimumQty" Type="int" />
+          <Property Name="MaximumQty" Type="int" />
+          <Property Name="VehicleInventory_Qty" Type="int" />
+          <Property Name="Inventory_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Call_ID" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
           <End Role="Barcode" Type="Self.Barcode" Multiplicity="*" />
@@ -910,6 +950,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MediStock_DBModelStoreContainer">
           <EntitySet Name="Barcode" EntityType="Self.Barcode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Call" EntityType="Self.Call" Schema="dbo" store:Type="Tables" />
@@ -952,6 +1023,34 @@
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Write-OffReason" EntityType="Self.Write-OffReason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Written-OffInventory" EntityType="Self.Written-OffInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FullCall" EntityType="Self.FullCall" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FullCall].[Call_ID] AS [Call_ID], 
+    [FullCall].[CallStatus_ID] AS [CallStatus_ID], 
+    [FullCall].[Reason_ID] AS [Reason_ID], 
+    [FullCall].[Call_Date] AS [Call_Date], 
+    [FullCall].[Call_StartTime] AS [Call_StartTime], 
+    [FullCall].[Call_EndTime] AS [Call_EndTime], 
+    [FullCall].[DOA_Number] AS [DOA_Number], 
+    [FullCall].[PRF_Number] AS [PRF_Number], 
+    [FullCall].[Reason_Description] AS [Reason_Description], 
+    [FullCall].[CallStatus_Description] AS [CallStatus_Description], 
+    [FullCall].[Employee_ID] AS [Employee_ID], 
+    [FullCall].[Employee_Surname] AS [Employee_Surname]
+    FROM [dbo].[FullCall] AS [FullCall]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FullVehicleInventory" EntityType="Self.FullVehicleInventory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FullVehicleInventory].[Inventory_ID] AS [Inventory_ID], 
+    [FullVehicleInventory].[Vehicle_ID] AS [Vehicle_ID], 
+    [FullVehicleInventory].[MinimumQty] AS [MinimumQty], 
+    [FullVehicleInventory].[MaximumQty] AS [MaximumQty], 
+    [FullVehicleInventory].[VehicleInventory_Qty] AS [VehicleInventory_Qty], 
+    [FullVehicleInventory].[Inventory_Name] AS [Inventory_Name], 
+    [FullVehicleInventory].[Employee_ID] AS [Employee_ID], 
+    [FullVehicleInventory].[Call_ID] AS [Call_ID]
+    FROM [dbo].[FullVehicleInventory] AS [FullVehicleInventory]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Barcode_Inventory" Association="Self.FK_Barcode_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="Barcode" EntitySet="Barcode" />
@@ -1577,6 +1676,42 @@
           <NavigationProperty Name="Inventory" Relationship="Self.FK_Written_OffInventory_Inventory" FromRole="Written_OffInventory" ToRole="Inventory" />
           <NavigationProperty Name="Write_OffReason" Relationship="Self.FK_Written_OffInventory_Write_OffReason" FromRole="Written_OffInventory" ToRole="Write_OffReason" />
         </EntityType>
+        <EntityType Name="FullCall">
+          <Key>
+            <PropertyRef Name="Call_ID" />
+            <PropertyRef Name="CallStatus_ID" />
+            <PropertyRef Name="Reason_ID" />
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Call_ID" Type="Int32" Nullable="false" />
+          <Property Name="CallStatus_ID" Type="Int32" Nullable="false" />
+          <Property Name="Reason_ID" Type="Int32" Nullable="false" />
+          <Property Name="Call_Date" Type="DateTime" Precision="0" />
+          <Property Name="Call_StartTime" Type="Time" Precision="7" />
+          <Property Name="Call_EndTime" Type="Time" Precision="7" />
+          <Property Name="DOA_Number" Type="Int32" />
+          <Property Name="PRF_Number" Type="Int32" />
+          <Property Name="Reason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CallStatus_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FullVehicleInventory">
+          <Key>
+            <PropertyRef Name="Inventory_ID" />
+            <PropertyRef Name="Vehicle_ID" />
+            <PropertyRef Name="Employee_ID" />
+            <PropertyRef Name="Call_ID" />
+          </Key>
+          <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" />
+          <Property Name="MinimumQty" Type="Int32" />
+          <Property Name="MaximumQty" Type="Int32" />
+          <Property Name="VehicleInventory_Qty" Type="Int32" />
+          <Property Name="Inventory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Call_ID" Type="Int32" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
           <End Role="Barcode" Type="Self.Barcode" Multiplicity="*" />
@@ -2107,6 +2242,8 @@
           <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
           <EntitySet Name="Write_OffReason" EntityType="Self.Write_OffReason" />
           <EntitySet Name="Written_OffInventory" EntityType="Self.Written_OffInventory" />
+          <EntitySet Name="FullCalls" EntityType="Self.FullCall" />
+          <EntitySet Name="FullVehicleInventories" EntityType="Self.FullVehicleInventory" />
           <AssociationSet Name="FK_Barcode_Inventory" Association="Self.FK_Barcode_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="Barcode" EntitySet="Barcodes" />
@@ -2275,6 +2412,36 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="RoleType" EntitySet="RoleTypes" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -2671,6 +2838,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FullCalls">
+            <EntityTypeMapping TypeName="MediStock_DBModel.FullCall">
+              <MappingFragment StoreEntitySet="FullCall">
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+                <ScalarProperty Name="CallStatus_ID" ColumnName="CallStatus_ID" />
+                <ScalarProperty Name="Reason_ID" ColumnName="Reason_ID" />
+                <ScalarProperty Name="Call_Date" ColumnName="Call_Date" />
+                <ScalarProperty Name="Call_StartTime" ColumnName="Call_StartTime" />
+                <ScalarProperty Name="Call_EndTime" ColumnName="Call_EndTime" />
+                <ScalarProperty Name="DOA_Number" ColumnName="DOA_Number" />
+                <ScalarProperty Name="PRF_Number" ColumnName="PRF_Number" />
+                <ScalarProperty Name="Reason_Description" ColumnName="Reason_Description" />
+                <ScalarProperty Name="CallStatus_Description" ColumnName="CallStatus_Description" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Employee_Surname" ColumnName="Employee_Surname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FullVehicleInventories">
+            <EntityTypeMapping TypeName="MediStock_DBModel.FullVehicleInventory">
+              <MappingFragment StoreEntitySet="FullVehicleInventory">
+                <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+                <ScalarProperty Name="Vehicle_ID" ColumnName="Vehicle_ID" />
+                <ScalarProperty Name="MinimumQty" ColumnName="MinimumQty" />
+                <ScalarProperty Name="MaximumQty" ColumnName="MaximumQty" />
+                <ScalarProperty Name="VehicleInventory_Qty" ColumnName="VehicleInventory_Qty" />
+                <ScalarProperty Name="Inventory_Name" ColumnName="Inventory_Name" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="EmployeeQualification" TypeName="MediStock_DBModel.EmployeeQualification" StoreEntitySet="EmployeeQualification">
             <EndProperty Name="Employee">
               <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
@@ -2687,6 +2886,13 @@
               <ScalarProperty Name="RoleType_ID" ColumnName="RoleType_ID" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MediStock_DBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MediStock_DBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MediStock_DBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MediStock_DBModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MediStock_DBModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MediStock_DBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MediStock_DBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

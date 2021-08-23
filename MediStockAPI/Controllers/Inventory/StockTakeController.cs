@@ -14,26 +14,14 @@ namespace MediStockAPI.Controllers.Inventory
         MediStock_DBEntities db = new MediStock_DBEntities();
 
         [HttpGet]
-        [Route("getStockTakes")]
-        public IHttpActionResult getStockTakes()
+        [Route("getLatestStocktake")]
+        public IHttpActionResult getLatestStocktake()
         {
             try
             {
-                List<StockTake> outputStockTakes = new List<StockTake>();
-                var storedStockTakes = db.StockTakes.ToList();
+                var latestStockTakeID = db.StockTakes.OrderByDescending(z => z.StockTake_ID).FirstOrDefault().StockTake_ID;
 
-                foreach (var storedStockTake in storedStockTakes)
-                {
-                    StockTake stockTake = new StockTake();
-
-                    stockTake.Employee_ID = storedStockTake.Employee_ID;
-                    stockTake.StockTake_DateTime = storedStockTake.StockTake_DateTime;
-
-                    outputStockTakes.Add(stockTake);
-                }
-
-                outputStockTakes = outputStockTakes.OrderBy(z => z.StockTake_DateTime).ToList();
-                return Ok(outputStockTakes);
+                return Ok(latestStockTakeID);
             }
             catch (Exception)
             {
