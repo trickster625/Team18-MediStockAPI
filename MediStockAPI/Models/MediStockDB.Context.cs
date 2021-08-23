@@ -64,5 +64,7 @@ namespace MediStockAPI.Models
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
         public virtual DbSet<Write_OffReason> Write_OffReason { get; set; }
         public virtual DbSet<Written_OffInventory> Written_OffInventory { get; set; }
+        public virtual DbSet<FullCall> FullCalls { get; set; }
+        public virtual DbSet<FullVehicleInventory> FullVehicleInventories { get; set; }
     }
 }

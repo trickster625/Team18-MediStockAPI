@@ -86,6 +86,8 @@
         <AssociationConnector Association="MediStock_DBModel.FK_Written_OffInventory_Write_OffReason" />
         <AssociationConnector Association="MediStock_DBModel.EmployeeQualification" />
         <AssociationConnector Association="MediStock_DBModel.EmployeeRole" />
+        <EntityTypeShape EntityType="MediStock_DBModel.FullCall" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MediStock_DBModel.FullVehicleInventory" Width="1.5" PointX="2.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

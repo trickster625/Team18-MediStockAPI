@@ -130,6 +130,7 @@
     <Folder Include="Views\Call\" />
     <Folder Include="Views\CancelReason\" />
     <Folder Include="Views\InventoryTypes\" />
+    <Folder Include="Views\Token\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -167,10 +168,13 @@
     <Compile Include="Controllers\Call SubSystem\CallController.cs" />
     <Compile Include="Controllers\Call SubSystem\CallItemsUsedController.cs" />
     <Compile Include="Controllers\Call SubSystem\CancelReasonController.cs" />
+    <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullCallController.cs" />
+    <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullVehicleInventoryController.cs" />
     <Compile Include="Controllers\FilterItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryTypeController.cs" />
+    <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -209,6 +213,13 @@
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeTitle.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeVM.cs" />
+    <Compile Include="Models\FullCall.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FullVehicleInventory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InspectionChecklist.cs">
@@ -305,6 +316,8 @@
     <Compile Include="Models\VehicleType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Views VM\FullCallVM.cs" />
+    <Compile Include="Models\Views VM\FullVehicleInventory.cs" />
     <Compile Include="Models\Write_OffReason.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>

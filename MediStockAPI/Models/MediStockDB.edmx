@@ -380,6 +380,46 @@
           <Property Name="Write-Off_Date" Type="date" />
           <Property Name="Write-Off_Qty" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MediStock_DB.dbo.FullCall' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FullCall">
+          <Key>
+            <PropertyRef Name="Call_ID" />
+            <PropertyRef Name="CallStatus_ID" />
+            <PropertyRef Name="Reason_ID" />
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Call_ID" Type="int" Nullable="false" />
+          <Property Name="CallStatus_ID" Type="int" Nullable="false" />
+          <Property Name="Reason_ID" Type="int" Nullable="false" />
+          <Property Name="Call_Date" Type="date" />
+          <Property Name="Call_StartTime" Type="time" Precision="7" />
+          <Property Name="Call_EndTime" Type="time" Precision="7" />
+          <Property Name="DOA_Number" Type="int" />
+          <Property Name="PRF_Number" Type="int" />
+          <Property Name="Reason_Description" Type="varchar" MaxLength="50" />
+          <Property Name="CallStatus_Description" Type="varchar" MaxLength="50" />
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Employee_Surname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FullVehicleInventory">
+          <Key>
+            <PropertyRef Name="Inventory_ID" />
+            <PropertyRef Name="Vehicle_ID" />
+            <PropertyRef Name="Employee_ID" />
+            <PropertyRef Name="Call_ID" />
+          </Key>
+          <Property Name="Inventory_ID" Type="int" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="int" Nullable="false" />
+          <Property Name="MinimumQty" Type="int" />
+          <Property Name="MaximumQty" Type="int" />
+          <Property Name="VehicleInventory_Qty" Type="int" />
+          <Property Name="Inventory_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Call_ID" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Barcode_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
           <End Role="Barcode" Type="Self.Barcode" Multiplicity="*" />
@@ -952,6 +992,34 @@
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Write-OffReason" EntityType="Self.Write-OffReason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Written-OffInventory" EntityType="Self.Written-OffInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FullCall" EntityType="Self.FullCall" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FullCall].[Call_ID] AS [Call_ID], 
+    [FullCall].[CallStatus_ID] AS [CallStatus_ID], 
+    [FullCall].[Reason_ID] AS [Reason_ID], 
+    [FullCall].[Call_Date] AS [Call_Date], 
+    [FullCall].[Call_StartTime] AS [Call_StartTime], 
+    [FullCall].[Call_EndTime] AS [Call_EndTime], 
+    [FullCall].[DOA_Number] AS [DOA_Number], 
+    [FullCall].[PRF_Number] AS [PRF_Number], 
+    [FullCall].[Reason_Description] AS [Reason_Description], 
+    [FullCall].[CallStatus_Description] AS [CallStatus_Description], 
+    [FullCall].[Employee_ID] AS [Employee_ID], 
+    [FullCall].[Employee_Surname] AS [Employee_Surname]
+    FROM [dbo].[FullCall] AS [FullCall]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FullVehicleInventory" EntityType="Self.FullVehicleInventory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FullVehicleInventory].[Inventory_ID] AS [Inventory_ID], 
+    [FullVehicleInventory].[Vehicle_ID] AS [Vehicle_ID], 
+    [FullVehicleInventory].[MinimumQty] AS [MinimumQty], 
+    [FullVehicleInventory].[MaximumQty] AS [MaximumQty], 
+    [FullVehicleInventory].[VehicleInventory_Qty] AS [VehicleInventory_Qty], 
+    [FullVehicleInventory].[Inventory_Name] AS [Inventory_Name], 
+    [FullVehicleInventory].[Employee_ID] AS [Employee_ID], 
+    [FullVehicleInventory].[Call_ID] AS [Call_ID]
+    FROM [dbo].[FullVehicleInventory] AS [FullVehicleInventory]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Barcode_Inventory" Association="Self.FK_Barcode_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="Barcode" EntitySet="Barcode" />
@@ -1341,6 +1409,8 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="RoleType" EntitySet="RoleTypes" />
           </AssociationSet>
+          <EntitySet Name="FullCalls" EntityType="MediStock_DBModel.FullCall" />
+          <EntitySet Name="FullVehicleInventories" EntityType="MediStock_DBModel.FullVehicleInventory" />
         </EntityContainer>
         <EntityType Name="Barcode">
           <Key>
@@ -2275,6 +2345,42 @@
           <End Type="MediStock_DBModel.Employee" Role="Employee" Multiplicity="*" />
           <End Type="MediStock_DBModel.RoleType" Role="RoleType" Multiplicity="*" />
         </Association>
+        <EntityType Name="FullCall">
+          <Key>
+            <PropertyRef Name="Call_ID" />
+            <PropertyRef Name="CallStatus_ID" />
+            <PropertyRef Name="Reason_ID" />
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Call_ID" Type="Int32" Nullable="false" />
+          <Property Name="CallStatus_ID" Type="Int32" Nullable="false" />
+          <Property Name="Reason_ID" Type="Int32" Nullable="false" />
+          <Property Name="Call_Date" Type="DateTime" Precision="0" />
+          <Property Name="Call_StartTime" Type="Time" Precision="7" />
+          <Property Name="Call_EndTime" Type="Time" Precision="7" />
+          <Property Name="DOA_Number" Type="Int32" />
+          <Property Name="PRF_Number" Type="Int32" />
+          <Property Name="Reason_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CallStatus_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FullVehicleInventory">
+          <Key>
+            <PropertyRef Name="Inventory_ID" />
+            <PropertyRef Name="Vehicle_ID" />
+            <PropertyRef Name="Employee_ID" />
+            <PropertyRef Name="Call_ID" />
+          </Key>
+          <Property Name="Inventory_ID" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" />
+          <Property Name="MinimumQty" Type="Int32" />
+          <Property Name="MaximumQty" Type="Int32" />
+          <Property Name="VehicleInventory_Qty" Type="Int32" />
+          <Property Name="Inventory_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Call_ID" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2686,6 +2792,38 @@
               <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="FullCalls">
+            <EntityTypeMapping TypeName="MediStock_DBModel.FullCall">
+              <MappingFragment StoreEntitySet="FullCall">
+                <ScalarProperty Name="Employee_Surname" ColumnName="Employee_Surname" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="CallStatus_Description" ColumnName="CallStatus_Description" />
+                <ScalarProperty Name="Reason_Description" ColumnName="Reason_Description" />
+                <ScalarProperty Name="PRF_Number" ColumnName="PRF_Number" />
+                <ScalarProperty Name="DOA_Number" ColumnName="DOA_Number" />
+                <ScalarProperty Name="Call_EndTime" ColumnName="Call_EndTime" />
+                <ScalarProperty Name="Call_StartTime" ColumnName="Call_StartTime" />
+                <ScalarProperty Name="Call_Date" ColumnName="Call_Date" />
+                <ScalarProperty Name="Reason_ID" ColumnName="Reason_ID" />
+                <ScalarProperty Name="CallStatus_ID" ColumnName="CallStatus_ID" />
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FullVehicleInventories">
+            <EntityTypeMapping TypeName="MediStock_DBModel.FullVehicleInventory">
+              <MappingFragment StoreEntitySet="FullVehicleInventory">
+                <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Inventory_Name" ColumnName="Inventory_Name" />
+                <ScalarProperty Name="VehicleInventory_Qty" ColumnName="VehicleInventory_Qty" />
+                <ScalarProperty Name="MaximumQty" ColumnName="MaximumQty" />
+                <ScalarProperty Name="MinimumQty" ColumnName="MinimumQty" />
+                <ScalarProperty Name="Vehicle_ID" ColumnName="Vehicle_ID" />
+                <ScalarProperty Name="Inventory_ID" ColumnName="Inventory_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
