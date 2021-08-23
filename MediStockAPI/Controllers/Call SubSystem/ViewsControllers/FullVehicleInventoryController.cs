@@ -69,4 +69,4 @@ namespace MediStockAPI.Controllers.Call_SubSystem.ViewsControllers
 
         }
     }
-}
+
