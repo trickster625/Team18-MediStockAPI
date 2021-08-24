@@ -167,6 +167,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\Call SubSystem\CallController.cs" />
     <Compile Include="Controllers\Call SubSystem\CallItemsUsedController.cs" />
+    <Compile Include="Controllers\Call SubSystem\CallStatusController.cs" />
     <Compile Include="Controllers\Call SubSystem\CancelReasonController.cs" />
     <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullCallController.cs" />
     <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullVehicleInventoryController.cs" />
@@ -237,9 +238,6 @@
     <Compile Include="Models\ChecklistItemType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CallVM.cs" />
-    <Compile Include="Models\CallCancelReasonsVM.cs" />
-    <Compile Include="Models\CallItemsUsedVM.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -399,13 +397,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\MediStockDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MediStockDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MediStockDB.edmx.diagram">
-      <DependentUpon>MediStockDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.esm.min.js.map" />
@@ -447,6 +438,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <EntityDeploy Include="Models\MediStockDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MediStockDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MediStockDB.edmx.diagram">
+      <DependentUpon>MediStockDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
