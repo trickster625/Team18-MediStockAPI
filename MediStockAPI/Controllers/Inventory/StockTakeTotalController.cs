@@ -35,9 +35,9 @@ namespace MediStockAPI.Controllers.Inventory
 
                 return Ok(outputStockTakeTotals);
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 
@@ -52,17 +52,21 @@ namespace MediStockAPI.Controllers.Inventory
                 {
                     db.StockTakeTotals.Add(newStocktakeTotal[i]);
 
+                    var newQuantity = newStocktakeTotal[i].StockTakeTotal_Qty;
+                    var currentItemID = newStocktakeTotal[i].Inventory_ID;
+
                     Models.Inventory currentItem = new Models.Inventory();
-                    currentItem = db.Inventories.Where(z => z.Inventory_ID == newStocktakeTotal[i].Inventory_ID).FirstOrDefault();
-                    currentItem.Inventory_BaseCampQty = newStocktakeTotal[i].StockTakeTotal_Qty;
+
+                    currentItem = db.Inventories.Where(z => z.Inventory_ID == currentItemID).FirstOrDefault();
+                    currentItem.Inventory_BaseCampQty = newQuantity;
                 }
 
                 db.SaveChangesAsync();
                 return Ok("StocktakeTotals Added!");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 
@@ -75,18 +79,20 @@ namespace MediStockAPI.Controllers.Inventory
 
                 for (int i = 0; i < newStocktakeTotal.Length; i++)
                 {
+                    var newQuantity = newStocktakeTotal[i].StockTakeTotal_Qty;
+                    var currentItemID = newStocktakeTotal[i].Inventory_ID;
                     Models.Inventory currentItem = new Models.Inventory();
-                    currentItem = db.Inventories.Where(z => z.Inventory_ID == newStocktakeTotal[i].Inventory_ID).FirstOrDefault();
-                    currentItem.Inventory_BaseCampQty = newStocktakeTotal[i].StockTakeTotal_Qty;
+                    currentItem = db.Inventories.Where(z => z.Inventory_ID == currentItemID).FirstOrDefault();
+                    currentItem.Inventory_BaseCampQty = newQuantity;
                 }
 
                 db.SaveChangesAsync();
 
                 return Ok("StocktakeTotals Updated!");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 

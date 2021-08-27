@@ -199,10 +199,14 @@
     <Compile Include="Controllers\Inventory\VehicleInventoryController.cs" />
     <Compile Include="Controllers\Inventory\WriteOffController.cs" />
     <Compile Include="Controllers\Inventory\WriteOffReasonsController.cs" />
+    <Compile Include="Controllers\Reporting\CallLogReportController.cs" />
+    <Compile Include="Controllers\Reporting\JobApplicationsPositionsController.cs" />
+    <Compile Include="Controllers\Reporting\JobApplicationsReportController.cs" />
     <Compile Include="Controllers\Role Types\FilterRoleTypesController.cs" />
     <Compile Include="Controllers\Role Types\GetCurrentRoleTypeController.cs" />
     <Compile Include="Controllers\Role Types\RoleTypesController.cs" />
     <Compile Include="Controllers\Supplier\OrderController.cs" />
+    <Compile Include="Controllers\Supplier\OrderSecondController.cs" />
     <Compile Include="Controllers\Supplier\OrderLinesController.cs" />
     <Compile Include="Controllers\Supplier\OrderStatusController.cs" />
     <Compile Include="Controllers\Supplier\SupplierController.cs" />
@@ -315,12 +319,16 @@
     <Compile Include="Models\OrderStatu.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Order\ReceiveOrderVM.cs" />
     <Compile Include="Models\PriceHistory.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QualificationType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReportingVM\callLogDatesVM.cs" />
+    <Compile Include="Models\ReportingVM\callLogOutputVM.cs" />
+    <Compile Include="Models\ReportingVM\JobApplicationReportVM.cs" />
     <Compile Include="Models\RoleType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>

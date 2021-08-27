@@ -43,18 +43,23 @@ namespace MediStockAPI.Controllers.Supplier
 
         [HttpPost]
         [Route("createOrderLines")]
-        public IHttpActionResult createOrderLines(OrderLine newOrderLine)
+        public IHttpActionResult createOrderLines(OrderLine[] newOrderLine)
         {
             try
             {
-                db.OrderLines.Add(newOrderLine);
+
+                for (int i = 0; i < newOrderLine.Length; i++)
+                {
+                    db.OrderLines.Add(newOrderLine[i]);
+                }
+
                 db.SaveChangesAsync();
 
-                return Ok("Order Added");
+                return Ok("OrderLines Added");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
 
