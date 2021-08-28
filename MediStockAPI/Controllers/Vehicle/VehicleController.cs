@@ -189,58 +189,5 @@ namespace MediStockAPI.Controllers
                 return BadRequest();
             }
         }
-
-        [HttpGet]
-        [Route("getVehicleInvToUpdate")]
-        public IHttpActionResult getVehicleInvToUpdate()
-        {
-            try
-            {
-                List<VehicleInventory> outputVehicleInventory = new List<VehicleInventory>();
-                var storedInventory = db.VehicleInventories.ToList();
-
-                foreach (var storedItem in storedInventory)
-                {
-                    VehicleInventory newVehicleInventory = new VehicleInventory();
-
-                    newVehicleInventory.Vehicle_ID = storedItem.Vehicle_ID;
-                    newVehicleInventory.Inventory_ID = storedItem.Inventory_ID;
-                    newVehicleInventory.MaximumQty = storedItem.MaximumQty;
-                    newVehicleInventory.MinimumQty = storedItem.MinimumQty;
-                    //newVehicleInventory.VehicleInventory_Qty = storedItem.VehicleInventory_Qty;
-
-                    outputVehicleInventory.Add(newVehicleInventory);
-                }
-
-                return Ok(outputVehicleInventory);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpPut]
-        [Route("updateVehicleInvReq")]
-        public IHttpActionResult updateVehicleInvReq(Models.VehicleInventory updateVehicleInvReq)
-        {
-            try
-            {
-                Models.VehicleInventory currentVehicle = new Models.VehicleInventory();
-                currentVehicle = db.VehicleInventories.Where(z => z.Vehicle_ID == updateVehicleInvReq.Vehicle_ID && z.Inventory_ID == updateVehicleInvReq.Inventory_ID).FirstOrDefault();
-
-                currentVehicle.MinimumQty = updateVehicleInvReq.MinimumQty;
-                currentVehicle.MaximumQty = updateVehicleInvReq.MaximumQty;
-
-                db.SaveChangesAsync();
-
-                return Ok("Vehicle Inventory Requirements Updated!");
-            }
-            catch (Exception)
-            {
-
-                return BadRequest();
-            }
-        }
     }
 }

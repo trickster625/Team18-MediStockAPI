@@ -29,12 +29,11 @@ namespace MediStockAPI.Controllers
                     outputReasons.Add(reason);
                 }
 
-                outputReasons = outputReasons.OrderBy(z => z.Write_OffReason_Description).ToList();
                 return Ok(outputReasons);
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                return BadRequest((err).ToString());
+                return BadRequest();
             }
         }
 
@@ -49,9 +48,9 @@ namespace MediStockAPI.Controllers
 
                 return Ok("Reason Added");
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                return BadRequest((err).ToString());
+                return BadRequest();
             }
         }
 
@@ -69,9 +68,9 @@ namespace MediStockAPI.Controllers
 
                 return Ok("Reason Updated!");
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                return BadRequest((err).ToString());
+                return BadRequest();
             }
         }
 
@@ -87,9 +86,9 @@ namespace MediStockAPI.Controllers
 
                 return Ok("Deleted");
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                return BadRequest((err).ToString());
+                return BadRequest();
             }
         }
 
