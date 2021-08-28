@@ -8,8 +8,8 @@ namespace MediStockAPI.Models
     public class InventoryFullVM
     {
         public int Inventory_ID { get; set; }
-        public int InventoryType_ID { get; set; }
-        public string InventoryType_Description { get; set; }
+        public int InventoryCategory_ID { get; set; }
+        public string InventoryCategory_Description { get; set; }
         public string Inventory_Name { get; set; }
         public decimal Inventory_LatestPrice { get; set; }
         public int Inventory_BaseCampQty { get; set; }
