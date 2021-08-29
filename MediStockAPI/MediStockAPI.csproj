@@ -174,6 +174,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\Employee\CandidateController.cs" />
     <Compile Include="Controllers\Employee\EmployeeTitleController.cs" />
+    <Compile Include="Controllers\Employee\ShiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Employee\JobPositionController.cs" />
     <Compile Include="Controllers\Employee\RegisterEmployeeController.cs" />
@@ -183,6 +184,7 @@
     </Compile>
     <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\RegisterEmployee.cs" />
+    <Compile Include="Models\Shift.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
