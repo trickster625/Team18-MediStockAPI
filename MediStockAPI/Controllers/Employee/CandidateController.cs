@@ -44,6 +44,46 @@ namespace MediStockAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("getFilteredEmployees")]
+        public IHttpActionResult getFilteredEmployees(string searchName, int searchTypeID)
+        {
+
+            try
+            {
+                var candidates = db.Candidate.ToList();
+                List<Candidate> CandidateList = new List<Candidate>();
+
+                foreach (var storedCandidate in candidates)
+                {
+
+                    if (employee.Employee_Name == searchName && employee.RoleType_ID == searchTypeID)
+                    {
+                        RegisterEmployee emp = new RegisterEmployee();
+
+                        currentCandidate.Candidate_ID = viewCandidate.Candidate_ID;
+                        currentCandidate.Candidate_Name = viewCandidate.Candidate_Name;
+                        currentCandidate.Candidate_Surname = viewCandidate.Candidate_Surname;
+                        currentCandidate.Candidate_Email = viewCandidate.Candidate_Email;
+                        currentCandidate.Candidate_ContactNumber = viewCandidate.Candidate_ContactNumber;
+                        currentCandidate.Candidate_CVFile = viewCandidate.Candidate_CVFile;
+
+                        EmployeeList.Add(emp);
+                    }
+
+                }
+
+                return Ok(EmployeeList);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+
+
+
         [HttpPost]
         [Route("createCandidate")]
         public IHttpActionResult createCandidate(Candidate newCandidateItem)
@@ -89,8 +129,8 @@ namespace MediStockAPI.Controllers
 
         // questionable
         [HttpDelete]
-        [Route("acceptCandidate")]
-        public IHttpActionResult acceptCandidate(int id)
+        [Route("acceptApplication")]
+        public IHttpActionResult acceptApplication(int id)
         {
             try
             {
