@@ -172,6 +172,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\Employee\CandidateController.cs" />
     <Compile Include="Controllers\Employee\ShiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +180,209 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Shift.cs" />
+=======
+    <Compile Include="Controllers\Call SubSystem\CallController.cs" />
+    <Compile Include="Controllers\Call SubSystem\CallItemsUsedController.cs" />
+    <Compile Include="Controllers\Call SubSystem\CancelReasonController.cs" />
+    <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullCallController.cs" />
+    <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullVehicleInventoryController.cs" />
+    <Compile Include="Controllers\Employee\CandidateController.cs" />
+    <Compile Include="Controllers\Employee\EmployeeTitleController.cs" />
+    <Compile Include="Controllers\Employee\JobPositionController.cs" />
+    <Compile Include="Controllers\Employee\RegisterEmployeeController.cs" />
+    <Compile Include="Controllers\Employee\RoleTypeController.cs" />
+    <Compile Include="Controllers\Employee\ShiftController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Interviews\CandidateNameController.cs" />
+    <Compile Include="Controllers\Interviews\EmployeeNameController.cs" />
+    <Compile Include="Controllers\Interviews\FilterInterviewsController.cs" />
+    <Compile Include="Controllers\Interviews\GetCurrentInterviewController.cs" />
+    <Compile Include="Controllers\Interviews\InterviewController.cs" />
+    <Compile Include="Controllers\Interviews\InterviewTypeController.cs" />
+    <Compile Include="Controllers\Interviews\MedistockInventoryTestEntities.cs" />
+    <Compile Include="Controllers\Inventory\BarcodeController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryCategoryController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryController.cs" />
+    <Compile Include="Controllers\Inventory\invVehicleController.cs" />
+    <Compile Include="Controllers\Inventory\StockTakeController.cs" />
+    <Compile Include="Controllers\Inventory\StockTakeTotalController.cs" />
+    <Compile Include="Controllers\Inventory\VehicleInventoryController.cs" />
+    <Compile Include="Controllers\Inventory\WriteOffController.cs" />
+    <Compile Include="Controllers\Inventory\WriteOffReasonsController.cs" />
+    <Compile Include="Controllers\Reporting\CallLogReportController.cs" />
+    <Compile Include="Controllers\Reporting\JobApplicationsPositionsController.cs" />
+    <Compile Include="Controllers\Reporting\JobApplicationsReportController.cs" />
+    <Compile Include="Controllers\Role Types\FilterRoleTypesController.cs" />
+    <Compile Include="Controllers\Role Types\GetCurrentRoleTypeController.cs" />
+    <Compile Include="Controllers\Role Types\RoleTypesController.cs" />
+    <Compile Include="Controllers\Supplier\OrderController.cs" />
+    <Compile Include="Controllers\Supplier\OrderSecondController.cs" />
+    <Compile Include="Controllers\Supplier\OrderLinesController.cs" />
+    <Compile Include="Controllers\Supplier\OrderStatusController.cs" />
+    <Compile Include="Controllers\Supplier\SupplierController.cs" />
+    <Compile Include="Controllers\Vehicle\VehicleController.cs" />
+    <Compile Include="Controllers\Vehicle\VehicleTypeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Barcode.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Call.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CallCancelReason.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CallStatu.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Call\CallCancelReasonsVM.cs" />
+    <Compile Include="Models\Call\CallItemsUsedVM.cs" />
+    <Compile Include="Models\Call\CallVM.cs" />
+    <Compile Include="Models\Call\Views VM\FullCallVM.cs" />
+    <Compile Include="Models\Call\Views VM\FullVehicleInventory.cs" />
+    <Compile Include="Models\Call_ItemsUsed.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Candidate.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Checklist.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChecklistItem.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChecklistItemType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeTitle.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee\Candidate.cs" />
+    <Compile Include="Models\Employee\InterviewVM.cs" />
+    <Compile Include="Models\Employee\JobPositionVM.cs" />
+    <Compile Include="Models\Employee\RegisterEmployee.cs" />
+    <Compile Include="Models\Employee\RoleTypeVM.cs" />
+    <Compile Include="Models\Employee\ShiftVM.cs" />
+    <Compile Include="Models\FullCall.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FullVehicleInventory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InspectionChecklist.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InspectionType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Interview.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InterviewType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inventory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InventoryCategory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inventory\FullStockTakeVM.cs" />
+    <Compile Include="Models\Inventory\InventoryFullVM.cs" />
+    <Compile Include="Models\Inventory\InventoryVM.cs" />
+    <Compile Include="Models\ItemsChecklist.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobApplication.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobPosition.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MediStockDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MediStockDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MediStockDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MediStockDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MediStockDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderLine.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderStatu.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order\ReceiveOrderVM.cs" />
+    <Compile Include="Models\PriceHistory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QualificationType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportingVM\callLogDatesVM.cs" />
+    <Compile Include="Models\ReportingVM\callLogOutputVM.cs" />
+    <Compile Include="Models\ReportingVM\JobApplicationReportVM.cs" />
+    <Compile Include="Models\RoleType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SecurityQuestion.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shift.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StockTake.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StockTakeTotal.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vehicle.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VehicleCall.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VehicleInspection.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VehicleInventory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VehicleType.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vehicle\VehicleVM.cs" />
+    <Compile Include="Models\Write_OffReason.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Written_OffInventory.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+>>>>>>> newMasterWorking
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@ namespace MediStockAPI.Controllers
             {
                 List<Candidate> outputCandidates = new List<Candidate>();
 
-                var storedCandidates = db.Candidate.ToList();
+                var storedCandidates = db.Candidates.ToList();
 
                 foreach (var storedCandidate in storedCandidates)
                 {
@@ -44,50 +44,13 @@ namespace MediStockAPI.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("getFilteredCandidates")]
-        public IHttpActionResult getFilteredCandidates(string CandidateName)
-        {
-
-            try
-            {
-                var candidates = db.Candidate.ToList();
-                List<Candidate>CandidateList = new List<Candidate>();
-
-                foreach (var candidate in candidates)
-                {
-
-                    if (candidate.Candidate_Name == CandidateName)
-                    {
-                        Candidate i = new Candidate();
-
-                        i.Candidate_ID = candidate.Candidate_ID;
-                        i.Candidate_Name = candidate.Candidate_Name;
-                        i.Candidate_Surname = candidate.Candidate_Surname;
-                        i.Candidate_ContactNumber = candidate.Candidate_ContactNumber;
-                        i.Candidate_Email = candidate.Candidate_Email;
-
-                        CandidateList.Add(i);
-                    }
-
-                }
-
-                return Ok(CandidateList);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-
-        }
-
         [HttpPost]
         [Route("createCandidate")]
-        public IHttpActionResult createCandidate(Candidate newCandidate)
+        public IHttpActionResult createCandidate(Candidate newCandidateItem)
         {
             try
             {
-                db.Candidate.Add(newCandidate);
+                db.Candidates.Add(newCandidateItem);
                 db.SaveChangesAsync();
 
                 return Ok("Candidate Added");
@@ -105,7 +68,7 @@ namespace MediStockAPI.Controllers
             try
             {
                 Candidate currentCandidate = new Candidate();
-                currentCandidate = db.Candidate.Where(z => z.Candidate_ID == viewCandidate.Candidate_ID).FirstOrDefault();
+                currentCandidate = db.Candidates.Where(z => z.Candidate_ID == viewCandidate.Candidate_ID).FirstOrDefault();
 
                 currentCandidate.Candidate_ID = viewCandidate.Candidate_ID;
                 currentCandidate.Candidate_Name = viewCandidate.Candidate_Name;
@@ -124,16 +87,19 @@ namespace MediStockAPI.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("acceptApplication")]
-        public IHttpActionResult acceptApplication(JobApplication newJobApplication)
+        // questionable
+        [HttpDelete]
+        [Route("acceptCandidate")]
+        public IHttpActionResult acceptCandidate(int id)
         {
             try
             {
-                db.JobApplication.Add(newJobApplication);
+                //db.Candidates.i(db.Candidates.Single(z => z.Candidate_ID == id));
+
                 db.SaveChangesAsync();
 
                 return Ok("Accepted");
+                // add to db.JobApplication shortlist
             }
             catch (Exception)
             {
