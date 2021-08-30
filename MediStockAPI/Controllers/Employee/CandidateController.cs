@@ -45,52 +45,49 @@ namespace MediStockAPI.Controllers
         }
 
         [HttpGet]
-        [Route("getFilteredEmployees")]
-        public IHttpActionResult getFilteredEmployees(string searchName, int searchTypeID)
+        [Route("getFilteredCandidates")]
+        public IHttpActionResult getFilteredCandidates(string CandidateName)
         {
 
             try
             {
                 var candidates = db.Candidate.ToList();
-                List<Candidate> CandidateList = new List<Candidate>();
+                List<Candidate>CandidateList = new List<Candidate>();
 
-                foreach (var storedCandidate in candidates)
+                foreach (var candidate in candidates)
                 {
 
-                    if (employee.Employee_Name == searchName && employee.RoleType_ID == searchTypeID)
+                    if (candidate.Candidate_Name == CandidateName)
                     {
-                        RegisterEmployee emp = new RegisterEmployee();
+                        Candidate i = new Candidate();
 
-                        currentCandidate.Candidate_ID = viewCandidate.Candidate_ID;
-                        currentCandidate.Candidate_Name = viewCandidate.Candidate_Name;
-                        currentCandidate.Candidate_Surname = viewCandidate.Candidate_Surname;
-                        currentCandidate.Candidate_Email = viewCandidate.Candidate_Email;
-                        currentCandidate.Candidate_ContactNumber = viewCandidate.Candidate_ContactNumber;
-                        currentCandidate.Candidate_CVFile = viewCandidate.Candidate_CVFile;
+                        i.Candidate_ID = candidate.Candidate_ID;
+                        i.Candidate_Name = candidate.Candidate_Name;
+                        i.Candidate_Surname = candidate.Candidate_Surname;
+                        i.Candidate_ContactNumber = candidate.Candidate_ContactNumber;
+                        i.Candidate_Email = candidate.Candidate_Email;
 
-                        EmployeeList.Add(emp);
+                        CandidateList.Add(i);
                     }
 
                 }
 
-                return Ok(EmployeeList);
+                return Ok(CandidateList);
             }
             catch (Exception)
             {
                 return BadRequest();
             }
+
         }
-
-
-
 
         [HttpPost]
         [Route("createCandidate")]
-        public IHttpActionResult createCandidate(Candidate newCandidateItem)
+        public IHttpActionResult createCandidate(Candidate newCandidate)
         {
             try
             {
-                db.Candidate.Add(newCandidateItem);
+                db.Candidate.Add(newCandidate);
                 db.SaveChangesAsync();
 
                 return Ok("Candidate Added");
@@ -127,19 +124,16 @@ namespace MediStockAPI.Controllers
             }
         }
 
-        // questionable
-        [HttpDelete]
+        [HttpPost]
         [Route("acceptApplication")]
-        public IHttpActionResult acceptApplication(int id)
+        public IHttpActionResult acceptApplication(JobApplication newJobApplication)
         {
             try
             {
-                db.Candidate.Accept(db.Candidate.Single(z => z.Candidate_ID == id));
-
+                db.JobApplication.Add(newJobApplication);
                 db.SaveChangesAsync();
 
                 return Ok("Accepted");
-                // add to db.JobApplication shortlist
             }
             catch (Exception)
             {
