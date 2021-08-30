@@ -19,11 +19,10 @@ namespace MediStockAPI.Controllers.Call_SubSystem
 
             try
             {
-                var roleTypes = db.RoleTypes.ToList();
 
                 var Statuses = db.CallStatus.ToList();
 
-                List<RoleType> RoleTypeList = new List<RoleType>();
+               
 
                 List<CallStatu> Statuseslist = new List<CallStatu>();
 
@@ -42,7 +41,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
 
                 }
 
-                return Ok(RoleTypeList);
+                return Ok(Statuseslist);
 
             }
             catch (Exception)

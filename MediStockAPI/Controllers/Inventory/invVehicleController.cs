@@ -19,12 +19,12 @@ namespace MediStockAPI.Controllers.Inventory
         {
             try
             {
-                List<Vehicle> outputVehicles = new List<Vehicle>();
+                List<Models.Vehicle> outputVehicles = new List<Models.Vehicle>();
                 var storedVehicles = db.Vehicles.ToList();
 
                 foreach (var storedVehicle in storedVehicles)
                 {
-                    Vehicle vehicle = new Vehicle();
+                    Models.Vehicle vehicle = new Models.Vehicle();
 
                     vehicle.Vehicle_ID = storedVehicle.Vehicle_ID;
                     vehicle.Vehicle_Name = storedVehicle.Vehicle_Name;

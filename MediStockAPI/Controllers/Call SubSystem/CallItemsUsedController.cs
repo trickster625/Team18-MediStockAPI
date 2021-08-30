@@ -38,7 +38,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
         }
 
         [HttpPost]
-        [Route("UpdateItemsUsed")]
+        [Route("CreateItemsUsed")]
         public async Task<IHttpActionResult> AddNewItem(Call_ItemsUsed call_ItemsUsed)
         {
             if (!ModelState.IsValid)

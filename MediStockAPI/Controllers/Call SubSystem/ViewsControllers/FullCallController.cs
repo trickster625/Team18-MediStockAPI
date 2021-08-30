@@ -57,17 +57,18 @@ namespace MediStockAPI.Controllers.Call_SubSystem.ViewsControllers
         [HttpGet]
         [Route("SearchFullCall")]
 
-        public IEnumerable<FullCall> GetSearchCall(int Search)
+        public IHttpActionResult GetSearchCall(int Search)
         {
             try
             {
-                return (IEnumerable<FullCall>) db.FullCalls.Where(p => p.Call_ID == Search);
+                var result =  db.FullCalls.Where(p => p.Call_ID == Search).FirstOrDefault();
+                return Ok(result);
                                    
             }
-            catch (Exception)
+            catch (Exception err)
             {
 
-                throw;
+                return BadRequest(err.ToString());
             }
 
         }
