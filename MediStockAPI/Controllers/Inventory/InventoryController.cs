@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -67,7 +68,7 @@ namespace MediStockAPI.Controllers.Inventory
                     outputItems.Add(item);
                 }
 
-                outputItems = outputItems.OrderBy(z => z.Inventory_Name).ToList();
+                outputItems = outputItems.OrderBy(z => z.Inventory_Name).GroupBy(x=>x.InventoryCategory_ID).SelectMany(g=>g).ToList();
                 return Ok(outputItems);
             }
             catch (Exception err)
@@ -82,7 +83,17 @@ namespace MediStockAPI.Controllers.Inventory
         {
             try
             {
+
                 db.Inventories.Add(newInventoryItem);
+
+                PriceHistory newPriceHistory = new PriceHistory();
+
+                newPriceHistory.Inventory_ID = newInventoryItem.Inventory_ID;
+                newPriceHistory.PriceHistory_Price = newInventoryItem.Inventory_LatestPrice;
+                newPriceHistory.PriceHistory_Date = DateTime.Now;
+
+                db.PriceHistories.Add(newPriceHistory);
+
                 db.SaveChangesAsync();
 
                 return Ok("Item Added");
@@ -102,13 +113,25 @@ namespace MediStockAPI.Controllers.Inventory
                 Models.Inventory currentItem = new Models.Inventory();
                 currentItem = db.Inventories.Where(z => z.Inventory_ID == updateItem.Inventory_ID).FirstOrDefault();
 
+                if (currentItem.Inventory_LatestPrice != updateItem.Inventory_LatestPrice)
+                {
+                    PriceHistory newPriceHistory = new PriceHistory();
+
+                    newPriceHistory.Inventory_ID = updateItem.Inventory_ID;
+                    newPriceHistory.PriceHistory_Price = updateItem.Inventory_LatestPrice;
+                    newPriceHistory.PriceHistory_Date = DateTime.Now;
+
+                    db.PriceHistories.Add(newPriceHistory);
+                }
+
                 currentItem.InventoryCategory_ID = updateItem.InventoryCategory_ID;
                 currentItem.Inventory_Name = updateItem.Inventory_Name;
                 currentItem.Inventory_LatestPrice = updateItem.Inventory_LatestPrice;
+                currentItem.Inventory_BaseCampQty = updateItem.Inventory_BaseCampQty;
 
                 db.SaveChangesAsync();
 
-                return Ok("Reason Updated!");
+                return Ok("Item Updated!");
             }
             catch (Exception err)
             {

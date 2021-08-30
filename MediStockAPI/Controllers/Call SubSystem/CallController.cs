@@ -6,6 +6,9 @@ using System.Net.Http;
 using System.Web.Http;
 using MediStockAPI.Models;
 
+using System.Security.Claims;
+
+
 namespace MediStockAPI.Controllers.Call_SubSystem
 {
     public class CallController : ApiController
@@ -30,7 +33,7 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                         CallStatus_ID = s.CallStatus_ID,
                         Call_Date = (DateTime)s.Call_Date,
                         Call_StartTime = (TimeSpan)s.Call_StartTime,
-                        Call_EndTime = (TimeSpan)s.Call_EndTime,
+                        Call_EndTime = (TimeSpan)(s.Call_EndTime),
                         PRF_Number = (int)((s.PRF_Number == null) ? 0 : s.PRF_Number),
                         DOA_Number = (int)((s.DOA_Number == null) ? 0 : s.DOA_Number)
                     }).ToList<CallVM>();
@@ -38,13 +41,50 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                 
                 return Ok(calls);
            }
-           catch (Exception)
+           catch (Exception err)
            {
                 
-                return BadRequest("not working :-(");
+                return BadRequest((err).ToString());
           }
         }
-       
+
+        [HttpGet]
+        [Route("getLastCall")]
+        public IHttpActionResult getLastCall()
+        {
+            try
+            {
+                var lastCall = db.Calls.OrderByDescending(a => a.Call_ID).FirstOrDefault().Call_ID;
+                return Ok(lastCall);
+            }
+            catch (Exception err)
+            {
+                return BadRequest("last call ID ERROR:" + err.ToString());
+                throw;
+            }
+
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        [Route("test")]
+        public Object GetName2()
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                IEnumerable<Claim> claims = identity.Claims;
+                var name = claims.Where(p => p.Type == "Employee_ID").FirstOrDefault()?.Value;
+                return new
+                {
+                    data = name
+                };
+
+            }
+            return null;
+        }
+
 
 
 
@@ -138,10 +178,10 @@ namespace MediStockAPI.Controllers.Call_SubSystem
                 }
                 else
                 {
-                    return NotFound();
+                    return Ok(call);
                 }
             }
-            return Ok();
+            return Ok("Saved Succesfully");
         }
 
 
@@ -171,9 +211,9 @@ namespace MediStockAPI.Controllers.Call_SubSystem
 
                     }) ;
 
-                    ctx.SaveChangesAsync();
+                    ctx.SaveChanges();
                 }
-                return Ok();
+                return Ok("Call Saved Succesfully!");
             }
             catch (Exception)
             {
