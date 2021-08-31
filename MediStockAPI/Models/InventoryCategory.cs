@@ -14,16 +14,7 @@ namespace MediStockAPI.Models
     
     public partial class InventoryCategory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public InventoryCategory()
-        {
-            this.Inventories = new HashSet<Inventory>();
-        }
-    
         public int InventoryCategory_ID { get; set; }
         public string InventoryCategory_Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory> Inventories { get; set; }
     }
 }

@@ -4,48 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3fc30185c8d54c779a11803b000597e6" Name="Diagram1">
-        <EntityTypeShape EntityType="MediStock_DBModel.Barcode" Width="1.5" PointX="8.25" PointY="24.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Call" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Call_ItemsUsed" Width="1.5" PointX="12.25" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.CallCancelReason" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.CallStatu" Width="1.5" PointX="0.75" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Candidate" Width="1.5" PointX="6" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Checklist" Width="1.5" PointX="1.5" PointY="22.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItem" Width="1.5" PointX="1.5" PointY="25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItemType" Width="1.5" PointX="1.5" PointY="28.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Employee" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.EmployeeTitle" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.InspectionChecklist" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.InspectionType" Width="1.5" PointX="6" PointY="30.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Interview" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.InterviewType" Width="1.5" PointX="6" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Inventory" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.InventoryCategory" Width="1.5" PointX="3.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.ItemsChecklist" Width="1.5" PointX="3.75" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.JobApplication" Width="1.5" PointX="9.75" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.JobPosition" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Order" Width="1.5" PointX="13" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.OrderLine" Width="1.5" PointX="15.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.OrderStatu" Width="1.5" PointX="10.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.PriceHistory" Width="1.5" PointX="8.25" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.QualificationType" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.RoleType" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.SecurityQuestion" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Shift" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.StockTake" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.StockTakeTotal" Width="1.5" PointX="7.5" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Supplier" Width="1.5" PointX="10.75" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.sysdiagram" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Vehicle" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.VehicleCall" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.VehicleInspection" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.VehicleInventory" Width="1.5" PointX="11.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.VehicleType" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Write_OffReason" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.Written_OffInventory" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.FullCall" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.FullVehicleInventory" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+      <Diagram DiagramId="e5293ed6ea2a45f288f8edaebd78c272" Name="Diagram1">
+        <EntityTypeShape EntityType="MediStock_DBModel.Barcode" Width="1.5" PointX="8.25" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Call" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Call_ItemsUsed" Width="1.5" PointX="11.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.CallCancelReason" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.CallStatu" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Candidate" Width="1.5" PointX="6" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Checklist" Width="1.5" PointX="1.5" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItem" Width="1.5" PointX="1.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.ChecklistItemType" Width="1.5" PointX="1.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Employee" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.EmployeeTitle" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InspectionChecklist" Width="1.5" PointX="12.5" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InspectionType" Width="1.5" PointX="8" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Interview" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InterviewType" Width="1.5" PointX="6" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Inventory" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.InventoryCategory" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.ItemsChecklist" Width="1.5" PointX="3.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.JobApplication" Width="1.5" PointX="9.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.JobPosition" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Order" Width="1.5" PointX="11" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.OrderLine" Width="1.5" PointX="13.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.OrderStatu" Width="1.5" PointX="8.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.PriceHistory" Width="1.5" PointX="8.25" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.QualificationType" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.RoleType" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.SecurityQuestion" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Shift" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.StockTake" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.StockTakeTotal" Width="1.5" PointX="7.5" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Supplier" Width="1.5" PointX="8.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Vehicle" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleCall" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleInspection" Width="1.5" PointX="10.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleInventory" Width="1.5" PointX="11.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.VehicleType" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Write_OffReason" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.Written_OffInventory" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.FullCall" Width="1.5" PointX="12.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.FullVehicleInventory" Width="1.5" PointX="13.75" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="MediStock_DBModel.FK_Barcode_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Call_CallCancelReason" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Call_CallStatus" ManuallyRouted="false" />
@@ -69,7 +69,6 @@
         <AssociationConnector Association="MediStock_DBModel.FK_InspectionChecklist_VehicleInspection" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_VehicleInspection_InspectionType" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_Interview_InterviewType" ManuallyRouted="false" />
-        <AssociationConnector Association="MediStock_DBModel.FK_Inventory_InventoryCategory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_OrderLine_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_PriceHistory_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MediStock_DBModel.FK_StockTakeTotal_Inventory" ManuallyRouted="false" />

@@ -171,7 +171,7 @@
           <Property Name="Inventory_LatestPrice" Type="money" />
           <Property Name="Inventory_BaseCampQty" Type="int" />
           <Property Name="Inventory_DaysToExpire" Type="int" />
-          <Property Name="Inventory_Picture" Type="varbinary(max)" />
+          <Property Name="Inventory_Picture" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="InventoryCategory">
           <Key>
@@ -626,18 +626,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inventory_InventoryCategory">
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InventoryCategory">
-              <PropertyRef Name="InventoryCategory_ID" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="InventoryCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ItemsChecklist_Checklist">
           <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
           <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="*" />
@@ -950,37 +938,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MediStock_DBModelStoreContainer">
           <EntitySet Name="Barcode" EntityType="Self.Barcode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Call" EntityType="Self.Call" Schema="dbo" store:Type="Tables" />
@@ -1118,10 +1075,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <AssociationSet Name="FK_Interview_InterviewType" Association="Self.FK_Interview_InterviewType">
             <End Role="InterviewType" EntitySet="InterviewType" />
             <End Role="Interview" EntitySet="Interview" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
-            <End Role="InventoryCategory" EntitySet="InventoryCategory" />
-            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_ItemsChecklist_Checklist" Association="Self.FK_ItemsChecklist_Checklist">
             <End Role="Checklist" EntitySet="Checklist" />
@@ -1416,10 +1369,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Inventory_LatestPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Inventory_BaseCampQty" Type="Int32" />
           <Property Name="Inventory_DaysToExpire" Type="Int32" />
-          <Property Name="Inventory_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Inventory_Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Barcodes" Relationship="Self.FK_Barcode_Inventory" FromRole="Inventory" ToRole="Barcode" />
           <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Inventory" FromRole="Inventory" ToRole="Call_ItemsUsed" />
-          <NavigationProperty Name="InventoryCategory" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="Inventory" ToRole="InventoryCategory" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLine_Inventory" FromRole="Inventory" ToRole="OrderLine" />
           <NavigationProperty Name="PriceHistories" Relationship="Self.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
@@ -1432,7 +1384,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </Key>
           <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="InventoryCategory" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1990,18 +1941,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inventory_InventoryCategory">
-          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InventoryCategory">
-              <PropertyRef Name="InventoryCategory_ID" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="InventoryCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderLine_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
           <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
@@ -2336,10 +2275,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             <End Role="InterviewType" EntitySet="InterviewTypes" />
             <End Role="Interview" EntitySet="Interviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
-            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
-            <End Role="Inventory" EntitySet="Inventories" />
-          </AssociationSet>
           <AssociationSet Name="FK_OrderLine_Inventory" Association="Self.FK_OrderLine_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="OrderLine" EntitySet="OrderLines" />
@@ -2412,36 +2347,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             <End Role="Employee" EntitySet="Employees" />
             <End Role="RoleType" EntitySet="RoleTypes" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -2886,13 +2791,6 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
               <ScalarProperty Name="RoleType_ID" ColumnName="RoleType_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MediStock_DBModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MediStock_DBModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MediStock_DBModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MediStock_DBModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MediStock_DBModel.Store.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MediStock_DBModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MediStock_DBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

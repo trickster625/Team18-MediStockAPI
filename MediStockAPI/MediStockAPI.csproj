@@ -166,6 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CV Files\" />
+    <Folder Include="Images\" />
     <Folder Include="Views\InventoryTypes\" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +226,7 @@
     <Compile Include="Controllers\Inventory\BarcodeController.cs" />
     <Compile Include="Controllers\Inventory\InventoryCategoryController.cs" />
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryImageController.cs" />
     <Compile Include="Controllers\Inventory\invVehicleController.cs" />
     <Compile Include="Controllers\Inventory\StockTakeController.cs" />
     <Compile Include="Controllers\Inventory\StockTakeTotalController.cs" />
