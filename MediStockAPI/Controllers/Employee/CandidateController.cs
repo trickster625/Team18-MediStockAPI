@@ -77,9 +77,7 @@ namespace MediStockAPI.Controllers
                 currentCandidate.Candidate_ContactNumber = viewCandidate.Candidate_ContactNumber;
                 currentCandidate.Candidate_CVFile = viewCandidate.Candidate_CVFile;
 
-                db.SaveChangesAsync();
-
-                return Ok("Candidate Updated!");
+                return Ok();
             }
             catch (Exception)
             {
@@ -87,24 +85,31 @@ namespace MediStockAPI.Controllers
             }
         }
 
-        // questionable
-        [HttpDelete]
-        [Route("acceptCandidate")]
-        public IHttpActionResult acceptCandidate(int id)
+        [HttpPost]
+        [Route("acceptJobApplication")]
+        public IHttpActionResult acceptJobApplication(Models.JobApplication newInventoryItem)
         {
             try
             {
-                //db.Candidates.i(db.Candidates.Single(z => z.Candidate_ID == id));
+
+                db.Inventories.Add(newInventoryItem);
+
+                PriceHistory newPriceHistory = new PriceHistory();
+
+                newPriceHistory.Inventory_ID = newInventoryItem.Inventory_ID;
+                newPriceHistory.PriceHistory_Price = newInventoryItem.Inventory_LatestPrice;
+                newPriceHistory.PriceHistory_Date = DateTime.Now;
+
+                db.PriceHistories.Add(newPriceHistory);
 
                 db.SaveChangesAsync();
 
-                return Ok("Accepted");
-                // add to db.JobApplication shortlist
+                return Ok("Item Added");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
         }
     }
-}
+    }
