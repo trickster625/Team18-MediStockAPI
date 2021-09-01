@@ -39,9 +39,11 @@ namespace MediStockAPI.Controllers.Interviews
                         Interview.InterviewMethod = i.InterviewMethod;
                         Interview.Address = i.Address;
 
+                        interviewList.Add(Interview);
+
                     }
 
-                    interviewList.Add(Interview);
+                    
 
                 }
 

@@ -74,6 +74,7 @@ namespace MediStockAPI.Controllers.Supplier
 
                 currentOrder = db.Orders.Where(x => x.Order_ID == receivedOrderID).FirstOrDefault();
                 currentOrder.OrderStatus_ID = 2;
+                currentOrder.Order_DateScanned = DateTime.Now;
 
                 for (int i = 0; i < receivedOrder.Length; i++)
                 {

@@ -203,6 +203,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Audit\AuditController.cs" />
     <Compile Include="Controllers\Call SubSystem\CallController.cs" />
     <Compile Include="Controllers\Call SubSystem\CallItemsUsedController.cs" />
     <Compile Include="Controllers\Call SubSystem\CallStatusController.cs" />
@@ -210,12 +211,22 @@
     <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullCallController.cs" />
     <Compile Include="Controllers\Call SubSystem\ViewsControllers\FullVehicleInventoryController.cs" />
     <Compile Include="Controllers\Employee\CandidateController.cs" />
+    <Compile Include="Controllers\Employee\createEmployeeController.cs" />
     <Compile Include="Controllers\Employee\EmployeeTitleController.cs" />
+    <Compile Include="Controllers\Employee\getCurrentEmployeeController.cs" />
+    <Compile Include="Controllers\Employee\getSecurityQuestionsController.cs" />
     <Compile Include="Controllers\Employee\JobPositionController.cs" />
+    <Compile Include="Controllers\Employee\LoginController.cs" />
     <Compile Include="Controllers\Employee\RegisterEmployeeController.cs" />
     <Compile Include="Controllers\Employee\RoleTypeController.cs" />
+    <Compile Include="Controllers\Employee\SecurityQuestionsController.cs" />
     <Compile Include="Controllers\Employee\ShiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Inspections\ChecklistController.cs" />
+    <Compile Include="Controllers\Inspections\ChecklistItemController.cs" />
+    <Compile Include="Controllers\Inspections\ChecklistItemTypeController.cs" />
+    <Compile Include="Controllers\Inspections\ChecklistReportController.cs" />
+    <Compile Include="Controllers\Inspections\ChecklistItemReportController.cs" />
     <Compile Include="Controllers\Interviews\CandidateNameController.cs" />
     <Compile Include="Controllers\Interviews\EmployeeNameController.cs" />
     <Compile Include="Controllers\Interviews\FilterInterviewsController.cs" />
@@ -237,6 +248,7 @@
     <Compile Include="Controllers\Login\LoginJWTvalidation.cs" />
     <Compile Include="Controllers\Reporting\CallLogReportController.cs" />
     <Compile Include="Controllers\Reporting\CurrentInventoryReportController.cs" />
+    <Compile Include="Controllers\Reporting\InspectionReportController.cs" />
     <Compile Include="Controllers\Reporting\JobApplicationsPositionsController.cs" />
     <Compile Include="Controllers\Reporting\JobApplicationsReportController.cs" />
     <Compile Include="Controllers\Role Types\FilterRoleTypesController.cs" />
@@ -247,11 +259,17 @@
     <Compile Include="Controllers\Supplier\OrderLinesController.cs" />
     <Compile Include="Controllers\Supplier\OrderStatusController.cs" />
     <Compile Include="Controllers\Supplier\SupplierController.cs" />
+    <Compile Include="Controllers\Vehicle\UpdateVehicleRequirementsController.cs" />
     <Compile Include="Controllers\Vehicle\VehicleController.cs" />
     <Compile Include="Controllers\Vehicle\VehicleTypeController.cs" />
+    <Compile Include="Controllers\Vehicle\Vehicle_CallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuditLog.cs">
+      <DependentUpon>MediStockDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Audit\AuditVM.cs" />
     <Compile Include="Models\Barcode.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -291,10 +309,12 @@
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee\Candidate.cs" />
+    <Compile Include="Models\Employee\EmployeeVM.cs" />
     <Compile Include="Models\Employee\InterviewVM.cs" />
     <Compile Include="Models\Employee\JobPositionVM.cs" />
     <Compile Include="Models\Employee\RegisterEmployee.cs" />
     <Compile Include="Models\Employee\RoleTypeVM.cs" />
+    <Compile Include="Models\Employee\SecurityQuestionsVM.cs" />
     <Compile Include="Models\Employee\ShiftVM.cs" />
     <Compile Include="Models\FullCall.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
@@ -308,6 +328,7 @@
     <Compile Include="Models\InspectionType.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Inspection\ChecklistVM.cs" />
     <Compile Include="Models\Interview.cs">
       <DependentUpon>MediStockDB.tt</DependentUpon>
     </Compile>
@@ -367,6 +388,7 @@
     </Compile>
     <Compile Include="Models\ReportingVM\callLogDatesVM.cs" />
     <Compile Include="Models\ReportingVM\callLogOutputVM.cs" />
+    <Compile Include="Models\ReportingVM\InspectionReportVM.cs" />
     <Compile Include="Models\ReportingVM\JobApplicationReportVM.cs" />
     <Compile Include="Models\ReportingVM\StockPriceChangeReportController.cs" />
     <Compile Include="Models\RoleType.cs">

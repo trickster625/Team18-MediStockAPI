@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,6 +11,7 @@ namespace MediStockAPI.Controllers.EmpShift
     public class ShiftController : ApiController
     {
         MediStock_DBEntities db = new MediStock_DBEntities();
+
 
         [HttpGet]
         [Route("getEmployeeShifts")]
@@ -47,61 +47,93 @@ namespace MediStockAPI.Controllers.EmpShift
             }
         }
 
-        [HttpGet]
-        [Route("getFilteredEmployeeShifs")]
-        public IHttpActionResult getFilteredEmployeeShifts(int ShiftID)
-        {
-
-            try
-            {
-                var shifts = db.Shifts.ToList();
-                List<Shift> EmployeeShiftList = new List<Shift>();
-
-                foreach (var shift in shifts)
-                {
-
-                    if (shift.Shift_ID == ShiftID)
-                    {
-                        Shift employeeShift = new Shift();
-
-                        employeeShift.Shift_ID = shift.Shift_ID;
-                        employeeShift.Employee_ID = shift.Employee_ID;
-                        employeeShift.ShiftDate = (DateTime)shift.ShiftDate;
-                        employeeShift.ShiftStartTime = (TimeSpan)shift.ShiftStartTime;
-                        employeeShift.ShiftEndTime = (TimeSpan)shift.ShiftEndTime;
-
-                        EmployeeShiftList.Add(employeeShift);
-                    }
-
-                }
-
-                return Ok(EmployeeShiftList);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
 
 
         [HttpPost]
-        [Route("createShift")]
-        public IHttpActionResult createShift(Models.Shift newShift)
+        [Route("CreateShift")]
+        public IHttpActionResult CreateShift(Shift shift)
         {
             try
             {
-                db.Shifts.Add(newShift);
-                db.SaveChangesAsync();
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid data");
+                }
 
-                return Ok("Shift Added!");
+                using (var ctx = new MediStock_DBEntities())
+                {
+                    ctx.Shifts.Add(new Shift()
+                    {
+                        Employee_ID = shift.Employee_ID,
+                        ShiftDate = shift.ShiftDate,
+                        ShiftEndTime = shift.ShiftEndTime,
+                        ShiftStartTime = shift.ShiftStartTime,
+                        Shift_ID = shift.Shift_ID
+
+                    }); ;
+
+                    ctx.SaveChanges();
+                }
+                return Ok("Shift Saved Succesfully!");
             }
-            catch (Exception)
+            catch (Exception err)
             {
 
-                return BadRequest();
+                return BadRequest(err.ToString());
             }
         }
 
-    }
-}
+        [HttpPut]
+        [Route("UpdateShift")]
+        public IHttpActionResult UpdateShift(Shift shift)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Not a valid shift");
+            }
 
+            using (var ctx = new MediStock_DBEntities())
+            {
+                var existingShift = ctx.Shifts.Where(s => s.Shift_ID == shift.Shift_ID).FirstOrDefault();
+
+                if (existingShift != null)
+                {
+                    existingShift.Shift_ID = shift.Shift_ID;
+                    existingShift.Employee_ID = shift.Employee_ID;
+                    existingShift.ShiftDate = shift.ShiftDate;
+                    existingShift.ShiftEndTime = shift.ShiftEndTime;
+                    existingShift.ShiftStartTime = shift.ShiftStartTime;
+                    
+
+                    ctx.SaveChanges();
+
+                }
+                else
+                {
+                    return Ok(shift);
+                }
+            }
+            return Ok("Saved Succesfully");
+        }
+
+        [HttpGet]
+        [Route("getLastShift")]
+        public IHttpActionResult getLastsShift()
+        {
+            try
+            {
+                var lastCall = db.Shifts.OrderByDescending(a => a.Shift_ID).FirstOrDefault().Shift_ID;
+                return Ok(lastCall);
+            }
+            catch (Exception err)
+            {
+                return BadRequest("last Shift ID ERROR:" + err.ToString());
+                throw;
+            }
+
+        }
+
+
+    }
+
+}

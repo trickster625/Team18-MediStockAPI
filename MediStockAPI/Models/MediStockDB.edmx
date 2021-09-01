@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="MediStock_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuditDateTime" Type="datetime" />
+          <Property Name="TableName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Action" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MachineName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDName" Type="varchar" MaxLength="100" />
+          <Property Name="OldData" Type="xml" />
+          <Property Name="NewData" Type="xml" />
+        </EntityType>
         <EntityType Name="Barcode">
           <Key>
             <PropertyRef Name="Barcode_ID" />
@@ -152,7 +166,7 @@
           <Property Name="Employee_ID" Type="int" Nullable="false" />
           <Property Name="SheduleDateTime" Type="datetime" />
           <Property Name="InterviewMethod" Type="varchar" MaxLength="25" />
-          <Property Name="Address" Type="varchar" MaxLength="25" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="InterviewType">
           <Key>
@@ -262,7 +276,7 @@
             <PropertyRef Name="SecurityQuestion_ID" />
           </Key>
           <Property Name="SecurityQuestion_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SecurityQuestion_Description" Type="varchar" MaxLength="50" />
+          <Property Name="SecurityQuestion_Description" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -421,7 +435,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Call_ID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Barcode_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Barcode" Type="Self.Barcode" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -457,7 +473,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Call_ItemsUsed_Call">
-          <End Role="Call" Type="Self.Call" Multiplicity="1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Call_ItemsUsed" Type="Self.Call_ItemsUsed" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Call">
@@ -469,7 +487,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Call_ItemsUsed_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Call_ItemsUsed" Type="Self.Call_ItemsUsed" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -517,7 +537,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeQualification_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeeQualification" Type="Self.EmployeeQualification" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -529,7 +551,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeQualification_QualificationType">
-          <End Role="QualificationType" Type="Self.QualificationType" Multiplicity="1" />
+          <End Role="QualificationType" Type="Self.QualificationType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeeQualification" Type="Self.EmployeeQualification" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QualificationType">
@@ -541,7 +565,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeRole_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeeRole" Type="Self.EmployeeRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -553,7 +579,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeRole_RoleType">
-          <End Role="RoleType" Type="Self.RoleType" Multiplicity="1" />
+          <End Role="RoleType" Type="Self.RoleType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeeRole" Type="Self.EmployeeRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoleType">
@@ -565,7 +593,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InspectionChecklist_ItemsChecklist">
-          <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="1" />
+          <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InspectionChecklist" Type="Self.InspectionChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ItemsChecklist">
@@ -579,7 +609,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InspectionChecklist_VehicleInspection">
-          <End Role="VehicleInspection" Type="Self.VehicleInspection" Multiplicity="1" />
+          <End Role="VehicleInspection" Type="Self.VehicleInspection" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InspectionChecklist" Type="Self.InspectionChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VehicleInspection">
@@ -591,7 +623,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Interview_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
@@ -626,8 +660,22 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventory_InventoryCategory">
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryCategory">
+              <PropertyRef Name="InventoryCategory_ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="InventoryCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ItemsChecklist_Checklist">
-          <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
+          <End Role="Checklist" Type="Self.Checklist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Checklist">
@@ -639,7 +687,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemsChecklist_ChecklistItem">
-          <End Role="ChecklistItem" Type="Self.ChecklistItem" Multiplicity="1" />
+          <End Role="ChecklistItem" Type="Self.ChecklistItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChecklistItem">
@@ -651,7 +701,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="JobApplication" Type="Self.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
@@ -663,7 +715,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_JobPosition">
-          <End Role="JobPosition" Type="Self.JobPosition" Multiplicity="1" />
+          <End Role="JobPosition" Type="Self.JobPosition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="JobApplication" Type="Self.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="JobPosition">
@@ -711,7 +765,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderLine_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -723,7 +779,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderLine_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
@@ -735,7 +793,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PriceHistory_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PriceHistory" Type="Self.PriceHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -771,7 +831,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StockTakeTotal_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="StockTakeTotal" Type="Self.StockTakeTotal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -783,7 +845,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StockTakeTotal_StockTake">
-          <End Role="StockTake" Type="Self.StockTake" Multiplicity="1" />
+          <End Role="StockTake" Type="Self.StockTake" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="StockTakeTotal" Type="Self.StockTakeTotal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StockTake">
@@ -855,7 +919,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VehicleInspection_Vehicle">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInspection" Type="Self.VehicleInspection" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -867,7 +933,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VehicleInventory_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInventory" Type="Self.VehicleInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -879,7 +947,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VehicleInventory_Vehicle">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInventory" Type="Self.VehicleInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -938,7 +1008,46 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Audit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TableName" Type="varchar" Mode="In" />
+          <Parameter Name="PKName" Type="varchar" Mode="In" />
+          <Parameter Name="ChangedBy" Type="varchar" Mode="In" />
+          <Parameter Name="OldData" Type="varchar(max)" Mode="In" />
+          <Parameter Name="NewData" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MediStock_DBModelStoreContainer">
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Barcode" EntityType="Self.Barcode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Call" EntityType="Self.Call" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Call_ItemsUsed" EntityType="Self.Call_ItemsUsed" Schema="dbo" store:Type="Tables" />
@@ -1076,6 +1185,10 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             <End Role="InterviewType" EntitySet="InterviewType" />
             <End Role="Interview" EntitySet="Interview" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
+            <End Role="InventoryCategory" EntitySet="InventoryCategory" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
           <AssociationSet Name="FK_ItemsChecklist_Checklist" Association="Self.FK_ItemsChecklist_Checklist">
             <End Role="Checklist" EntitySet="Checklist" />
             <End Role="ItemsChecklist" EntitySet="ItemsChecklist" />
@@ -1186,6 +1299,20 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MediStock_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuditDateTime" Type="DateTime" Precision="3" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Action" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MachineName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OldData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Barcode">
           <Key>
             <PropertyRef Name="Barcode_ID" />
@@ -1346,7 +1473,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
           <Property Name="SheduleDateTime" Type="DateTime" Precision="3" />
           <Property Name="InterviewMethod" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Candidate" Relationship="Self.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Interview_Employee" FromRole="Interview" ToRole="Employee" />
           <NavigationProperty Name="InterviewType" Relationship="Self.FK_Interview_InterviewType" FromRole="Interview" ToRole="InterviewType" />
@@ -1372,6 +1499,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Inventory_Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Barcodes" Relationship="Self.FK_Barcode_Inventory" FromRole="Inventory" ToRole="Barcode" />
           <NavigationProperty Name="Call_ItemsUsed" Relationship="Self.FK_Call_ItemsUsed_Inventory" FromRole="Inventory" ToRole="Call_ItemsUsed" />
+          <NavigationProperty Name="InventoryCategory" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="Inventory" ToRole="InventoryCategory" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLine_Inventory" FromRole="Inventory" ToRole="OrderLine" />
           <NavigationProperty Name="PriceHistories" Relationship="Self.FK_PriceHistory_Inventory" FromRole="Inventory" ToRole="PriceHistory" />
           <NavigationProperty Name="StockTakeTotals" Relationship="Self.FK_StockTakeTotal_Inventory" FromRole="Inventory" ToRole="StockTakeTotal" />
@@ -1384,6 +1512,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </Key>
           <Property Name="InventoryCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InventoryCategory_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_InventoryCategory" FromRole="InventoryCategory" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="ItemsChecklist">
           <Key>
@@ -1484,7 +1613,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             <PropertyRef Name="SecurityQuestion_ID" />
           </Key>
           <Property Name="SecurityQuestion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SecurityQuestion_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityQuestion_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_SecurityQuestions" FromRole="SecurityQuestions" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Shift">
@@ -1664,7 +1793,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <Property Name="Call_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Barcode_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Barcode" Type="Self.Barcode" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -1700,7 +1831,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Call_ItemsUsed_Call">
-          <End Role="Call" Type="Self.Call" Multiplicity="1" />
+          <End Role="Call" Type="Self.Call" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Call_ItemsUsed" Type="Self.Call_ItemsUsed" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Call">
@@ -1724,7 +1857,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Call_ItemsUsed_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Call_ItemsUsed" Type="Self.Call_ItemsUsed" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -1736,7 +1871,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Interview_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
@@ -1748,7 +1885,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="JobApplication" Type="Self.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
@@ -1760,7 +1899,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemsChecklist_Checklist">
-          <End Role="Checklist" Type="Self.Checklist" Multiplicity="1" />
+          <End Role="Checklist" Type="Self.Checklist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Checklist">
@@ -1796,7 +1937,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemsChecklist_ChecklistItem">
-          <End Role="ChecklistItem" Type="Self.ChecklistItem" Multiplicity="1" />
+          <End Role="ChecklistItem" Type="Self.ChecklistItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChecklistItem">
@@ -1892,7 +2035,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InspectionChecklist_ItemsChecklist">
-          <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="1" />
+          <End Role="ItemsChecklist" Type="Self.ItemsChecklist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InspectionChecklist" Type="Self.InspectionChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ItemsChecklist">
@@ -1906,7 +2051,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InspectionChecklist_VehicleInspection">
-          <End Role="VehicleInspection" Type="Self.VehicleInspection" Multiplicity="1" />
+          <End Role="VehicleInspection" Type="Self.VehicleInspection" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InspectionChecklist" Type="Self.InspectionChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VehicleInspection">
@@ -1941,8 +2088,22 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventory_InventoryCategory">
+          <End Role="InventoryCategory" Type="Self.InventoryCategory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryCategory">
+              <PropertyRef Name="InventoryCategory_ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="InventoryCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderLine_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -1954,7 +2115,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PriceHistory_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PriceHistory" Type="Self.PriceHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -1966,7 +2129,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StockTakeTotal_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="StockTakeTotal" Type="Self.StockTakeTotal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -1978,7 +2143,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VehicleInventory_Inventory">
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInventory" Type="Self.VehicleInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
@@ -2002,7 +2169,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_JobPosition">
-          <End Role="JobPosition" Type="Self.JobPosition" Multiplicity="1" />
+          <End Role="JobPosition" Type="Self.JobPosition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="JobApplication" Type="Self.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="JobPosition">
@@ -2050,7 +2219,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderLine_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
@@ -2062,7 +2233,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StockTakeTotal_StockTake">
-          <End Role="StockTake" Type="Self.StockTake" Multiplicity="1" />
+          <End Role="StockTake" Type="Self.StockTake" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="StockTakeTotal" Type="Self.StockTakeTotal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StockTake">
@@ -2098,7 +2271,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VehicleInspection_Vehicle">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInspection" Type="Self.VehicleInspection" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2110,7 +2285,9 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VehicleInventory_Vehicle">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInventory" Type="Self.VehicleInventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2142,6 +2319,7 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
           <End Role="RoleType" Type="Self.RoleType" Multiplicity="*" />
         </Association>
         <EntityContainer Name="MediStock_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuditLogs" EntityType="Self.AuditLog" />
           <EntitySet Name="Barcodes" EntityType="Self.Barcode" />
           <EntitySet Name="Calls" EntityType="Self.Call" />
           <EntitySet Name="Call_ItemsUsed" EntityType="Self.Call_ItemsUsed" />
@@ -2275,6 +2453,10 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             <End Role="InterviewType" EntitySet="InterviewTypes" />
             <End Role="Interview" EntitySet="Interviews" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inventory_InventoryCategory" Association="Self.FK_Inventory_InventoryCategory">
+            <End Role="InventoryCategory" EntitySet="InventoryCategories" />
+            <End Role="Inventory" EntitySet="Inventories" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderLine_Inventory" Association="Self.FK_OrderLine_Inventory">
             <End Role="Inventory" EntitySet="Inventories" />
             <End Role="OrderLine" EntitySet="OrderLines" />
@@ -2347,6 +2529,43 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
             <End Role="Employee" EntitySet="Employees" />
             <End Role="RoleType" EntitySet="RoleTypes" />
           </AssociationSet>
+          <FunctionImport Name="Audit">
+            <Parameter Name="TableName" Mode="In" Type="String" />
+            <Parameter Name="PKName" Mode="In" Type="String" />
+            <Parameter Name="ChangedBy" Mode="In" Type="String" />
+            <Parameter Name="OldData" Mode="In" Type="String" />
+            <Parameter Name="NewData" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -2354,6 +2573,21 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MediStock_DBModelStoreContainer" CdmEntityContainer="MediStock_DBEntities">
+          <EntitySetMapping Name="AuditLogs">
+            <EntityTypeMapping TypeName="MediStock_DBModel.AuditLog">
+              <MappingFragment StoreEntitySet="AuditLog">
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="AuditDateTime" ColumnName="AuditDateTime" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="IDName" ColumnName="IDName" />
+                <ScalarProperty Name="OldData" ColumnName="OldData" />
+                <ScalarProperty Name="NewData" ColumnName="NewData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Barcodes">
             <EntityTypeMapping TypeName="MediStock_DBModel.Barcode">
               <MappingFragment StoreEntitySet="Barcode">
@@ -2791,6 +3025,14 @@ warning 6002: The table/view 'MediStock_DB.dbo.FullVehicleInventory' does not ha
               <ScalarProperty Name="RoleType_ID" ColumnName="RoleType_ID" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="Audit" FunctionName="MediStock_DBModel.Store.Audit" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MediStock_DBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MediStock_DBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MediStock_DBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MediStock_DBModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MediStock_DBModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MediStock_DBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MediStock_DBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

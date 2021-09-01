@@ -44,5 +44,31 @@ namespace MediStockAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut]
+        [Route("UpdateCandidate")]
+        public IHttpActionResult updateCandidate(Candidate updatedCandidate)
+
+        {
+            try
+            {
+                Candidate currentCandidate = new Candidate();
+                currentCandidate = db.Candidates.Where(z => z.Candidate_ID == updatedCandidate.Candidate_ID).FirstOrDefault();
+                currentCandidate.Candidate_ID = updatedCandidate.Candidate_ID;
+                currentCandidate.Candidate_Name = updatedCandidate.Candidate_Name;
+                currentCandidate.Candidate_Surname = updatedCandidate.Candidate_Surname;
+                currentCandidate.Candidate_Email = updatedCandidate.Candidate_Email;
+                currentCandidate.Candidate_CVFile = updatedCandidate.Candidate_CVFile;
+                currentCandidate.Candidate_ContactNumber = updatedCandidate.Candidate_ContactNumber;
+
+                db.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
