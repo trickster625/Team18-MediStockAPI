@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace MediStockAPI.Controllers
@@ -22,7 +23,7 @@ namespace MediStockAPI.Controllers
                 var interviews = db.Interviews.ToList();
                 List<Interview> InterviewList = new List<Interview>();
 
-                foreach (var i in interviews)
+                 foreach (var i in interviews)
                 {
 
                     Interview interview = new Interview();
@@ -36,7 +37,6 @@ namespace MediStockAPI.Controllers
                     interview.Address = i.Address;
 
                     InterviewList.Add(interview);
-
                 }
 
                 return Ok(InterviewList);
@@ -61,9 +61,9 @@ namespace MediStockAPI.Controllers
 
                 return Ok("Interview Scheduled");
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                return BadRequest();
+                return BadRequest((err).ToString());
             }
 
         }
@@ -95,12 +95,13 @@ namespace MediStockAPI.Controllers
             {
                 Interview currentInterview = new Interview();
                 currentInterview = db.Interviews.Where(z => z.Interview_ID == updatedInterview.Interview_ID).FirstOrDefault();
-
-
-                currentInterview.Interview_ID = updatedInterview.Interview_ID;
-                currentInterview.InterviewType = updatedInterview.InterviewType;
                 currentInterview.InterviewType_ID = updatedInterview.InterviewType_ID;
+                currentInterview.Interview_ID = updatedInterview.Interview_ID;
+                currentInterview.Candidate_ID = updatedInterview.Candidate_ID;
+                currentInterview.Employee_ID = updatedInterview.Employee_ID;
+                currentInterview.SheduleDateTime = updatedInterview.SheduleDateTime;
                 currentInterview.InterviewMethod = updatedInterview.InterviewMethod;
+                currentInterview.Address = updatedInterview.Address;
 
                 db.SaveChangesAsync();
 

@@ -11,15 +11,9 @@ namespace MediStockAPI.Models
 
         public int Candidate_ID { get; set; }
 
-        public int Candidate_Name { get; set; }
-
         public int InterviewType_ID { get; set; }
 
-        public int InterviewType_Description { get; set; }
-
         public int Employee_ID { get; set; }
-
-        public int Employee_Name { get; set; }
 
         public Nullable<System.DateTime> ScheduledDate_Time { get; set; }
 

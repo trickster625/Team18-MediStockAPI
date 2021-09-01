@@ -27,6 +27,7 @@ namespace MediStockAPI.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AuditLog> AuditLogs { get; set; }
         public virtual DbSet<Barcode> Barcodes { get; set; }
         public virtual DbSet<Call> Calls { get; set; }
         public virtual DbSet<Call_ItemsUsed> Call_ItemsUsed { get; set; }
@@ -68,6 +69,31 @@ namespace MediStockAPI.Models
         public virtual DbSet<Written_OffInventory> Written_OffInventory { get; set; }
         public virtual DbSet<FullCall> FullCalls { get; set; }
         public virtual DbSet<FullVehicleInventory> FullVehicleInventories { get; set; }
+    
+        public virtual int Audit(string tableName, string pKName, string changedBy, string oldData, string newData)
+        {
+            var tableNameParameter = tableName != null ?
+                new ObjectParameter("TableName", tableName) :
+                new ObjectParameter("TableName", typeof(string));
+    
+            var pKNameParameter = pKName != null ?
+                new ObjectParameter("PKName", pKName) :
+                new ObjectParameter("PKName", typeof(string));
+    
+            var changedByParameter = changedBy != null ?
+                new ObjectParameter("ChangedBy", changedBy) :
+                new ObjectParameter("ChangedBy", typeof(string));
+    
+            var oldDataParameter = oldData != null ?
+                new ObjectParameter("OldData", oldData) :
+                new ObjectParameter("OldData", typeof(string));
+    
+            var newDataParameter = newData != null ?
+                new ObjectParameter("NewData", newData) :
+                new ObjectParameter("NewData", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Audit", tableNameParameter, pKNameParameter, changedByParameter, oldDataParameter, newDataParameter);
+        }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

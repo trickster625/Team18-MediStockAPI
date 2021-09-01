@@ -32,7 +32,7 @@ namespace MediStockAPI.Models
         public Nullable<decimal> Inventory_LatestPrice { get; set; }
         public Nullable<int> Inventory_BaseCampQty { get; set; }
         public Nullable<int> Inventory_DaysToExpire { get; set; }
-        public byte[] Inventory_Picture { get; set; }
+        public string Inventory_Picture { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Barcode> Barcodes { get; set; }

@@ -19,12 +19,12 @@ namespace MediStockAPI.Controllers
             try
             {
                 var eNames = db.Employees.ToList();
-                List<Employee> nameList = new List<Employee>();
+                List<Models.Employee> nameList = new List<Models.Employee>();
 
                 foreach (var name in eNames)
                 {
 
-                    Employee dropdownName = new Employee();
+                    Models.Employee dropdownName = new Models.Employee();
 
                     dropdownName.Employee_ID = name.Employee_ID;
                     dropdownName.EmployeeTitle_ID = name.EmployeeTitle_ID;

@@ -5,6 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MediStockAPI.Models;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
 
 namespace MediStockAPI.Controllers
 {
@@ -23,6 +26,7 @@ namespace MediStockAPI.Controllers
 
                 var storedEmployees = db.Employees.ToList();
                 var storedRoleTypes = db.RoleTypes.ToList();
+               // var storedEmpRoles = db.Empl.ToList();
                 var storedTitle = db.EmployeeTitles.ToList();
                 var storedQuestion = db.SecurityQuestions.ToList();
 
@@ -45,7 +49,7 @@ namespace MediStockAPI.Controllers
 
                     foreach (var storedRoleType in storedRoleTypes)
                     {
-                        if (storedRoleType.RoleType_ID == storedRoleType.RoleType_ID)
+                        if (storedRoleType.RoleType_ID == emp.RoleType_ID)
                         {
                             emp.RoleType_Description = storedRoleType.RoleType_Description;
                         }
@@ -67,7 +71,6 @@ namespace MediStockAPI.Controllers
                         }
                     }
 
-
                     outputEmployees.Add(emp);
                 }
 
@@ -81,138 +84,28 @@ namespace MediStockAPI.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("getFilteredEmployees")]
-        public IHttpActionResult getFilteredEmployees(string searchName, int searchTypeID)
+        public string Encrypt(string clearText)
         {
-
-            try
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
             {
-                var storedEmployees = db.Employees.ToList();
-                var roletypes = db.RoleTypes.ToList();
-                var titles = db.EmployeeTitles.ToList();
-                var questions = db.SecurityQuestions.ToList();
-                List<RegisterEmployee> EmployeeList = new List<RegisterEmployee>();
-
-                foreach (var employee in storedEmployees)
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
                 {
-
-                    if (employee.Employee_Name == searchName)
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
                     {
-                        RegisterEmployee emp = new RegisterEmployee();
-
-                        emp.Employee_ID = employee.Employee_ID;
-                        emp.EmployeeTitle_ID = employee.EmployeeTitle_ID;
-                        emp.SecurityQuestion_ID = employee.SecurityQuestion_ID;
-                        emp.Employee_Name = employee.Employee_Name;
-                        emp.Employee_Surname = employee.Employee_Surname;
-                        emp.Employee_IDNumber = employee.Employee_IDNumber;
-                        emp.Employee_ContactNumber = employee.Employee_ContactNumber;
-                        emp.Employee_EmailAddress = employee.Employee_EmailAddress;
-                        emp.Employee_HashedPassword = employee.Employee_HashedPassword;
-                        emp.Employee_SecurityQuestionAnswer = employee.Employee_SecurityQuestionAnswer;
-                        emp.Employee_SARSTaxNumber = employee.Employee_SARSTaxNumber;
-                        emp.Employee_Signature = employee.Employee_Signature;
-
-                        foreach (var roletype in roletypes)
-                        {
-                            if (emp.RoleType_ID == roletype.RoleType_ID)
-                            {
-                                emp.RoleType_Description = roletype.RoleType_Description;
-                            }
-                        }
-
-
-                        foreach (var title in titles)
-                        {
-                            if (emp.EmployeeTitle_ID == title.EmployeeTitle_ID)
-                            {
-                                title.EmployeeTitle_Description = title.EmployeeTitle_Description;
-                            }
-                        }
-
-                        foreach (var question in questions)
-                        {
-                            if (emp.SecurityQuestion_ID == question.SecurityQuestion_ID)
-                            {
-                                question.SecurityQuestion_Description = question.SecurityQuestion_Description;
-                            }
-                        }
-
-
-                        EmployeeList.Add(emp);
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
                     }
-
+                    clearText = Convert.ToBase64String(ms.ToArray());
                 }
-
-                return Ok(EmployeeList);
             }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
+            return clearText;
         }
 
-
-        [HttpGet]
-        [Route("getcurrentEmployee")]
-        public IHttpActionResult getcurrenEmployee(int id)
-        {
-
-            try
-            {
-                var storedEmployee = db.Employees.ToList();
-                List<RegisterEmployee> EmployeeList = new List<RegisterEmployee>();
-                RegisterEmployee emp = new RegisterEmployee();
-
-                foreach (var storedEmployees in storedEmployee)
-                {
-
-                    if (emp.Employee_ID == id)
-                    {
-                        emp.Employee_ID = storedEmployees.Employee_ID;
-                        emp.EmployeeTitle_ID = storedEmployees.EmployeeTitle_ID;
-                        emp.SecurityQuestion_ID = storedEmployees.SecurityQuestion_ID;
-                        emp.Employee_Name = storedEmployees.Employee_Name;
-                        emp.Employee_Surname = storedEmployees.Employee_Surname;
-                        emp.Employee_IDNumber = storedEmployees.Employee_IDNumber;
-                        emp.Employee_ContactNumber = storedEmployees.Employee_ContactNumber;
-                        emp.Employee_EmailAddress = storedEmployees.Employee_EmailAddress;
-                        emp.Employee_HashedPassword = storedEmployees.Employee_HashedPassword;
-                        emp.Employee_SecurityQuestionAnswer = storedEmployees.Employee_SecurityQuestionAnswer;
-                        emp.Employee_SARSTaxNumber = storedEmployees.Employee_SARSTaxNumber;
-                        emp.Employee_Signature = storedEmployees.Employee_Signature;
-                        return Ok(emp);
-                    }
-
-                }
-
-                return Ok("No Match Found");
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-
-        }
-
-        [HttpPost]
-        [Route("createEmployee")]
-        public IHttpActionResult createEmployee(Employee newEmployee)
-        {
-            try
-            {
-                db.Employees.Add(newEmployee);
-                db.SaveChangesAsync();
-
-                return Ok("Employee Added!");
-            }
-            catch (Exception)
-            {
-
-                return BadRequest();
-            }
-        }
 
         [HttpPut]
         [Route("updateEmployee")]
@@ -220,7 +113,7 @@ namespace MediStockAPI.Controllers
         {
             try
             {
-                Employee currentEmployee = new Employee();
+                Models.Employee currentEmployee = new Models.Employee();
                 currentEmployee = db.Employees.Where(z => z.Employee_ID == updateEmployee.Employee_ID).FirstOrDefault();
 
                 currentEmployee.Employee_ID = updateEmployee.Employee_ID;
@@ -231,10 +124,12 @@ namespace MediStockAPI.Controllers
                 currentEmployee.Employee_IDNumber = updateEmployee.Employee_IDNumber;
                 currentEmployee.Employee_ContactNumber = updateEmployee.Employee_ContactNumber;
                 currentEmployee.Employee_EmailAddress = updateEmployee.Employee_EmailAddress;
-                currentEmployee.Employee_HashedPassword = updateEmployee.Employee_HashedPassword;
+                currentEmployee.Employee_HashedPassword = Encrypt(updateEmployee.Employee_HashedPassword);
                 currentEmployee.Employee_SecurityQuestionAnswer = updateEmployee.Employee_SecurityQuestionAnswer;
                 currentEmployee.Employee_SARSTaxNumber = updateEmployee.Employee_SARSTaxNumber;
                 currentEmployee.Employee_Signature = updateEmployee.Employee_Signature;
+
+                
 
                 db.SaveChangesAsync();
 

@@ -15,6 +15,6 @@ namespace MediStockAPI.Models
 
         public TimeSpan ShiftStartTime { get; set; }
 
-        public TimeSpan shiftEndTime { get; set; }
+        public TimeSpan ShiftEndTime { get; set; }
     }
 }

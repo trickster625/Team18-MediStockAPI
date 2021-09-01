@@ -4,7 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3fc30185c8d54c779a11803b000597e6" Name="Diagram1">
+      <Diagram DiagramId="41ad1cb09ccb4ef68440829c6cf866a4" Name="Diagram1">
+        <EntityTypeShape EntityType="MediStock_DBModel.AuditLog" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Barcode" Width="1.5" PointX="8.25" PointY="24.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Call" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Call_ItemsUsed" Width="1.5" PointX="12.25" PointY="14.5" IsExpanded="true" />
@@ -36,7 +37,7 @@
         <EntityTypeShape EntityType="MediStock_DBModel.StockTake" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.StockTakeTotal" Width="1.5" PointX="7.5" PointY="21" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Supplier" Width="1.5" PointX="10.75" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediStock_DBModel.sysdiagram" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MediStock_DBModel.sysdiagram" Width="1.5" PointX="13.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.Vehicle" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.VehicleCall" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="MediStock_DBModel.VehicleInspection" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />

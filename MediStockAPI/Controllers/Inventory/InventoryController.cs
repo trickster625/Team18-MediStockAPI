@@ -42,6 +42,17 @@ namespace MediStockAPI.Controllers.Inventory
                     item.Inventory_LatestPrice = (decimal)storedItem.Inventory_LatestPrice;
                     item.Inventory_BaseCampQty = (int)storedItem.Inventory_BaseCampQty;
 
+                    if (storedItem.Inventory_Picture != null)
+                    {
+                        var imgPath = storedItem.Inventory_Picture;
+                        byte[] b = System.IO.File.ReadAllBytes(imgPath);
+                        item.Inventory_Picture = b;
+                    }
+                    else
+                    {
+                        item.Inventory_Picture = null;
+                    }
+
                     foreach (var storedCategory in storedCategories)
                     {
                         if (storedItem.InventoryCategory_ID == storedCategory.InventoryCategory_ID)
