@@ -13,6 +13,7 @@ namespace MediStockAPI.Controllers.Vehicle
     {
 
         MediStock_DBEntities db = new MediStock_DBEntities();
+
         [HttpGet]
         [Route("getVehicleCalls")]
         public IHttpActionResult getVehicleCalls()
@@ -24,7 +25,7 @@ namespace MediStockAPI.Controllers.Vehicle
                 var vehicleCalls = db.VehicleCalls.ToList();
                 var storedWriteOffs = db.Written_OffInventory.ToList();
 
-               foreach (var Storedcall in vehicleCalls)
+                foreach (var Storedcall in vehicleCalls)
                 {
                     VehicleCall call = new VehicleCall();
 
@@ -45,22 +46,22 @@ namespace MediStockAPI.Controllers.Vehicle
 
         [HttpGet]
         [Route("GetVehicleCall")]
-       
-         public IHttpActionResult GetVehicleCall(int Search)
+
+        public IHttpActionResult GetVehicleCall(int Search)
+        {
+            try
             {
-                try
-                {
-                var result =db.VehicleCalls.Where(p => p.Call_ID == Search);
+                var result = db.VehicleCalls.Where(p => p.Call_ID == Search);
 
                 return Ok(result);
-                }
-                catch (Exception err)
-                {
+            }
+            catch (Exception err)
+            {
 
                 return BadRequest(err.ToString());
-                }
-
             }
+
+        }
 
         [HttpPost]
         [Route("AddNewVehicleCall")]

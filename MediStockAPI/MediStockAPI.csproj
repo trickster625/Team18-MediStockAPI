@@ -216,9 +216,7 @@
     <Compile Include="Controllers\Employee\getCurrentEmployeeController.cs" />
     <Compile Include="Controllers\Employee\getSecurityQuestionsController.cs" />
     <Compile Include="Controllers\Employee\JobPositionController.cs" />
-    <Compile Include="Controllers\Employee\LoginController.cs" />
     <Compile Include="Controllers\Employee\RegisterEmployeeController.cs" />
-    <Compile Include="Controllers\Employee\RoleTypeController.cs" />
     <Compile Include="Controllers\Employee\SecurityQuestionsController.cs" />
     <Compile Include="Controllers\Employee\ShiftController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -441,6 +439,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="final.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\MediStockDB.Context.tt">
