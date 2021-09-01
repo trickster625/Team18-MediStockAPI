@@ -86,25 +86,5 @@ namespace MediStockAPI.Controllers
                 return BadRequest();
             }
         }
-
-        // questionable
-        [HttpDelete]
-        [Route("acceptCandidate")]
-        public IHttpActionResult acceptCandidate(int id)
-        {
-            try
-            {
-                //db.Candidates.i(db.Candidates.Single(z => z.Candidate_ID == id));
-
-                db.SaveChangesAsync();
-
-                return Ok("Accepted");
-                // add to db.JobApplication shortlist
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
     }
 }
